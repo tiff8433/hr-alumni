@@ -1,6 +1,6 @@
 angular.module('myApp', ['ui.router'])
 
-//route handling
+
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
   $stateProvider
@@ -11,6 +11,10 @@ angular.module('myApp', ['ui.router'])
     .state('profiles', {
       url: '/profiles',
       templateUrl: 'app/views/profiles.html'
+    })
+    .state('createProfile', {
+      url: '/createProfile', 
+      templateUrl: 'app/views/createProfile.html'
     })
 }])
 
@@ -23,6 +27,7 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .factory('HttpRequest', ['$http', function ($http){
-
+  //get profiles
+  //post profile
 
 }])
