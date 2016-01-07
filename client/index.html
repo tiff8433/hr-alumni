@@ -11,18 +11,20 @@
   </head>
 
   <body ng-app="myApp">
-    <nav class="navbar navbar-inverse" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
      <div class="navbar-header">
-      <a class="navbar-brand">HR Alumni</a>
+      <a class="navbar-brand" ui-sref="home">HR Alumni</a>
      </div>
      <ul class="nav navbar-nav">
-      <li><a class="navbar-brand">Profiles</a></li>
-      <li><a class="navbar-brand">Login</a></li>
-      <li><a class="navbar-brand">Logout</a></li>
+      <li><a class="navbar-brand" ui-sref="profiles">Profiles</a></li>
+      <li><a class="navbar-brand" ui-sref="login">Login</a></li>
+      <li><a class="navbar-brand" ui-sref="logout">Logout</a></li>
      </ul>
     </nav>
-    <div class="featuredProfiles">
-      <p>Featured Profiles go here!</p>
+
+
+    <div class="container">
+      <div ui-view></div>
     </div>
 
   </body>
