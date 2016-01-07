@@ -1,6 +1,9 @@
 var port = process.env.PORT || 3000;
 var express = require('express');
 var app = express();
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/hralumni');
 
 app.use(express.static(__dirname + '/../client'));
 
