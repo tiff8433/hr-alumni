@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+require('mongoose-type-url');
 
 var UserSchema = new mongoose.Schema({
   name: {
@@ -24,16 +25,18 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
 
-  blog: {
-    type: String
+  experience: {
+    companies: [{type: String}],
+    languages: [{type: String}]
   },
 
-  website: {
-    type: String
+  links: {
+    blog: {type: mongoose.SchemaTypes.Url},
+    website: {type: mongoose.SchemaTypes.Url}
   },
 
   projects: {
-    type: [{type: String}]
+    urls: [{type: mongoose.SchemaTypes.Url}]
   }
 
 });
@@ -41,3 +44,5 @@ var UserSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('users', UserSchema);
+
+//https://www.npmjs.com/package/mongoose-type-url
