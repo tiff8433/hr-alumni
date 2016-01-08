@@ -5,6 +5,23 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var util = require('./config/utils.js');
 var handler = require('./config/request-handler.js');
+var bodyParser  = require('body-parser'); 
+
+
+  // Express 4 allows us to use multiple routers with their own configurations
+  var questionsRouter = express.Router();
+
+  app.use(bodyParser.urlencoded({extended: true}));
+  app.use(bodyParser.json());
+  app.use(express.static(__dirname + '/../client'));
+
+
+  app.use('/api/profiles', questionsRouter); // use questions router for all questions request
+
+
+  // inject our routers into their respective route files
+  // require('./config/request-handler.js')(questionsRouter);
+
 
 // github auth
 var passport = require('passport');
@@ -68,8 +85,8 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/api/profiles', handler.createProfile);
-app.post('/api/profiles', handler.findAll);
+app.get('/api/profiles', handler.findAll);
+app.post('/api/profiles', handler.createProfile);
 
 
 
