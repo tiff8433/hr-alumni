@@ -4,6 +4,7 @@ var app = express();
 var mongoose = require('mongoose');
 var session = require('express-session');
 var util = require('./config/utils.js');
+var handler = require('./config/request-handler.js');
 
 // github auth
 var passport = require('passport');
@@ -33,7 +34,8 @@ passport.use(new GithubStrategy({
 ));
 
 
-mongoose.connect(process.env.MONGOLAB_URI);
+// mongoose.connect(process.env.MONGOLAB_URI);
+mongoose.connect("mongodb://localhost/hralumni");
 
 app.use(express.static(__dirname + '/../client'));
 
@@ -65,6 +67,11 @@ app.get('/auth/github/callback',
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+app.get('/api/profiles', handler.createProfile);
+app.post('/api/profiles', handler.findAll);
+
+
 
 app.listen(port, function() {
   console.log('Server started on port: ' + port);
