@@ -20,22 +20,33 @@ angular.module('myApp', ['ui.router'])
       url: '/login',
       templateUrl: 'app/views/login.html'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'app/views/profile.html'
+    })
 }])
 
 .controller('homeCtrl', ['$scope', function ($scope) {
 }])
 
+.controller('profileCtrl', ['$scope', function ($scope) {
+
+
+}])
+
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', function ($scope, $http, HttpRequest) {
-  HttpRequest.getProfiles()
-    .then(function (data) {
-      $scope.profiles= data;
-    })
-  // $http({
-  //   method: 'GET',
-  //   url: '/api/profiles'
-  // }).then(function (res) {
-  //     $scope.profiles = res.data;
-  // })
+  // console.log(HttpRequest)
+  // HttpRequest.getProfiles()
+  //   .then(function (data) {
+  //     $scope.profiles= data;
+  //   })
+  $http({
+    method: 'GET',
+    url: '/api/profiles'
+  }).then(function (res) {
+    console.log('response data looks like: ', res.data); 
+      $scope.profiles = res.data;
+  })
 }])
 
 .controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
@@ -46,10 +57,11 @@ angular.module('myApp', ['ui.router'])
   }
 }])
 
-.factory('HttpRequest', ['$http', function ($http){
+.factory('HttpRequest', ['$http', '$q', function ($http, $q){
   var deferred= $q.defer(); 
   var submitProfile = function (data) {
-    $http({
+    console.log('data does it get here>=? ', data); 
+    return $http({
       method: 'POST',
       url: '/api/profiles',
       data: data
@@ -57,7 +69,7 @@ angular.module('myApp', ['ui.router'])
   };
 
   var getProfiles= function () {
-      $http({
+    return $http({
       method: 'GET',
       url: '/api/profiles'
     }).success(function(result){

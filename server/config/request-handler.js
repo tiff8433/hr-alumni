@@ -2,9 +2,10 @@ var User = require('../users/userModel.js');
 
 
 exports.createProfile = function(req, res) {
+  console.log('request looks like: ', req.body); 
   var firstName = req.body.firstName;
   var lastName = req.body.lastName;
-  var githubName = req.body.githubName;
+  var githubName = req.body.github;
   var email = req.body.email;
   var location = req.body.location;
   var summary = req.body.summary;
@@ -34,37 +35,40 @@ exports.createProfile = function(req, res) {
             email: email,
             location: location
           },
-          about: {
-            summary: summary,
-            status: status
-          },
-          experience: {
-            companies: [
-              {companies: companies}
-            ],
-            languages: [
-              {languages: languages}
-            ]
-          },
+          // about: {
+          //   summary: summary,
+          //   status: status
+          // },
+          // experience: {
+          //   companies: [
+          //     {companies: companies}
+          //   ],
+          //   languages: [
+          //     {languages: languages}
+          //   ]
+          // },
           links: {
             blog: blog,
-            website: website,
+            // website: website,
             linkedin: linkedin,
-            github: github
-          },
-          projects: {
-            urls: [
-            {project1: project1},
-            {project2: project2},
-            {project3: project3}
-          ]
+            // github: github
           }
+          // ,
+          // projects: {
+          //   urls: [
+          //   {project1: project1},
+          //   {project2: project2},
+          //   {project3: project3}
+          // ]
+          // }
         });
+        console.log('new user on line 64: ', newUser); 
         newUser.save(function(err, newUser) {
           if (err) {
-            res.send(500, err);
-            res.redirect('/profile');
+            res.status(500).send(err); 
+            // res.redirect('/profile');
           }
+          console.log('new user gets saved? ', newUser); 
         });
       } else {
         console.log("Profile already exists");
