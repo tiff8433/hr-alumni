@@ -2,27 +2,17 @@ var mongoose = require('mongoose');
 require('mongoose-type-url');
 
 var UserSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true
+  contact: {
+    firstName: {type: String,required: true, unique: true},
+    lastName:  {type: String,required: true, unique: true},
+    githubName: {type: String, required: true, unique: true},
+    email: {type: String, required: true, unique: true},
+    location: {type: String, required: true}
   },
 
-  github: {
-    type: String,
-    required: true,
-    unique: true
-  },
-
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-
-  location: {
-    type: String,
-    required: true
+  about: {
+    summary: {type: String},
+    status: {type: String}
   },
 
   experience: {
@@ -32,7 +22,9 @@ var UserSchema = new mongoose.Schema({
 
   links: {
     blog: {type: mongoose.SchemaTypes.Url},
-    website: {type: mongoose.SchemaTypes.Url}
+    website: {type: mongoose.SchemaTypes.Url},
+    linkedin: {type: mongoose.SchemaTypes.Url},
+    github: {type: mongoose.SchemaTypes.Url}
   },
 
   projects: {
