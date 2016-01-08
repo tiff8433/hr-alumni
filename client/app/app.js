@@ -20,9 +20,18 @@ angular.module('myApp', ['ui.router'])
       url: '/login',
       templateUrl: 'app/views/login.html'
     })
+    .state('profile', {
+      url: '/profile',
+      templateUrl: 'app/views/profile.html'
+    })
 }])
 
 .controller('homeCtrl', ['$scope', function ($scope) {
+}])
+
+.controller('profileCtrl', ['$scope', function ($scope) {
+
+
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', function ($scope, $http, HttpRequest) {
@@ -46,7 +55,7 @@ angular.module('myApp', ['ui.router'])
   }
 }])
 
-.factory('HttpRequest', ['$http', function ($http){
+.factory('HttpRequest', ['$http', '$q', function ($http, $q){
   var deferred= $q.defer(); 
   var submitProfile = function (data) {
     $http({
