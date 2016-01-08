@@ -26,7 +26,6 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', function ($scope, $http) {
-  $scope.profiles = [1,2,3,4,5,6];
   $http({
     method: 'GET',
     url: '/api/profiles'
