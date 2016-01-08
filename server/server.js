@@ -67,7 +67,7 @@ app.use(passport.session());
 
 app.get('/auth/github',
   passport.authenticate('github', {
-    scope: ['user:email']
+    scope: ['user', 'user:email', 'read:org']
   }),
   function(req, res) {
 
