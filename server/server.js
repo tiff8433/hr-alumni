@@ -33,7 +33,7 @@ passport.use(new GithubStrategy({
 ));
 
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/hralumni');
+mongoose.connect(process.env.MONGOLAB_URI);
 
 app.use(express.static(__dirname + '/../client'));
 
@@ -66,6 +66,6 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('Server started on port: ' + port);
 });
