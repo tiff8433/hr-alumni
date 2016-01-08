@@ -35,32 +35,31 @@ exports.createProfile = function(req, res) {
             email: email,
             location: location
           },
-          // about: {
-          //   summary: summary,
-          //   status: status
-          // },
-          // experience: {
-          //   companies: [
-          //     {companies: companies}
-          //   ],
-          //   languages: [
-          //     {languages: languages}
-          //   ]
-          // },
+          about: {
+            summary: summary,
+            status: status
+          },
+          experience: {
+            companies: [
+              companies
+            ],
+            languages: [
+              languages
+            ]
+          },
           links: {
             blog: blog,
-            // website: website,
+            website: website,
             linkedin: linkedin,
-            // github: github
+            github: github
+          },
+          projects: {
+            urls: [
+            project1,
+            project2,
+            project3
+          ]
           }
-          // ,
-          // projects: {
-          //   urls: [
-          //   {project1: project1},
-          //   {project2: project2},
-          //   {project3: project3}
-          // ]
-          // }
         });
         console.log('new user on line 64: ', newUser); 
         newUser.save(function(err, newUser) {
