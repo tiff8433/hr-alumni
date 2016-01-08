@@ -25,14 +25,17 @@ angular.module('myApp', ['ui.router'])
 .controller('homeCtrl', ['$scope', function ($scope) {
 }])
 
-.controller('profilesCtrl', ['$scope', '$http', function ($scope, $http) {
-  $scope.profiles = [1,2,3,4,5,6];
-  $http({
-    method: 'GET',
-    url: '/api/profiles'
-  }).then(function (res) {
-      $scope.profiles = res.data;
-  })
+.controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', function ($scope, $http, HttpRequest) {
+  HttpRequest.getProfiles()
+    .then(function (data) {
+      $scope.profiles= data;
+    })
+  // $http({
+  //   method: 'GET',
+  //   url: '/api/profiles'
+  // }).then(function (res) {
+  //     $scope.profiles = res.data;
+  // })
 }])
 
 .controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
@@ -44,8 +47,7 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .factory('HttpRequest', ['$http', function ($http){
-  //get profiles
-  //post profile
+  var deferred= $q.defer(); 
   var submitProfile = function (data) {
     $http({
       method: 'POST',
@@ -53,7 +55,26 @@ angular.module('myApp', ['ui.router'])
       data: data
     })
   };
+
+  var getProfiles= function () {
+      $http({
+      method: 'GET',
+      url: '/api/profiles'
+    }).success(function(result){
+      deferred.resolve(result); 
+    }).error(function (result){
+      deferred.reject(result);
+    })
+  }
+
+  // $http({
+  //   method: 'GET',
+  //   url: '/api/profiles'
+  // }).then(function (res) {
+  //     $scope.profiles = res.data;
+  // })
   return {
-    submitProfile: submitProfile
+    submitProfile: submitProfile,
+    getProfiles: getProfiles
   }
 }]);
