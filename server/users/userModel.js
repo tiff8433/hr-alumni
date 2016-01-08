@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-require('mongoose-type-url');
 
 var UserSchema = new mongoose.Schema({
   contact: {
@@ -21,14 +20,14 @@ var UserSchema = new mongoose.Schema({
   },
 
   links: {
-    blog: {type: mongoose.SchemaTypes.Url},
-    website: {type: mongoose.SchemaTypes.Url},
-    linkedin: {type: mongoose.SchemaTypes.Url},
-    github: {type: mongoose.SchemaTypes.Url}
+    blog: {type: String},
+    website: {type: String},
+    linkedin: {type: String},
+    github: {type: String}
   },
 
   projects: {
-    urls: [{type: mongoose.SchemaTypes.Url}]
+    urls: [{type: String}]
   }
 
 });
