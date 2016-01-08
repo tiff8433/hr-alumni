@@ -15,7 +15,9 @@ exports.createProfile = function(req, res) {
   var website = req.body.website;
   var linkedin = req.body.linkedin;
   var github = req.body.github;
-  var urls = req.body.urls;
+  var project1  = req.body.project1;
+  var project2  = req.body.project2;
+  var project3  = req.body.project3;
 
   User.findOne({
       contact: {
@@ -37,8 +39,12 @@ exports.createProfile = function(req, res) {
             status: status
           },
           experience: {
-            companies: companies,
-            languages: languages
+            companies: [
+              {companies: companies}
+            ],
+            languages: [
+              {languages: languages}
+            ]
           },
           links: {
             blog: blog,
@@ -47,12 +53,17 @@ exports.createProfile = function(req, res) {
             github: github
           },
           projects: {
-            urls: urls
+            urls: [
+            {project1: project1},
+            {project2: project2},
+            {project3: project3}
+          ]
           }
         });
         newUser.save(function(err, newUser) {
           if (err) {
             res.send(500, err);
+            res.redirect('/profile');
           }
         });
       } else {
