@@ -19,15 +19,37 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .controller('homeCtrl', ['$scope', function ($scope) {
-
 }])
 
-.controller('profilesCtrl', ['$scope', function ($scope) {
+.controller('profilesCtrl', ['$scope', '$http', function ($scope, $http) {
+  $scope.profiles = [1,2,3,4,5,6];
+  $http({
+    method: 'GET',
+    url: '/api/profiles'
+  }).then(function (res) {
+      $scope.profiles = res.data;
+  })
+}])
 
+.controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
+  $scope.submitProfile = function (formData) {
+    console.log(formData);
+
+    HttpRequest.submitProfile(formData);
+  }
 }])
 
 .factory('HttpRequest', ['$http', function ($http){
   //get profiles
   //post profile
-
-}])
+  var submitProfile = function (data) {
+    $http({
+      method: 'POST',
+      url: '/api/profiles',
+      data: data
+    })
+  };
+  return {
+    submitProfile: submitProfile
+  }
+}]);
