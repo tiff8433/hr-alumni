@@ -20,11 +20,12 @@
     "express": "^4.13.3",
     "express-session": "^1.12.1",
     "mongoose": "^4.3.4",
+    "mongoose-type-url": "^1.0.1",
     "passport": "^0.3.2",
     "passport-github2": "^0.1.9"
   },
-  "engines" : {
+  "engines": {
     "node": "5.2.0",
-    "npm" : "3.3.12"
+    "npm": "3.3.12"
   }
 }
