@@ -16,6 +16,10 @@ angular.module('myApp', ['ui.router'])
       url: '/createProfile', 
       templateUrl: 'app/views/createProfile.html'
     })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'app/views/login.html'
+    })
 }])
 
 .controller('homeCtrl', ['$scope', function ($scope) {
