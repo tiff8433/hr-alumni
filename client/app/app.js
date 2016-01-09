@@ -29,12 +29,12 @@ angular.module('myApp', ['ui.router'])
 .controller('homeCtrl', ['$scope', function ($scope) {
 }])
 
-.controller('profileCtrl', ['$scope', function ($scope) {
-
+.controller('profileCtrl', ['$scope', 'Profile', function ($scope, Profile) {
+  $scope.currentProfile= Profile.getProfile(); 
 
 }])
 
-.controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', function ($scope, $http, HttpRequest) {
+.controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', 'Profile', function ($scope, $http, HttpRequest, Profile) {
   // console.log(HttpRequest)
   // HttpRequest.getProfiles()
   //   .then(function (data) {
@@ -44,9 +44,15 @@ angular.module('myApp', ['ui.router'])
     method: 'GET',
     url: '/api/profiles'
   }).then(function (res) {
-    console.log('response data looks like: ', res.data); 
-      $scope.profiles = res.data;
+    // console.log('response data looks like: ', res.data); 
+    $scope.profiles = res.data;
+    $scope.currentProfile= res.data[0]; 
+    console.log('profile.setProfile', Profile.setProfile); 
+    $scope.setProfile= function (profile) {
+      Profile.setProfile(profile); 
+    }
   })
+
 }])
 
 .controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
@@ -89,4 +95,19 @@ angular.module('myApp', ['ui.router'])
     submitProfile: submitProfile,
     getProfiles: getProfiles
   }
-}]);
+}])
+
+.factory('Profile', function (){
+  var storedProfile; 
+  var setProfile= function (profile) {
+    storedProfile= profile; 
+  }
+  var getProfile= function (){
+    return storedProfile; 
+  }
+  return {
+    setProfile: setProfile,
+    getProfile: getProfile
+  }
+
+})
