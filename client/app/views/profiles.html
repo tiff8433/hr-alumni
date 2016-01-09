@@ -1,7 +1,7 @@
 <div class='container-fluid' ng-controller="profilesCtrl">
   <p>Profiles of all HR grads go here!</p>
   <div class="row" >
-      <div class="col-md-4" ng-repeat="profile in profiles">
+      <div class="col-md-4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
         {{profile.contact.firstName + ' ' + profile.contact.lastName}} <br>
         {{profile.contact.location}} <br>
         {{profile.about.summary}} <br>
