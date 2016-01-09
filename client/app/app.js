@@ -56,22 +56,27 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
-  $scope.submitProfile = function (formData) {
+  $scope.submitProfile = function (isValid, formData) {
     console.log(formData);
+    console.log('First isValid: ', isValid);
 
-    HttpRequest.submitProfile(formData);
+    HttpRequest.submitProfile(isValid, formData);
   }
 }])
 
 .factory('HttpRequest', ['$http', '$q', function ($http, $q){
   var deferred= $q.defer();
-  var submitProfile = function (data) {
-    console.log('data does it get here>=? ', data);
-    return $http({
-      method: 'POST',
-      url: '/api/profiles',
-      data: data
-    })
+  var submitProfile = function (isValid, data) {
+      console.log('Second isValid: ', isValid);
+    if (isValid) {
+        console.log('data does it get here>=? ', data);
+        return $http({
+            method: 'POST',
+            url: '/api/profiles',
+            data: data
+        })
+    }
+
   };
 
   var getProfiles= function () {
