@@ -11,6 +11,7 @@ angular.module('myApp', ['ui.router'])
     .state('profiles', {
       url: '/profiles',
       templateUrl: 'app/views/profiles.html'
+
     })
     .state('createProfile', {
       url: '/createProfile', 
@@ -20,13 +21,20 @@ angular.module('myApp', ['ui.router'])
       url: '/login',
       templateUrl: 'app/views/login.html'
     })
-    .state('profile', {
+    .state('profiles.profile', {
       url: '/profile',
       templateUrl: 'app/views/profile.html'
+
+
     })
+
+
 }])
 
-.controller('homeCtrl', ['$scope', function ($scope) {
+.controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
+
+  $state.transitionTo('profiles.profile'); 
+
 }])
 
 .controller('profileCtrl', ['$scope', 'Profile', function ($scope, Profile) {
@@ -47,8 +55,8 @@ angular.module('myApp', ['ui.router'])
     // console.log('response data looks like: ', res.data); 
     $scope.profiles = res.data;
     $scope.currentProfile= res.data[0]; 
-    console.log('profile.setProfile', Profile.setProfile); 
     $scope.setProfile= function (profile) {
+      console.log('set profile called'); 
       Profile.setProfile(profile); 
     }
   })
@@ -105,9 +113,11 @@ angular.module('myApp', ['ui.router'])
 .factory('Profile', function (){
   var storedProfile; 
   var setProfile= function (profile) {
+    console.log('profile set'); 
     storedProfile= profile; 
   }
   var getProfile= function (){
+    console.log('get profile'); 
     return storedProfile; 
   }
   return {
