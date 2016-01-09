@@ -66,7 +66,7 @@ angular.module('myApp', ['ui.router'])
 .factory('HttpRequest', ['$http', '$q', function ($http, $q){
   var deferred= $q.defer();
   var submitProfile = function (data) {
-    console.log('data does it get here>=? ', data); 
+    console.log('data does it get here>=? ', data);
     return $http({
       method: 'POST',
       url: '/api/profiles',
