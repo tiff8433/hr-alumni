@@ -11,6 +11,7 @@ angular.module('myApp', ['ui.router'])
     .state('profiles', {
       url: '/profiles',
       templateUrl: 'app/views/profiles.html'
+
     })
     .state('createProfile', {
       url: '/createProfile', 
@@ -20,38 +21,52 @@ angular.module('myApp', ['ui.router'])
       url: '/login',
       templateUrl: 'app/views/login.html'
     })
-    .state('profile', {
-      url: '/profile',
+    .state('profiles.profile', {
+      url: '',
       templateUrl: 'app/views/profile.html'
+
+
     })
+
+
 }])
 
-.controller('homeCtrl', ['$scope', function ($scope) {
+.controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
+
+  $state.transitionTo('profiles.profile'); 
+
 }])
 
 .controller('profileCtrl', ['$scope', 'Profile', function ($scope, Profile) {
-  $scope.currentProfile= Profile.getProfile(); 
-
+  console.log('controller gets called'); 
+  // $scope.currentProfile= Profile.getProfile(); 
+  console.log('currentProfile where it counts', $scope.currentProfile); 
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', 'Profile', function ($scope, $http, HttpRequest, Profile) {
   // console.log(HttpRequest)
-  // HttpRequest.getProfiles()
-  //   .then(function (data) {
-  //     $scope.profiles= data;
-  //   })
-  $http({
-    method: 'GET',
-    url: '/api/profiles'
-  }).then(function (res) {
-    // console.log('response data looks like: ', res.data); 
-    $scope.profiles = res.data;
-    $scope.currentProfile= res.data[0]; 
-    console.log('profile.setProfile', Profile.setProfile); 
-    $scope.setProfile= function (profile) {
-      Profile.setProfile(profile); 
-    }
-  })
+  HttpRequest.getProfiles()
+    .then(function (res) {
+      $scope.profiles= res.data;
+      $scope.setProfile= function (profile) {
+        console.log('set profile called'); 
+        $scope.currentProfile= Profile.setProfile(profile); 
+        console.log('currentProfile', $scope.currentProfile); 
+      }
+    })
+  // $http({
+  //   method: 'GET',
+  //   url: '/api/profiles'
+  // }).then(function (res) {
+  //   // console.log('response data looks like: ', res.data); 
+  //   $scope.profiles = res.data;
+  //   // $scope.currentProfile= res.data[0]; 
+  //   $scope.setProfile= function (profile) {
+  //     console.log('set profile called'); 
+  //     $scope.currentProfile= Profile.setProfile(profile); 
+  //     console.log('currentProfile', $scope.currentProfile); 
+  //   }
+  // })
 
 }])
 
@@ -105,9 +120,12 @@ angular.module('myApp', ['ui.router'])
 .factory('Profile', function (){
   var storedProfile; 
   var setProfile= function (profile) {
-    storedProfile= profile; 
+    console.log('profile set'); 
+    storedProfile= profile;
+    return storedProfile;  
   }
   var getProfile= function (){
+    console.log('get profile'); 
     return storedProfile; 
   }
   return {

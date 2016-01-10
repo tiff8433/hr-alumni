@@ -1,11 +1,21 @@
-<div class='container-fluid' ng-controller="profilesCtrl">
+
+<div ng-controller="profilesCtrl">
   <p>Profiles of all HR grads go here!</p>
   <div class="row" >
-      <div class="col-md-4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
-        {{profile.contact.firstName + ' ' + profile.contact.lastName}} <br>
-        {{profile.contact.location}} <br>
-        {{profile.about.summary}} <br>
-        {{profile.about.status}} <br>
+      <div class="col-md-6">
+        <div class="col-md-2" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
+          <a ui-sref="profiles.profile">
+            {{profile.contact.firstName + ' ' + profile.contact.lastName}} <br>
+            {{profile.contact.location}} <br>
+            {{profile.about.summary}} <br>
+            {{profile.about.status}} <br>
+          </a>
+        </div>
       </div>
+      <div ui-view class="col-md-6"></div>
   </div>
+
 </div>
+
+
+
