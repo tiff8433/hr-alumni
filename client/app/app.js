@@ -12,10 +12,10 @@ angular.module('myApp', ['ui.router'])
       templateUrl: 'app/views/profiles.html'
 
     })
-    .state('createProfile', {
-      url: '/createProfile', 
-      templateUrl: 'app/views/createProfile.html'
-    })
+    // .state('createProfile', {
+    //   url: '/createProfile', 
+    //   templateUrl: 'app/views/createProfile.html'
+    // })
     .state('login', {
       url: '/login',
       templateUrl: 'app/views/login.html'
@@ -56,13 +56,13 @@ angular.module('myApp', ['ui.router'])
 
 }])
 
-.controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
-  $scope.submitProfile = function (isValid, formData) {
-    console.log(formData);
-    console.log('First isValid: ', isValid);
-    // HttpRequest.submitProfile(isValid, formData);
-  }
-}])
+// .controller('createProfileCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest){
+//   $scope.submitProfile = function (isValid, formData) {
+//     console.log(formData);
+//     console.log('First isValid: ', isValid);
+//     // HttpRequest.submitProfile(isValid, formData);
+//   }
+// }])
 
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
   console.log('$stateParams are: ', $stateParams); 

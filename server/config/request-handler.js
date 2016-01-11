@@ -6,8 +6,8 @@ exports.createProfile = function(req, res) {
   console.log('request.fromgithub : ', req.fromGitHub); 
 
   if(req.fromGitHub) {
-    var firstName = req.body['_json'].name;
-    var lastName = req.body['_json'].name;
+    var name = req.body['_json'].name;
+    var profilePic= req.body['_json']['avatar_url'];
     var githubName = req.body.username;
     var email = req.body['_json'].email;
     var location = req.body['_json'].location;
@@ -22,24 +22,25 @@ exports.createProfile = function(req, res) {
     var project1  = '';
     var project2  = '';
     var project3  = '';
-  } else {
-    var firstName = req.body.firstName;
-    var lastName = req.body.lastName;
-    var githubName = req.body.github;
-    var email = req.body.email;
-    var location = req.body.location;
-    var summary = req.body.summary;
-    var status = req.body.status;
-    var companies = req.body.companies;
-    var languages = req.body.languages;
-    var blog = req.body.blog;
-    var website = req.body.website;
-    var linkedin = req.body.linkedin;
-    var github = req.body.github;
-    var project1  = req.body.project1;
-    var project2  = req.body.project2;
-    var project3  = req.body.project3;
   }
+   // else {
+  //   var firstName = req.body.firstName;
+  //   var lastName = req.body.lastName;
+  //   var githubName = req.body.github;
+  //   var email = req.body.email;
+  //   var location = req.body.location;
+  //   var summary = req.body.summary;
+  //   var status = req.body.status;
+  //   var companies = req.body.companies;
+  //   var languages = req.body.languages;
+  //   var blog = req.body.blog;
+  //   var website = req.body.website;
+  //   var linkedin = req.body.linkedin;
+  //   var github = req.body.github;
+  //   var project1  = req.body.project1;
+  //   var project2  = req.body.project2;
+  //   var project3  = req.body.project3;
+  // }
   
   console.log('github name', githubName); 
   var query= User.findOne({
@@ -53,8 +54,8 @@ exports.createProfile = function(req, res) {
       if (!user) {
         var newUser = new User({
           contact: {
-            firstName: firstName,
-            lastName: lastName,
+            name: name,
+            profilePic: profilePic,
             githubName: githubName,
             email: email,
             location: location
