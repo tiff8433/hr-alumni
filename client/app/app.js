@@ -67,9 +67,16 @@ angular.module('myApp', ['ui.router'])
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
   console.log('$stateParams are: ', $stateParams); 
   // redirects to /updateProfile/:githubName
-  $scope.submitProfile = function (isValid, formData) {
-        console.log('formData', formData);
-        console.log('First isValid: ', isValid);
+  // $scope.submitProfile = function (isValid, formData) {
+  //       console.log('formData', formData);
+  //       console.log('First isValid: ', isValid);
+  //       // HttpRequest.submitProfile(isValid, formData);
+  // }
+
+  $scope.submitProfile = function () {
+
+        console.log('formData', $scope.data);
+        // console.log('First isValid: ', isValid);
         // HttpRequest.submitProfile(isValid, formData);
   }
 
@@ -84,6 +91,7 @@ angular.module('myApp', ['ui.router'])
       //   $scope.currentProfile= Profile.setProfile(profile); 
       //   console.log('currentProfile', $scope.currentProfile); 
       // }
+      
       
     })
 
