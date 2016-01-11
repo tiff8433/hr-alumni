@@ -1,0 +1,26 @@
+<div class='container-fluid' ng-controller='updateProfileCtrl'>
+  <form ng-submit="submitProfile(!$inValid, data)" class="input-group" name="createProfileForm">
+    <input type="text" class="form-control" placeholder="Name (required)" aria-describedby="basic-addon1" ng-model="data.contact.name" required>
+    <input type="text" class="form-control" placeholder="Profile Picture" aria-describedby="basic-addon1" ng-model="data.contact.profilePic" required>
+    <input type="text" class="form-control" placeholder="Github (required)" aria-describedby="basic-addon1" ng-model="data.contact.githubName" required>
+    <input type="text" class="form-control" placeholder="Email (required)" aria-describedby="basic-addon1" ng-model="data.contact.email" required>
+    <input type="text" class="form-control" placeholder="Location (required)" aria-describedby="basic-addon1" ng-model="data.contact.location" required>
+
+    <input type="text" class="form-control" placeholder="LinkedIn" aria-describedby="basic-addon1" ng-model="data.links.linkedin">
+    <input type="text" class="form-control" placeholder="Blog" aria-describedby="basic-addon1" ng-model="data.links.blog">
+
+    <input type="text" class="form-control" placeholder="About Me" aria-describedby="basic-addon1" ng-model="data.about.summary">
+    <input type="text" class="form-control" placeholder="Employment Status" aria-describedby="basic-addon1" ng-model="data.about.status">
+
+    <input type="text" class="form-control" placeholder="Companies" aria-describedby="basic-addon1" ng-model="data.experience.companies[0]">
+    <input type="text" class="form-control" placeholder="Languages" aria-describedby="basic-addon1" ng-model="data.experience.languages[0]">
+
+    <input type="text" class="form-control" placeholder="Project 1" aria-describedby="basic-addon1" ng-model="data.project.urls[0]">
+    <input type="text" class="form-control" placeholder="Project 2" aria-describedby="basic-addon1" ng-model="data.project.urls[1]">
+    <input type="text" class="form-control" placeholder="Project 3" aria-describedby="basic-addon1" ng-model="data.project3.urls[2]">
+    <br/>
+
+    <button type="submit" ng-disabled="createProfileForm.$inValid">Update Profile</button>
+  </form>
+</div>
+
