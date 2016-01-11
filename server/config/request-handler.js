@@ -107,10 +107,7 @@ exports.findAll = function(req, res) {
 };
 
 exports.findOne = function(req, res) {
-  User.find({
-    contact: {
-      email: email
-    }
+  User.find({'contact.email':  email
   }).exec(function(err, profile) {
     res.json(profile);
   });
