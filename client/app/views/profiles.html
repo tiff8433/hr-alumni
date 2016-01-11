@@ -1,19 +1,25 @@
 <div ng-controller="profilesCtrl">
-  <p>Profiles of all HR grads go here!</p>
   <div class="row" >
-      <div class="col-md-6">
-        <div class="col-md-2" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
-          <a ui-sref="profiles.profile">
-            {{profile.contact.firstName + ' ' + profile.contact.lastName}} <br>
-            {{profile.contact.location}} <br>
-            {{profile.about.summary}} <br>
-            {{profile.about.status}} <br>
-          </a>
-        </div>
+      <div class="col s4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
+            <div class="card darken-2 col-md-1 z-depth-5">
+                <br>
+                <br>
+                <div class="center-align">
+                    <img  height="200px" width="auto" src="{{profile.contact.profilePic}}" > <br>
+                </div>
+                <br>
+                <div >
+                    <a ui-sref="profiles.profile">
+                        <p class="center-align">{{profile.contact.name}}</p> <br>
+
+                    </a>
+                    <p><span style="font-weight: bold">Location: </span> {{profile.contact.name}}</p>
+                    <p><span style="font-weight: bold">Summary: </span> My name is Jason Jensen and I am currently looking for a job</p>
+                    <p><span style="font-weight: bold">Employment Status: </span>{{profile.contact.name}}</p>
+                    <br>
+                </div>
+            </div>
       </div>
       <div ui-view class="col-md-6"></div>
   </div>
 </div>
-
-
-
