@@ -96,7 +96,7 @@ app.get('/', function(req, res) {
 app.get('/api/profiles', handler.findAll);
 app.post('/api/profiles', handler.createProfile);
 app.get('/api/profile/:githubName', handler.findOne);
-
+app.post('/api/updateProfile', handler.updateProfile)
 
 app.listen(port, function() {
   console.log('Server started on port: ' + port);
