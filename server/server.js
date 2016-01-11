@@ -70,15 +70,23 @@ app.get('/auth/github',
     scope: ['user', 'user:email', 'read:org']
   }),
   function(req, res) {
-
+    console.log('req', req);
+    console.log('res', res); 
   });
 
 app.get('/auth/github/callback',
   passport.authenticate('github', {
     failureRedirect: '/login'
-  }),
-  function(req, res) {
-    res.redirect('/');
+  })
+  ,function(req, res) {
+    // console.log('req',req.user); 
+    var data= {
+      body: req.user,
+      fromGitHub: true
+    }
+    console.log('data here: ', data); 
+    handler.createProfile(data, res)
+    // res.redirect('/');
   });
 
 app.get('/', function(req, res) {
