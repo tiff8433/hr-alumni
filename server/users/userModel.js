@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 var UserSchema = new mongoose.Schema({
   contact: {
-    name: {type: String,required: true, unique: true},
-    profilePic:  {type: String, unique: true},
+    name: {type: String},
+    profilePic:  {type: String},
     githubName: {type: String, required: true, unique: true},
-    email: {type: String, required: true, unique: true},
-    location: {type: String, required: true}
+    email: {type: String, unique: true},
+    location: {type: String}
   },
 
   about: {
