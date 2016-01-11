@@ -1,6 +1,5 @@
 angular.module('myApp', ['ui.router'])
 
-
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
   $stateProvider
@@ -24,11 +23,7 @@ angular.module('myApp', ['ui.router'])
     .state('profiles.profile', {
       url: '',
       templateUrl: 'app/views/profile.html'
-
-
     })
-
-
 }])
 
 .controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
@@ -44,7 +39,7 @@ angular.module('myApp', ['ui.router'])
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', 'Profile', function ($scope, $http, HttpRequest, Profile) {
-  // console.log(HttpRequest)
+
   HttpRequest.getProfiles()
     .then(function (res) {
       $scope.profiles= res.data;
@@ -54,19 +49,6 @@ angular.module('myApp', ['ui.router'])
         console.log('currentProfile', $scope.currentProfile); 
       }
     })
-  // $http({
-  //   method: 'GET',
-  //   url: '/api/profiles'
-  // }).then(function (res) {
-  //   // console.log('response data looks like: ', res.data); 
-  //   $scope.profiles = res.data;
-  //   // $scope.currentProfile= res.data[0]; 
-  //   $scope.setProfile= function (profile) {
-  //     console.log('set profile called'); 
-  //     $scope.currentProfile= Profile.setProfile(profile); 
-  //     console.log('currentProfile', $scope.currentProfile); 
-  //   }
-  // })
 
 }])
 
@@ -74,9 +56,35 @@ angular.module('myApp', ['ui.router'])
   $scope.submitProfile = function (isValid, formData) {
     console.log(formData);
     console.log('First isValid: ', isValid);
-
-    HttpRequest.submitProfile(isValid, formData);
+    if(formData.github) {
+      HttpRequest.getGithubData(formData.github)
+        .then(
+          function (res) {
+            formData.aboutme= res.data.avatar_url; 
+            // HttpRequest.submitProfile(isValid, formData);
+          },
+          function(err) {
+            console.log('there was an error')
+            // HttpRequest.submitProfile(isValid, formData);
+          }
+        ) 
+    }
   }
+}])
+
+.controller('loginCtrl', ['$scope', 'HttpRequest', function ($scope, HttpRequest) {
+  $scope.login= function (){
+    HttpRequest.login()
+      .then(
+        function (res) {
+          console.log('res to login', res); 
+        },
+        function (err) {
+          console.log('there was an error'); 
+        }
+      )
+  }
+
 }])
 
 .factory('HttpRequest', ['$http', '$q', function ($http, $q){
@@ -105,15 +113,24 @@ angular.module('myApp', ['ui.router'])
     })
   }
 
-  // $http({
-  //   method: 'GET',
-  //   url: '/api/profiles'
-  // }).then(function (res) {
-  //     $scope.profiles = res.data;
-  // })
+  // var getGithubData= function (githubUsername) {
+     
+  //     return $http({
+  //     method: 'GET',
+  //     url: 'https://api.github.com/users/' + githubUsername
+  //     }).success(function(result){
+  //       deferred.resolve(result); 
+  //     }).error(function (result){
+  //       deferred.reject(result);
+  //     })
+    
+  // }
+
+
   return {
     submitProfile: submitProfile,
     getProfiles: getProfiles
+    // getGithubData: getGithubData
   }
 }])
 

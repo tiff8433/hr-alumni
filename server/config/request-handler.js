@@ -2,24 +2,44 @@ var User = require('../users/userModel.js');
 
 
 exports.createProfile = function(req, res) {
-  console.log('request looks like: ', req.body); 
-  var firstName = req.body.firstName;
-  var lastName = req.body.lastName;
-  var githubName = req.body.github;
-  var email = req.body.email;
-  var location = req.body.location;
-  var summary = req.body.summary;
-  var status = req.body.status;
-  var companies = req.body.companies;
-  var languages = req.body.languages;
-  var blog = req.body.blog;
-  var website = req.body.website;
-  var linkedin = req.body.linkedin;
-  var github = req.body.github;
-  var project1  = req.body.project1;
-  var project2  = req.body.project2;
-  var project3  = req.body.project3;
+  console.log('request looks like: ', req.fromGithub); 
 
+  if(req.fromGitHub) {
+    var firstName = req.body['_json'].name;
+    var lastName = req.body['_json'].name;
+    var githubName = req.body.username;
+    var email = req.body['_json'].email;
+    var location = req.body['_json'].location;
+    var summary = ''; 
+    var status = req.body['_json'].hireable || '';
+    var companies = '';
+    var languages ='';
+    var blog = req.body['_json'].blog || ''; 
+    var website = '';
+    var linkedin = '';
+    var github = req.body['_json'].html_url;
+    var project1  = '';
+    var project2  = '';
+    var project3  = '';
+  } else {
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var githubName = req.body.github;
+    var email = req.body.email;
+    var location = req.body.location;
+    var summary = req.body.summary;
+    var status = req.body.status;
+    var companies = req.body.companies;
+    var languages = req.body.languages;
+    var blog = req.body.blog;
+    var website = req.body.website;
+    var linkedin = req.body.linkedin;
+    var github = req.body.github;
+    var project1  = req.body.project1;
+    var project2  = req.body.project2;
+    var project3  = req.body.project3;
+  }
+  
   User.findOne({
       contact: {
         email: email
@@ -67,7 +87,7 @@ exports.createProfile = function(req, res) {
             res.status(500).send(err); 
             // res.redirect('/profile');
           }
-          console.log('new user gets saved? ', newUser); 
+          console.log('new user gets saved? ', newUser);
         });
       } else {
         console.log("Profile already exists");
