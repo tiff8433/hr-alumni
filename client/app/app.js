@@ -67,6 +67,13 @@ angular.module('myApp', ['ui.router'])
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
   console.log('$stateParams are: ', $stateParams); 
   // redirects to /updateProfile/:githubName
+  $scope.submitProfile = function (isValid, formData) {
+        console.log('formData', formData);
+        console.log('First isValid: ', isValid);
+        // HttpRequest.submitProfile(isValid, formData);
+  }
+
+  //prepopulation of data
   HttpRequest.getProfile($stateParams.githubName)
     .then(function (res) {
       $scope.data= res.data;
@@ -77,12 +84,7 @@ angular.module('myApp', ['ui.router'])
       //   $scope.currentProfile= Profile.setProfile(profile); 
       //   console.log('currentProfile', $scope.currentProfile); 
       // }
-
-      $scope.submitProfile = function (isValid, formData) {
-        console.log('formData', formData);
-        console.log('First isValid: ', isValid);
-        // HttpRequest.submitProfile(isValid, formData);
-      }
+      
     })
 
 }])
@@ -109,9 +111,11 @@ angular.module('myApp', ['ui.router'])
         console.log('data does it get here>=? ', data);
         return $http({
             method: 'POST',
-            url: '/api/profiles',
+            url: '/api/updateProfile',
             data: data
         })
+    } else {
+
     }
   };
 
