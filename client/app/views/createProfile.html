@@ -1,5 +1,4 @@
 <div class='container-fluid' ng-controller='createProfileCtrl'>
-  <h4>Create your profile here</h4>
   <form ng-submit="submitProfile(!$inValid, data)" class="input-group" ng-init="data={}" name="createProfileForm">
     <input type="text" class="form-control" placeholder="First Name (required)" aria-describedby="basic-addon1" ng-model="data.firstName" required>
     <input type="text" class="form-control" placeholder="Last Name (required)" aria-describedby="basic-addon1" ng-model="data.lastName" required>

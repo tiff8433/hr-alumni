@@ -91,14 +91,21 @@ exports.createProfile = function(req, res) {
             console.log('there was an error with saving'); 
             res.status(500).send(err); 
           }
-          console.log('new user gets saved? ', newUser);
+          console.log('new user gets saved: ', newUser);
+          console.log('new user github name:', newUser.contact.githubName)
+          // res.json(newUser); 
+          res.redirect('/#/updateProfile/'+ newUser.contact.githubName)
+          
         });
       } else {
         console.log("Profile already exists");
-        res.redirect('/#/profiles');
+        console.log('user exists: ', user.contact.githubName); 
+        // res.redirect('/#/profiles');
+        res.redirect('/#/updateProfile/'+ user.contact.githubName)
       }
     });
 };
+
 
 exports.findAll = function(req, res) {
   User.find({}).exec(function(err, profiles) {
@@ -107,7 +114,8 @@ exports.findAll = function(req, res) {
 };
 
 exports.findOne = function(req, res) {
-  User.find({'contact.email':  email
+  console.log('gets to servers findOne: ', req.params.githubName); 
+  User.find({'contact.githubName':  req.params.githubName
   }).exec(function(err, profile) {
     res.json(profile);
   });
