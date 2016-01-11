@@ -2,7 +2,8 @@ var User = require('../users/userModel.js');
 
 
 exports.createProfile = function(req, res) {
-  console.log('request looks like: ', req.fromGithub); 
+  console.log('request looks liek : ', req)
+  console.log('request.fromgithub : ', req.fromGitHub); 
 
   if(req.fromGitHub) {
     var firstName = req.body['_json'].name;
@@ -40,12 +41,15 @@ exports.createProfile = function(req, res) {
     var project3  = req.body.project3;
   }
   
-  User.findOne({
-      contact: {
-        email: email
-      }
-    })
-    .exec(function(err, user) {
+  console.log('github name', githubName); 
+  var query= User.findOne({
+      'contact.githubName':  githubName
+      
+    }); 
+
+  query.exec(function(err, user) {
+      console.log('user: ', user); 
+      console.log('err', err); 
       if (!user) {
         var newUser = new User({
           contact: {
@@ -84,14 +88,14 @@ exports.createProfile = function(req, res) {
         console.log('new user on line 64: ', newUser); 
         newUser.save(function(err, newUser) {
           if (err) {
+            console.log('there was an error with saving'); 
             res.status(500).send(err); 
-            // res.redirect('/profile');
           }
           console.log('new user gets saved? ', newUser);
         });
       } else {
         console.log("Profile already exists");
-        res.redirect('/createProfile');
+        res.redirect('/#/profiles');
       }
     });
 };
