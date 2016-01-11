@@ -1,102 +1,83 @@
 <div class='container-fluid' ng-controller='updateProfileCtrl'>
-  <form  class="input-group" name="createProfileForm">
-    <div class="row">
-      <form class="col s12">
-        <div class="row">
-          <div class="input-field col s6">
-            <input id="name" type="text" class="validate" placeholder="Name (required)" aria-describedby="basic-addon1" ng-model="data[0].contact.name" required>
-            <label class="active" for="first_name">Name</label>
-          </div>
-
-
-           <div class="input-field col s6">
-            <input id="profile_picture" type="text" class="validate" placeholder="Profile Picture" aria-describedby="basic-addon1" ng-model="data[0].contact.profilePic" required>
-            <label class="active" for="profile_picture">Profile Picture Url</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="email" type="text" class="validate" placeholder="Email" aria-describedby="basic-addon1" ng-model="data[0].contact.email" required>
-            <label class="active" for="email">Email</label>
-          </div>
-
-           <div class="input-field col s6">
-            <input id="location" type="text" class="validate" placeholder="Location" aria-describedby="basic-addon1" ng-model="data[0].contact.location" required>
-            <label class="active" for="location">Location</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="linkedIn" type="text" class="validate" placeholder="Linked In" aria-describedby="basic-addon1" ng-model="data[0].links.linkedin" required>
-            <label class="active" for="linkedIn">LinkedIn</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="blog" type="text" class="validate" placeholder="Blog" aria-describedby="basic-addon1" ng-model="data[0].links.blog" required>
-            <label class="active" for="blog">Blog</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="aboutMe" type="text" class="validate" placeholder="About Me" aria-describedby="basic-addon1" ng-model="data[0].about.summary" required>
-            <label class="active" for="aboutMe">About Me</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="status" type="text" class="validate" placeholder="Status" aria-describedby="basic-addon1" ng-model="data[0].about.status" required>
-            <label class="active" for="status">Status</label>
-          </div>
-
-
-          <div class="input-field col s6">
-            <input id="companies" type="text" class="validate" placeholder="Companies" aria-describedby="basic-addon1" ng-model="data[0].experience.companies[0]" required>
-            <label class="active" for="companies">Companies</label>
-          </div>
-
-
-          <div class="input-field col s6">
-            <input id="languages" type="text" class="validate" placeholder="Languages" aria-describedby="basic-addon1" ng-model="data[0].experience.languages[0]" required>
-            <label class="active" for="languages">Languages</label>
-          </div>
-
-
-          <div class="input-field col s6">
-            <input id="GreenfieldProjectUrl" type="text" class="validate" placeholder="Greenfield Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[0]" required>
-            <label class="active" for="GreenfieldProjectUrl">GreenfieldProjectUrl</label>
-          </div>
-
-
-          <div class="input-field col s6">
-            <input id="LegacyProjectUrl" type="text" class="validate" placeholder="Legacy Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[1]" required>
-            <label class="active" for="LegacyProjectUrl">Legacy Project Url</label>
-          </div>
-
-          <div class="input-field col s6">
-            <input id="ThesisProjectUrl" type="text" class="validate" placeholder="Legacy Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[2]" required>
-            <label class="active" for="ThesisProjectUrl">Thesis Project Url</label>
-          </div>
-
+  <div class="row">
+    <form class="col s12 input-group" ng-submit="submitProfile(!$inValid, data)"  name="createProfileForm">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="name" type="text" class="validate" placeholder="Name (required)" aria-describedby="basic-addon1" ng-model="data[0].contact.name" required>
+          <label class="active" for="first_name">Name</label>
         </div>
-      </form>
-    </div>
-<!-- 
-    <input type="text" class="form-control" placeholder="Profile Picture" aria-describedby="basic-addon1" ng-model="data[0].contact.profilePic" required> -->
-<!--     <input type="text" class="form-control" placeholder="Github (required)" aria-describedby="basic-addon1" ng-model="data[0].contact.githubName" required> -->
-<!--     <input type="text" class="form-control" placeholder="Email (required)" aria-describedby="basic-addon1" ng-model="data[0].contact.email" required> -->
-<!--     <input type="text" class="form-control" placeholder="Location (required)" aria-describedby="basic-addon1" ng-model="data[0].contact.location" required>
- -->
-<!--     <input type="text" class="form-control" placeholder="LinkedIn" aria-describedby="basic-addon1" ng-model="data[0].links.linkedin"> -->
-<!--     <input type="text" class="form-control" placeholder="Blog" aria-describedby="basic-addon1" ng-model="data[0].links.blog"> -->
 
-<!--     <input type="text" class="form-control" placeholder="About Me" aria-describedby="basic-addon1" ng-model="data[0].about.summary"> -->
-    <!-- <input type="text" class="form-control" placeholder="Employment Status" aria-describedby="basic-addon1" ng-model="data[0].about.status"> -->
 
-<!--     <input type="text" class="form-control" placeholder="Companies" aria-describedby="basic-addon1" ng-model="data[0].experience.companies[0]"> -->
-<!--     <input type="text" class="form-control" placeholder="Languages" aria-describedby="basic-addon1" ng-model="data[0].experience.languages[0]">
+         <div class="input-field col s6">
+          <input id="profile_picture" type="text" class="validate" placeholder="Profile Picture" aria-describedby="basic-addon1" ng-model="data[0].contact.profilePic" required>
+          <label class="active" for="profile_picture">Profile Picture Url</label>
+        </div>
 
-    <input type="text" class="form-control" placeholder="Project 1" aria-describedby="basic-addon1" ng-model="data[0].project.urls[0]"> -->
-<!--     <input type="text" class="form-control" placeholder="Project 2" aria-describedby="basic-addon1" ng-model="data[0].project.urls[1]"> -->
-<!--     <input type="text" class="form-control" placeholder="Project 3" aria-describedby="basic-addon1" ng-model="data[0].project3.urls[2]"> -->
-    <br/>
+        <div class="input-field col s6">
+          <input id="email" type="text" class="validate" placeholder="Email" aria-describedby="basic-addon1" ng-model="data[0].contact.email" required>
+          <label class="active" for="email">Email</label>
+        </div>
 
-    <button type="submit" ng-submit="submitProfile(!$inValid, data)" ng-disabled="createProfileForm.$inValid">Update Profile</button>
-  </form>
+         <div class="input-field col s6">
+          <input id="location" type="text" class="validate" placeholder="Location" aria-describedby="basic-addon1" ng-model="data[0].contact.location" required>
+          <label class="active" for="location">Location</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="linkedIn" type="text" class="validate" placeholder="Linked In" aria-describedby="basic-addon1" ng-model="data[0].links.linkedin" required>
+          <label class="active" for="linkedIn">LinkedIn</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="blog" type="text" class="validate" placeholder="Blog" aria-describedby="basic-addon1" ng-model="data[0].links.blog" required>
+          <label class="active" for="blog">Blog</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="aboutMe" type="text" class="validate" placeholder="About Me" aria-describedby="basic-addon1" ng-model="data[0].about.summary" required>
+          <label class="active" for="aboutMe">About Me</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="status" type="text" class="validate" placeholder="Status" aria-describedby="basic-addon1" ng-model="data[0].about.status" required>
+          <label class="active" for="status">Status</label>
+        </div>
+
+
+        <div class="input-field col s6">
+          <input id="companies" type="text" class="validate" placeholder="Companies" aria-describedby="basic-addon1" ng-model="data[0].experience.companies[0]" required>
+          <label class="active" for="companies">Companies</label>
+        </div>
+
+
+        <div class="input-field col s6">
+          <input id="languages" type="text" class="validate" placeholder="Languages" aria-describedby="basic-addon1" ng-model="data[0].experience.languages[0]" required>
+          <label class="active" for="languages">Languages</label>
+        </div>
+
+
+        <div class="input-field col s6">
+          <input id="GreenfieldProjectUrl" type="text" class="validate" placeholder="Greenfield Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[0]" required>
+          <label class="active" for="GreenfieldProjectUrl">GreenfieldProjectUrl</label>
+        </div>
+
+
+        <div class="input-field col s6">
+          <input id="LegacyProjectUrl" type="text" class="validate" placeholder="Legacy Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[1]" required>
+          <label class="active" for="LegacyProjectUrl">Legacy Project Url</label>
+        </div>
+
+        <div class="input-field col s6">
+          <input id="ThesisProjectUrl" type="text" class="validate" placeholder="Legacy Project Url" aria-describedby="basic-addon1" ng-model="data[0].project.urls[2]" required>
+          <label class="active" for="ThesisProjectUrl">Thesis Project Url</label>
+        </div>
+
+      </div>
+      <!-- <button type='submit' ng-click="submitProfile()"> Update Profile</button> -->
+       <!-- <button type="submit" ng-click="submitProfile(!$inValid, data)" ng-disabled="createProfileForm.$inValid">Update Profile</button> -->
+        <button type="submit" ng-disabled="createProfileForm.$inValid">Update Profile</button>
+    </form>
+  </div>
 </div>
+
 
