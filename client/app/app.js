@@ -66,10 +66,12 @@ angular.module('myApp', ['ui.router'])
 
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
   console.log('$stateParams are: ', $stateParams); 
+  // redirects to /updateProfile/:githubName
   HttpRequest.getProfile($stateParams.githubName)
     .then(function (res) {
       $scope.data= res.data;
-      console.log('profile data: ', res.data);  
+      console.log('profile data: ', res.data[0]);  
+      console.log('contact data: ', res.data[0].contact); 
       // $scope.setProfile= function (profile) {
       //   console.log('set profile called'); 
       //   $scope.currentProfile= Profile.setProfile(profile); 

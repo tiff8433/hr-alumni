@@ -52,7 +52,7 @@ passport.use(new GithubStrategy({
 
 
 // mongoose.connect(process.env.MONGOLAB_URI);
-mongoose.connect("mongodb://localhost/hralumni");
+mongoose.connect("mongodb://localhost/hralumnitest");
 
 app.use(express.static(__dirname + '/../client'));
 
