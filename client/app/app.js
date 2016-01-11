@@ -73,11 +73,11 @@ angular.module('myApp', ['ui.router'])
   //       // HttpRequest.submitProfile(isValid, formData);
   // }
 
-  $scope.submitProfile = function () {
+  $scope.submitProfile = function (isValid, formData) {
 
         console.log('formData', $scope.data);
         // console.log('First isValid: ', isValid);
-        // HttpRequest.submitProfile(isValid, formData);
+        HttpRequest.submitProfile(isValid, formData);
   }
 
   //prepopulation of data
