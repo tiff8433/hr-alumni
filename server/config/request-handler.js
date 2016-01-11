@@ -123,23 +123,24 @@ exports.findOne = function(req, res) {
 };
 
 exports.updateProfile= function (req, res) {
-  //   var firstName = req.body.contact.name;
-  //   var lastName = req.body.lastName;
-  //   var githubName = req.body.github;
-  //   var email = req.body.email;
-  //   var location = req.body.location;
-  //   var summary = req.body.summary;
-  //   var status = req.body.status;
-  //   var companies = req.body.companies;
-  //   var languages = req.body.languages;
-  //   var blog = req.body.blog;
-  //   var website = req.body.website;
-  //   var linkedin = req.body.linkedin;
-  //   var github = req.body.github;
-  //   var project1  = req.body.project1;
-  //   var project2  = req.body.project2;
-  //   var project3  = req.body.project3;
-  console.log('req.body', req.body); 
+   console.log('req.body', req.body); 
+    var name = req.body[0].contact.name;
+    var profilePic = req.body[0].contact.profilePic;
+    var githubName = req.body[0].contact.githubName;
+    var email = req.body[0].contact.email;
+    var location = req.body[0].contact.location;
+    var summary = req.body[0].about.summary;
+    var status = req.body[0].about.status;
+    var companies = req.body[0].experience.companies;
+    var languages = req.body[0].experience.languages;
+    var blog = req.body[0].links.blog;
+    var website = req.body[0].links.website;
+    var linkedin = req.body[0].links.linkedin;
+    var github = req.body[0].links.github;
+    var project1  = req.body[0].project.urls[0];
+    var project2  = req.body[0].project.urls[1];
+    var project3  = req.body[0].project.urls[2];
+ 
 
   User.findOneAndUpdate( {'contact.githubName': req.body.githubName },
     {

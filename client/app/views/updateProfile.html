@@ -1,4 +1,4 @@
-<div class='container-fluid' ng-controller='updateProfileCtrl'>
+<div class='container-fluid' style="margin:70px" ng-controller='updateProfileCtrl'>
   <div class="row">
     <form class="col s12 input-group" ng-submit="submitProfile(!$inValid, data)"  name="createProfileForm">
       <div class="row">
@@ -75,7 +75,7 @@
       </div>
       <!-- <button type='submit' ng-click="submitProfile()"> Update Profile</button> -->
        <!-- <button type="submit" ng-click="submitProfile(!$inValid, data)" ng-disabled="createProfileForm.$inValid">Update Profile</button> -->
-        <button type="submit" ng-disabled="createProfileForm.$inValid">Update Profile</button>
+        <button class="btn waves-effect waves-light" type="submit" ng-disabled="createProfileForm.$inValid">Update Profile</button>
     </form>
   </div>
 </div>
