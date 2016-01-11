@@ -1,38 +1,25 @@
 <div ng-controller="profilesCtrl">
   <div class="row" >
-      <div class="col-md-6">
-        <div class="col-md-2 card blue-grey darken-2" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
-            <div>
-                <img height="200px" width="auto" src="{{profile.contact.profilePic}}"> <br>
-            </div>
-            <div>
+      <div class="col s4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
+            <div class="card darken-2 col-md-1 z-depth-5">
+                <br>
+                <br>
+                <div class="center-align">
+                    <img  height="200px" width="auto" src="{{profile.contact.profilePic}}" > <br>
+                </div>
+                <br>
+                <div >
+                    <a ui-sref="profiles.profile">
+                        <p class="center-align">{{profile.contact.name}}</p> <br>
 
+                    </a>
+                    <p><span style="font-weight: bold">Location: </span> {{profile.contact.name}}</p>
+                    <p><span style="font-weight: bold">Summary: </span> My name is Jason Jensen and I am currently looking for a job</p>
+                    <p><span style="font-weight: bold">Employment Status: </span>{{profile.contact.name}}</p>
+                    <br>
+                </div>
             </div>
-          <a ui-sref="profiles.profile">
-            <span class="center-align">{{profile.contact.name}}</span> <br>
-            <!--{{profile.contact.location}} <br>-->
-            <!--{{profile.about.summary}} <br>-->
-            <!--{{profile.about.status}} <br>-->
-          </a>
-        </div>
       </div>
       <div ui-view class="col-md-6"></div>
   </div>
 </div>
-
-
-<!--<div class="row" ng-controller="profilesCtrl">-->
-    <!--<div class="col s12 m6">-->
-        <!--<div class="card blue-grey darken-1" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>-->
-            <!--<div class="card-content white-text">-->
-                <!--<span class="card-title">Card Title</span>-->
-                <!--<p>I am a very simple card. I am good at containing small bits of information.-->
-                    <!--I am convenient because I require little markup to use effectively.</p>-->
-            <!--</div>-->
-            <!--<div class="card-action">-->
-                <!--<a href="#">This is a link</a>-->
-                <!--<a href="#">This is a link</a>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
