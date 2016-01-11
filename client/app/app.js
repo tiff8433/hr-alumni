@@ -129,7 +129,7 @@ angular.module('myApp', ['ui.router'])
       method: 'GET',
       url: '/api/profile/'+githubName
     }).success(function(result){
-      deferred.resolve(result); 
+      deferred.resolve(result);
     }).error(function (result){
       deferred.reject(result);
     })
