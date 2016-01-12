@@ -27,7 +27,9 @@ var UserSchema = new mongoose.Schema({
   },
 
   projects: {
-    urls: {type: String}
+    project1: {type: String},
+    project2: {type: String},
+    project3: {type: String}
   }
 
 });
