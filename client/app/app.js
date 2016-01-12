@@ -52,7 +52,13 @@ angular.module('myApp', ['ui.router'])
         $scope.currentProfile= Profile.setProfile(profile); 
         console.log('currentProfile', $scope.currentProfile); 
       }
-    })
+    });
+
+    // used for showing the modal in profiles.html
+    $scope.modalDetails = function(profile){
+        $scope.profile = profile;
+        $('#modalDetails').openModal();
+    };
 
 }])
 
