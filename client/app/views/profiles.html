@@ -9,13 +9,13 @@
             </form>
             <ul class="collection">
                 <li class="collection-item avatar animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms" ng-repeat="profile in profiles | filter:query">
-                    <a href="" ng-click="modalDetails(profiles)" class="modal-trigger title"><img ng-src="{{profile.contact.profilePic}}" alt="" class="circle"> {{profile.contact.name}}</a>
+                    <a href="" ng-click="modalDetails(profile)" class="modal-trigger title"><img ng-src="{{profile.contact.profilePic}}" alt="" class="circle"> {{profile.contact.name}}</a>
                     <p>{{profile.contact.location}}</p>
                 </li>
             </ul>
         </div>
     </div>
-    <div id="modalDetails" class="modal modal-fixed-footer" ng-repeat="profile in profiles">
+    <div id="modalDetails" class="modal modal-fixed-footer" ng-controller="profilesCtrl">
         <div class="modal-content">
             <div class="row">
                 <div class="l2 col">
