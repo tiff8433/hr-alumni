@@ -140,10 +140,10 @@ exports.updateProfile= function (req, res) {
     var project1  = req.body[0].project.urls[0];
     var project2  = req.body[0].project.urls[1];
     var project3  = req.body[0].project.urls[2];
- 
 
-  User.findOneAndUpdate( {'contact.githubName': req.body.githubName },
-    {
+
+  User.findOneAndUpdate( {'contact.githubName': githubName },
+     {
           contact: {
             name: name,
             profilePic: profilePic,
@@ -176,8 +176,8 @@ exports.updateProfile= function (req, res) {
             project3
           ]
           }
-        }, 
-        {new:true}, function (err, person) {
+        }, {new:true}, 
+        function (err, person) {
           if(err) {console.log(err) }
         })
 }
