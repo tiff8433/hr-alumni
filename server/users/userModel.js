@@ -15,8 +15,8 @@ var UserSchema = new mongoose.Schema({
   },
 
   experience: {
-    companies: [{type: String}],
-    languages: [{type: String}]
+    companies: {type: String},
+    languages: {type: String}
   },
 
   links: {
@@ -27,7 +27,7 @@ var UserSchema = new mongoose.Schema({
   },
 
   projects: {
-    urls: [{type: String}]
+    urls: {type: String}
   }
 
 });
