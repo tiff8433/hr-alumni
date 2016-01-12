@@ -9,22 +9,21 @@
             </form>
             <ul class="collection">
                 <li class="collection-item avatar animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms" ng-repeat="profile in profiles | filter:query">
-                    <a href="" ng-click="modalDetails(profiles.profile)" class="modal-trigger title"><img ng-src="{{profile.contact.profilePic}}" alt="" class="circle"> {{profile.contact.name}}</a>
-                    <p>United States</p>
-                    <!--<a href="#!" class="secondary-content" ng-click="removeUser(u)"><i class="small mdi-action-highlight-remove"></i></a>-->
+                    <a href="" ng-click="modalDetails(profiles)" class="modal-trigger title"><img ng-src="{{profile.contact.profilePic}}" alt="" class="circle"> {{profile.contact.name}}</a>
+                    <p>{{profile.contact.location}}</p>
                 </li>
             </ul>
         </div>
     </div>
-    <div id="modalDetails" class="modal">
+    <div id="modalDetails" class="modal" ng-repeat="profile in profiles">
         <div class="modal-content">
             <div class="row">
                 <div class="l2 col">
-                    <img ng-src="{{profile.contact.profilePic}}" alt="" class="align-right circle">
+                    <img height="150px" width="auto" ng-src="{{profile.contact.profilePic}}" alt="" class="align-right circle">
                 </div>
                 <div class="l10 col">
-                    <h2>{{profile.contact.name}}</h2>
-                    <label>Email</label> billy@billy.com<br/>
+                    <h5>{{profile.contact.name}}</h5>
+                    <label>Email</label> {{profile.contact.email}}<br/>
                     <label>Languages</label> JavaScript, HTML, CSS
                     <hr>
                     <label>Location</label> United States <br/>

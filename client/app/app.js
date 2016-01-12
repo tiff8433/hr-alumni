@@ -56,6 +56,7 @@ angular.module('myApp', ['ui.router'])
 
     // used for showing the modal in profiles.html
     $scope.modalDetails = function(profile){
+        console.log(profile);
         $scope.profile = profile;
         $('#modalDetails').openModal();
     };
