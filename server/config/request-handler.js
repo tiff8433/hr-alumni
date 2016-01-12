@@ -108,6 +108,7 @@ exports.createProfile = function(req, res) {
 
 exports.findAll = function(req, res) {
   User.find({}).exec(function(err, profiles) {
+    console.log('profiles in find all', profiles); 
     res.json(profiles);
   });
 };
@@ -135,9 +136,9 @@ exports.updateProfile= function (req, res) {
     var website = req.body[0].links.website;
     var linkedin = req.body[0].links.linkedin;
     var github = req.body[0].links.github;
-    var project1  = req.body[0].project.urls[0];
-    var project2  = req.body[0].project.urls[1];
-    var project3  = req.body[0].project.urls[2];
+    var project1  = req.body[0].project1;
+    var project2  = req.body[0].project2;
+    var project3  = req.body[0].project3;
 
 
   User.findOneAndUpdate( {'contact.githubName': githubName },
@@ -172,7 +173,7 @@ exports.updateProfile= function (req, res) {
             project3: project3
           
           }
-        }, {new:true}, 
+        }, {new:false}, 
         function (err, person) {
           if(err) {console.log(err) }
         })
