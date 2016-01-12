@@ -15,21 +15,29 @@
             </ul>
         </div>
     </div>
-    <div id="modalDetails" class="modal" ng-repeat="profile in profiles">
+    <div id="modalDetails" class="modal modal-fixed-footer" ng-repeat="profile in profiles">
         <div class="modal-content">
             <div class="row">
                 <div class="l2 col">
-                    <img height="150px" width="auto" ng-src="{{profile.contact.profilePic}}" alt="" class="align-right circle">
                 </div>
                 <div class="l10 col">
+                    <img style="margin: 10px" height="150px" width="auto" ng-src="{{profile.contact.profilePic}}" alt="" class="align-center circle">
+
                     <h5>{{profile.contact.name}}</h5>
                     <label>Email</label> {{profile.contact.email}}<br/>
-                    <label>Languages</label> JavaScript, HTML, CSS
+                    <label>Languages</label> {{profile.experience.languages}} <br/>
+                    <label>Location</label> {{profile.contact.location}} <br/>
                     <hr>
-                    <label>Location</label> United States <br/>
+                    <label>Companies</label> {{profile.experience.companies}}<br/>
+                    <label>Blog</label> {{profile.links.blog}} <br/>
+                    <label>LinkedIn</label> {{profile.links.linkedin}} <br/>
+                    <hr>
+                    <label>Employment Status</label> {{profile.about.status}} <br/>
+                    <label>About Me</label> {{profile.about.summary}} <br/>
                 </div>
             </div>
         </div>
+        <div class="modal-footer"><a class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a></div>
     </div>
 </div>
 
