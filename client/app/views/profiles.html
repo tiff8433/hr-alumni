@@ -1,25 +1,62 @@
-<div ng-controller="profilesCtrl">
-  <div class="row" >
-      <div class="col s4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>
-            <div class="card darken-2 col-md-10 z-depth-5">
-                <br>
-                <br>
-                <div class="center-align">
-                    <img  height="200px" width="auto" ng-src="{{profile.contact.profilePic}}" > <br>
-                </div>
-                <br>
-                <div >
-                    <a ui-sref="profiles.profile">
-                        <p class="center-align">{{profile.contact.name}}</p> <br>
+<!--<div ng-controller="profilesCtrl">-->
+  <!--<div class="row" >-->
+      <!--<div class="col s4" ng-repeat="profile in profiles" ng-click='setProfile(profile)'>-->
+            <!--<div class="card darken-2 col-md-10 z-depth-5">-->
+                <!--<br>-->
+                <!--<br>-->
+                <!--<div class="center-align">-->
+                    <!--<img  height="200px" width="auto" ng-src="{{profile.contact.profilePic}}" > <br>-->
+                <!--</div>-->
+                <!--<br>-->
+                <!--<div >-->
+                    <!--<a ui-sref="profiles.profile">-->
+                        <!--<p class="center-align">{{profile.contact.name}}</p> <br>-->
+                    <!--</a>-->
+                    <!--<p><span style="font-weight: bold">Location: </span> United States</p>-->
+                    <!--<p><span style="font-weight: bold">Summary: </span> Currently at Hack Reactor looking for a job</p>-->
+                    <!--<p><span style="font-weight: bold">Employment Status: </span>Hire Me!</p>-->
+                    <!--<br>-->
+                <!--</div>-->
+            <!--</div>-->
+      <!--</div>-->
 
-                    </a>
-                    <p><span style="font-weight: bold">Location: </span> United States</p>
-                    <p><span style="font-weight: bold">Summary: </span> Currently at Hack Reactor looking for a job</p>
-                    <p><span style="font-weight: bold">Employment Status: </span>Hire Me!</p>
-                    <br>
+  <!--</div>-->
+    <!--&lt;!&ndash;<div ui-view class="col-md-6"></div>&ndash;&gt;-->
+<!--</div>-->
+
+<div class="container" ng-controller="profilesCtrl">
+    <div class="row">
+        <div class="s12 col">
+            <h3>HR Profiles</h3>
+            <br>
+            <form class="forms forms-inline input-field ">
+                <input type="text" class="input-big width-50" id="query" ng-model="query">
+                <label for="query">Filter</label>
+            </form>
+            <ul class="collection">
+                <li class="collection-item avatar animated fadeInUp" style="-webkit-animation-duration:{{$index * 300}}ms" ng-repeat="u in users | filter:query | orderBy:'user.username'">
+                    <a href="" ng-click="modalDetails(u.user)" class="modal-trigger title"><img ng-src="{{u.user.picture.thumbnail}}" alt="" class="circle"> {{u.user.username}}</a>
+                    <p>{{u.user.location.city}}, {{u.user.location.state}}</p>
+                    <a href="#!" class="secondary-content" ng-click="removeUser(u)"><i class="small mdi-action-highlight-remove"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="modalDetails" class="modal bottom-sheet">
+        <div class="modal-content">
+            <div class="row">
+                <div class="l2 col">
+                    <img ng-src="{{user.picture.medium}}" alt="" class="align-right circle">
+                </div>
+                <div class="l10 col">
+                    <h2>{{user.username}}</h2>
+                    <label>Email</label> {{user.email}} <br/>
+                    <label>Password</label> {{user.password}}
+                    <hr>
+                    <label>Phone</label> {{user.phone}} <br/>
+                    <label>Location</label> {{user.location.city}}, {{user.location.state}} <br/>
                 </div>
             </div>
-      </div>
-      <div ui-view class="col-md-6"></div>
-  </div>
+        </div>
+    </div>
 </div>
