@@ -37,5 +37,3 @@ var UserSchema = new mongoose.Schema({
 
 
 module.exports = mongoose.model('users', UserSchema);
-
-//https://www.npmjs.com/package/mongoose-type-url

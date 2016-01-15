@@ -1,11 +1,12 @@
 var port = process.env.PORT || 3000;
 var express = require('express');
-var app = express();
-var mongoose = require('mongoose');
 var session = require('express-session');
 var util = require('./config/utils.js');
+var mongoose = require('mongoose');
 var handler = require('./config/request-handler.js');
-var bodyParser  = require('body-parser'); 
+var bodyParser  = require('body-parser');
+
+var app = express();
 
 
   // Express 4 allows us to use multiple routers with their own configurations
@@ -71,7 +72,7 @@ app.get('/auth/github',
   }),
   function(req, res) {
     console.log('req', req);
-    console.log('res', res); 
+    console.log('res', res);
   });
 
 app.get('/auth/github/callback',
@@ -79,12 +80,12 @@ app.get('/auth/github/callback',
     failureRedirect: '/login'
   })
   ,function(req, res) {
-    // console.log('req',req.user); 
+    // console.log('req',req.user);
     var data= {
       body: req.user,
       fromGitHub: true
     }
-    console.log('data here: ', data); 
+    console.log('data here: ', data);
     handler.createProfile(data, res)
     // res.redirect('/');
   });
