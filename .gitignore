@@ -1,14 +1,12 @@
 # Node modules
 node_modules/
 .idea
-<<<<<<< HEAD
 
 #floo
 .floo
 .flooignore
+
 .sass-cache
 .floo*
 client/bourbon
 client/neat
-
-
