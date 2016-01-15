@@ -78,15 +78,14 @@ app.get('/auth/github',
 app.get('/auth/github/callback',
   passport.authenticate('github', {
     failureRedirect: '/login'
-  })
-  ,function(req, res) {
+  }), function(req, res) {
     // console.log('req',req.user);
     var data= {
       body: req.user,
       fromGitHub: true
-    }
+    };
     console.log('data here: ', data);
-    handler.createProfile(data, res)
+    handler.createProfile(data, res);
     // res.redirect('/');
   });
 
@@ -97,7 +96,7 @@ app.get('/', function(req, res) {
 app.get('/api/profiles', handler.findAll);
 app.post('/api/profiles', handler.createProfile);
 app.get('/api/profile/:githubName', handler.findOne);
-app.post('/api/updateProfile', handler.updateProfile)
+app.post('/api/updateProfile', handler.updateProfile);
 
 app.listen(port, function() {
   console.log('Server started on port: ' + port);
