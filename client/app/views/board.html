@@ -1,0 +1,21 @@
+<section class="controls">
+  <input type="text" placeholder="Start typing...">
+  <select class="topic-selector">
+    <option class="events" value="events">Events</option>
+    <option class="jobs" value="jobs">Jobs</option>
+    <option class="miscellaneous" value="miscellaneous">Miscellaneous</option>
+  </select>
+  <button class="add-post"><i class="fa fa plus"></i></button>
+</section>
+<section class="posts">
+  <article class="post" ng-repeat="">
+    <div class="post-icon">
+      <i class="fa fa-calendar"></i>
+    </div>
+    <div class="post-title">
+      <h1>Karaoke Night - Feb 20, Downtown SF</h1>
+      <span>Robert Lin | Posted 2 days ago | 17 replies | <i class="fa fa-heart"></i> 37</span>
+    </div>
+    <div class="post-content" ui-view="board.post"></div>
+  </article>
+</section>

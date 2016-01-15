@@ -5,3 +5,7 @@ node_modules/
 #floo
 .floo
 .flooignore
+.sass-cache
+.floo*
+client/bourbon
+client/neat
