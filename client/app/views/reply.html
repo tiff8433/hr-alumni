@@ -1,14 +1,16 @@
 <div class="reply-content">
-  <div class="reply-user">
-    <img class="reply-user-image" src="">
-    <p>First Lastname</p>
-  </div>
-  <div class="reply-info">
-    <div class="reply-body">
-      <p>Post-ironic banjo pork belly mixtape distillery, tousled officia biodiesel odio fixie. Williamsburg etsy ut, lomo VHS polaroid dolore iPhone kitsch.</p>
+  <div class="reply" ng-repeat="reply in replies">
+    <div class="reply-user">
+      <img class="reply-user-image" src="">
+      <p>{{user}}</p>
     </div>
-    <div class="reply-time">Posted 8 min ago</div>
-    <div class="thumbs-up"><i class="fa fa-thumbs-up"></i></div>
+    <div class="reply-info">
+      <div class="reply-body">
+        <p>{{content}}</p>
+      </div>
+      <div class="reply-time">Posted {{posted}}</div>
+      <div class="thumbs-up">{{thumbs}}<i class="fa fa-thumbs-up"></i></div>
+    </div>
   </div>
   <div class="reply-wrapper">
     <form>
