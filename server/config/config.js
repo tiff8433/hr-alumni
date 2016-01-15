@@ -42,7 +42,7 @@ db.knex.schema.hasTable('posts').then(function(exists) {
       post.integer('likes');
       post.integer('category_id');
       post.integer('user_id');
-      post.timeStamps();
+      post.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -56,7 +56,7 @@ db.knex.schema.hasTable('replies').then(function(exists) {
       reply.string('content', 255);
       reply.integer('post_id');
       reply.integer('user_id');
-      reply.timeStamps();
+      reply.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
     });
