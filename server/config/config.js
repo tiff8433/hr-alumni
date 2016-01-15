@@ -16,7 +16,17 @@ db.knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
-      user.string('username', 255);
+      user.string('username', 20);
+      user.string('name', 20);
+      user.string('profileName', 20);
+      user.string('githubName', 20);
+      user.string('email', 20);
+      user.string('location', 20);
+      user.string('aboutMe', 255);
+      user.string('companies', 50);
+      user.string('blog', 30);
+      user.string('linkedin', 30);
+      user.string('githubPage', 30);
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -63,3 +73,5 @@ db.knex.schema.hasTable('categories').then(function(exists) {
     });
   }
 });
+
+module.exports = db;
