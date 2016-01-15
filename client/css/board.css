@@ -234,23 +234,14 @@ picture {
       display: flex; }
   .board-wrapper .reply-content {
     width: 90%;
-<<<<<<< HEAD
     margin-left: 10%;
     background: #f1f1f1;
     padding: 1.5rem 1.625rem; }
-=======
-    margin-left: 10%; }
->>>>>>> merge with base and neat
     .board-wrapper .reply-content .reply {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-<<<<<<< HEAD
       margin-bottom: 1.5rem; }
-=======
-      background: #f1f1f1;
-      padding: 1.5rem 1.625rem; }
->>>>>>> merge with base and neat
       .board-wrapper .reply-content .reply .reply-user {
         width: 10rem;
         margin-right: 1.75rem;
@@ -276,7 +267,6 @@ picture {
           .board-wrapper .reply-content .reply .reply-info .thumbs-up i {
             color: #6195EC;
             margin-left: 0.5rem; }
-<<<<<<< HEAD
     .board-wrapper .reply-content .reply-wrapper::after {
       clear: both;
       content: "";
@@ -296,7 +286,5 @@ picture {
       color: #fff;
       margin: 0;
       border-radius: 0; }
-=======
->>>>>>> merge with base and neat
 
 /*# sourceMappingURL=board.css.map */
