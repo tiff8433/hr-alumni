@@ -99,7 +99,6 @@ app.get('/api/profiles', handler.findAll);
 app.post('/api/profiles', handler.createProfile);
 app.get('/api/profile/:githubName', handler.findOne);
 app.post('/api/updateProfile', handler.updateProfile);
-
 app.use('/api/board', apiRoutes);
 
 app.listen(port, function() {
