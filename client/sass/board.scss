@@ -1,0 +1,11 @@
+@import "../bourbon/bourbon";
+@import "../neat/neat";
+@import "../base/base";
+
+.board-wrapper {
+  box-sizing: border-box;
+  padding: 2rem 0;
+
+  @import "_main.scss";
+  @import "_reply.scss";
+}

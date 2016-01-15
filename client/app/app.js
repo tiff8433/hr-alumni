@@ -1,4 +1,12 @@
-angular.module('myApp', ['ui.router'])
+angular.module('myApp', [
+  'ui.router',
+  'myApp.board',
+  'myApp.post',
+  'myApp.reply',
+  'board.services',
+  'post.services',
+  'reply.services'
+  ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/home');
@@ -28,6 +36,11 @@ angular.module('myApp', ['ui.router'])
       url: '/updateProfile/:githubName',
       templateUrl: 'app/views/updateProfile.html'
     })
+    .state('board', {
+      url: '/board',
+      templateUrl: 'app/views/board.html',
+      controller: 'BoardCtrl'
+    });
 }])
 
 .controller('homeCtrl', ['$scope','$state', function ($scope, $state) {

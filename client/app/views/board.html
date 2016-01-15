@@ -1,0 +1,54 @@
+<div class="board-wrapper">  
+  <section class="controls">
+    <input type="text" placeholder="Start typing..." ng-model="searchText">
+    <select class="topic-selector">
+      <option class="events" disabled selected>Topics</option>
+      <option class="events" value="events">Events</option>
+      <option class="jobs" value="jobs">Jobs</option>
+      <option class="miscellaneous" value="miscellaneous">Miscellaneous</option>
+    </select>
+    <button class="add-post" ng-click="addPost(newPost)"><i class="fa fa-plus"></i></button>
+  </section>
+  <section class="posts">
+    <article class="post" ng-repeat="post in posts">
+      <div class="post-icon">
+        <i class="fa fa-{{post.categoryIcon}}"></i>
+      </div>
+      <div class="post-title">
+        <h1 ng-click="viewPost(post)">{{post.title}}</h1>
+        <span>{{post.user}} | Posted {{post.posted}} | {{post.replyCount}} replies | <i class="fa fa-heart"></i> {{post.hearts}}</span>
+      </div>
+      <div class="post-content" ng-controller="PostCtrl" ng-show="post.content">
+        <div class="inner-post-content">
+          <p>{{post.content}}</p>
+          <button class="view-replies" ng-click="viewReplies(post.id)">
+            <span ng-if="activePost.showReplies">Hide</span>
+            <span ng-if="!activePost.showReplies">View</span>
+            Replies</button>
+          <button class="collapse-message">Collapse Message</button>
+        </div>
+      </div>
+      <div class="reply-content" ng-controller="ReplyCtrl" ng-show="post.replies && activePost.showReplies && activePost.id == post.id">
+        <div class="reply" ng-repeat="reply in post.replies">
+          <div class="reply-user">
+            <img class="reply-user-image" src="http://placehold.it/160x160">
+            <p>{{reply.user}}</p>
+          </div>
+          <div class="reply-info">
+            <div class="reply-body">
+              <p>{{reply.content}}</p>
+            </div>
+            <div class="reply-time">Posted {{reply.posted}}</div>
+            <div class="thumbs-up">{{reply.thumbs}}<i class="fa fa-thumbs-up"></i></div>
+          </div>
+        </div>
+        <div class="reply-wrapper">
+          <form>
+            <input class="reply-text" type="text">
+            <button type="submit" class="reply-send">Send</button>
+          </form>
+        </div>
+      </div>
+    </article>
+  </section>
+</div>
