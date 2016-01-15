@@ -25,7 +25,6 @@
             <span ng-if="activePost.showReplies">Hide</span>
             <span ng-if="!activePost.showReplies">View</span>
             Replies</button>
-          <button class="collapse-message">Collapse Message</button>
         </div>
       </div>
       <div class="reply-content" ng-controller="ReplyCtrl" ng-show="post.replies && activePost.showReplies && activePost.id == post.id">
