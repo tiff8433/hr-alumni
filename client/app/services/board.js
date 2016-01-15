@@ -14,7 +14,7 @@ angular.module('board.services', [])
       posted: '2 days ago',
       category: 'events',
       replyCount: 2,
-      categoryIcon: categoryIcons[this.category],
+      categoryIcon: categoryIcons['events'],
       hearts: '37'
     },
     {
@@ -24,7 +24,7 @@ angular.module('board.services', [])
       posted: '2 days ago',
       category: 'events',
       replyCount: 2,
-      categoryIcon: categoryIcons[this.category],
+      categoryIcon: categoryIcons['events'],
       hearts: '37'
     }
   ];

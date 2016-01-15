@@ -20,7 +20,6 @@ angular.module('post.services', [])
         output = post.replies;
       }
     });
-    console.log(output);
     return output;
     // return $http({
     //   method: 'GET',
