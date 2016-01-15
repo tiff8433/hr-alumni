@@ -17,16 +17,6 @@ db.knex.schema.hasTable('users').then(function(exists) {
     db.knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
       user.string('username', 20);
-      user.string('name', 20);
-      user.string('profileName', 20);
-      user.string('githubName', 20);
-      user.string('email', 20);
-      user.string('location', 20);
-      user.string('aboutMe', 255);
-      user.string('companies', 50);
-      user.string('blog', 30);
-      user.string('linkedin', 30);
-      user.string('githubPage', 30);
     }).then(function (table) {
       console.log('Created Table', table);
     });
@@ -39,7 +29,7 @@ db.knex.schema.hasTable('posts').then(function(exists) {
       post.increments('id').primary();
       post.string('title', 255);
       post.string('content', 255);
-      post.integer('likes');
+      post.integer('hearts');
       post.integer('category_id');
       post.integer('user_id');
       post.timestamps();
@@ -56,6 +46,7 @@ db.knex.schema.hasTable('replies').then(function(exists) {
       reply.string('content', 255);
       reply.integer('post_id');
       reply.integer('user_id');
+      reply.integer('thumbs');
       reply.timestamps();
     }).then(function (table) {
       console.log('Created Table', table);
