@@ -10,6 +10,7 @@ node_modules/
 .sass-cache
 .floo*
 client/bourbon
+<<<<<<< cc3c2ee85781d9d0e4b686f67a184e3a32d3e35b
 client/neat
 =======
 .sass-cache
@@ -18,3 +19,6 @@ client/bourbon
 client/neat
 client/base
 >>>>>>> Adds html for board view
+=======
+client/neat
+>>>>>>> Adds css styles to board
