@@ -234,13 +234,14 @@ picture {
       display: flex; }
   .board-wrapper .reply-content {
     width: 90%;
-    margin-left: 10%; }
+    margin-left: 10%;
+    background: #f1f1f1;
+    padding: 1.5rem 1.625rem; }
     .board-wrapper .reply-content .reply {
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      background: #f1f1f1;
-      padding: 1.5rem 1.625rem; }
+      margin-bottom: 1.5rem; }
       .board-wrapper .reply-content .reply .reply-user {
         width: 10rem;
         margin-right: 1.75rem;
@@ -266,5 +267,24 @@ picture {
           .board-wrapper .reply-content .reply .reply-info .thumbs-up i {
             color: #6195EC;
             margin-left: 0.5rem; }
+    .board-wrapper .reply-content .reply-wrapper::after {
+      clear: both;
+      content: "";
+      display: table; }
+    .board-wrapper .reply-content .reply-wrapper input[type=text].reply-text {
+      width: 90%;
+      float: left;
+      height: 3rem;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); }
+    .board-wrapper .reply-content .reply-wrapper .reply-send {
+      width: 10%;
+      float: left;
+      height: 3rem;
+      background-color: #6DBC93;
+      color: #fff;
+      margin: 0;
+      border-radius: 0; }
 
 /*# sourceMappingURL=board.css.map */
