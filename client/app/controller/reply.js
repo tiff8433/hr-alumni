@@ -21,5 +21,4 @@ angular.module('myApp.reply', [])
         $state.go('reply');
       });
   }
-  
 }]);

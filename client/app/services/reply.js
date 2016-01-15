@@ -2,6 +2,7 @@ angular.module('reply.services', [])
 
 .factory('Reply', ['$http', '$state', function($http, $state) {
 
+<<<<<<< 9ba1323aa2f0bfe97ef20f5724982c5dd6feb863
   var replies = [
     {
       id: 'abcdefg12345',
