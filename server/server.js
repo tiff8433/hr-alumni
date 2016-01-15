@@ -2,6 +2,7 @@ var port = process.env.PORT || 3000;
 var express = require('express');
 var session = require('express-session');
 var util = require('./config/utils.js');
+var mongoose = require('mongoose');
 var handler = require('./config/request-handler.js');
 var bodyParser  = require('body-parser');
 
