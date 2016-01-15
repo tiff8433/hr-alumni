@@ -1,6 +1,7 @@
 # Node modules
 node_modules/
 .idea
+<<<<<<< HEAD
 
 #floo
 .floo
@@ -9,3 +10,5 @@ node_modules/
 .floo*
 client/bourbon
 client/neat
+
+
