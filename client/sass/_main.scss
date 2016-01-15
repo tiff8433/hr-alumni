@@ -1,3 +1,4 @@
+
 .controls {
   @include clearfix;
   display: flex;
@@ -31,6 +32,7 @@
   justify-content: flex-start;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 1.75rem;
 
   .post-icon {
     position: relative;
@@ -64,5 +66,16 @@
 
   .post-content {
     display: flex;
+    background-color: #f1f1f1;
+    padding: 2.5% 5% 0 5%;
+    margin-top: 1rem;
+
+    .ng-binding {
+      line-height: 1.5rem;
+    }
+
+    .view-replies {
+      width: 100%;
+    }
   }
 }
