@@ -20,5 +20,4 @@ angular.module('myApp.post', [])
   $scope.hideReplies = function() {
     //$scope.replies.visible = true;
   }
-
 }]);

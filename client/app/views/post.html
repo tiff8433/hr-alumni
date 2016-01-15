@@ -1,0 +1,7 @@
+<div class="inner-post-content">
+  {{ activePost | json }}
+  <p>{{activePost.content}}</p>
+  <button class="view-replies"></button>
+  <button class="collapse-message"></button>
+</div>
+<div class="reply-content" ui-view="board.post.reply"></div>

@@ -1,6 +1,9 @@
 angular.module('board.services', [])
 
 .factory('Board', ['$http', '$state', 'Post', function($http, $state, Post) {
+  var categoryIcons = {
+    events: 'calendar'
+  };
 
   var categoryIcons = {
     events: 'calendar'
