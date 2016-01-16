@@ -13,3 +13,4 @@ client/neat
 client/base
 npm-debug.log
 *.sqlite
+*.css.map
