@@ -26,6 +26,7 @@ module.exports = {
               if (found) {
                 var response = found.map(function(post) {
                   return {
+                    id: post.get('id'),
                     title: post.get('title'),
                     replies: post.get('replies'),
                     hearts: post.get('hearts'),

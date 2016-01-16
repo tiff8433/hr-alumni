@@ -24,10 +24,11 @@ angular.module('board.services', [])
 
   var getPostContent = function(postId) {
      return $http({
-      method: 'GET',
-      url: '/api/board/post/read/' + postId
-    }).then(function(resp) {
-      return resp.data;
+        method: 'GET',
+        url: '/api/board/post/read/' + postId
+      }).then(function(resp) {
+        console.log(resp.data);
+        return resp.data;
     }); 
   };
 

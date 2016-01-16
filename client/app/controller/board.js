@@ -11,7 +11,6 @@ angular.module('myApp.board', [])
     Board.getPosts()
       .then(function(res) {
         $scope.posts = res;
-        console.log($scope.posts);
       })
       .catch(function(err) {
         console.error(err);
@@ -22,22 +21,17 @@ angular.module('myApp.board', [])
     $scope.activePost.content = '';
     $scope.activePost.replies = [];
 
-    Board.getPostContent(post.id)
-      .then(function(res) {
-        if (post.id !== $scope.activePost.id) {
-          angular.extend(post, Board.getPostContent(post.id));
-          $scope.activePost = post;
-        } else {
-          $scope.activePost = {};
-        }
-
-        $scope.activePost.showReplies = false;
-        $scope.activePost.content = '';
-      })
-      .catch(function(err) {
-        console.error(err);
+    if (post.id !== $scope.activePost.id) {
+      Board.getPostContent(post.id).then(function(resp) {
+        angular.extend(post, resp);
+        $scope.activePost = post;  
       });
+    } else {
+      $scope.activePost = {};
+    }
     
+    $scope.activePost.showReplies = false;
+    $scope.activePost.content = '';
   };
 
   $scope.viewNewPostForm = function(){
