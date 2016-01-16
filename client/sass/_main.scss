@@ -112,21 +112,21 @@
 .new-post-form {
   position: relative;
   background-color: #f1f1f1;
-  padding: rem(5);
-  margin-top: 2.5rem;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+
 
     .new-form-controls {
       display: flex;
       flex-flow: flex-start;
       margin-bottom: rem(5);
       background-color: #f1f1f1;
-      padding: 0.75rem rem(0) 2.5%;
-      margin-top: 2.5rem;
 
       input[type=text] {
         width: 60%;
         border: $base-border;
         padding: 0.75rem 2.5%;
+        margin-right: 2rem;
       }
 
       .topic-selector {
