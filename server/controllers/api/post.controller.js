@@ -19,7 +19,9 @@ module.exports = {
             });
         }
       }).then(function() {
-          Post.forge().fetchAll()
+          Post.forge().fetchAll({
+            withRelated: ['user']
+          })
             .then(function(found) {
               if (found) {
                 found.map(function(post) {

@@ -84,6 +84,7 @@ app.get('/auth/github/callback',
       body: req.user,
       fromGitHub: true
     };
+    console.log(req.user);
     handler.createProfile(data, res);
     // res.redirect('/');
   });
