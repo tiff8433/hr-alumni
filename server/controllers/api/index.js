@@ -11,12 +11,10 @@ apiRouter.post('/post/create', post.createPost);
 apiRouter.put('/post/read/upvote/:id', post.upVote);
 
 apiRouter.get('/post/replies/:id', reply.getReplies);
-
-apiRouter.get('/category/:category');
-
-
 apiRouter.post('/post/replies/:id', reply.postReply);
 apiRouter.put('/post/replies/:id/thumb', reply.thumbUpReply);
+
+apiRouter.get('/category/:category');
 
 
 module.exports = apiRouter;
