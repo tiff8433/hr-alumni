@@ -30,7 +30,7 @@ knex.schema.hasTable('posts').then(function(exists) {
     knex.schema.createTable('posts', function (post) {
       post.increments('id').primary();
       post.string('title', 255);
-      post.string('content', 255);
+      post.string('content', 500);
       post.integer('replies');
       post.integer('hearts');
       post.integer('category_id');
@@ -61,7 +61,7 @@ knex.schema.hasTable('categories').then(function(exists) {
   if (!exists) {
     knex.schema.createTable('categories', function (category) {
       category.increments('id').primary();
-      category.string('category', 255);
+      category.string('category', 35);
     }).then(function (table) {
       console.log('Created Table', table);
     });
