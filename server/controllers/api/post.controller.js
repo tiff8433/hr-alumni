@@ -6,20 +6,19 @@ module.exports = {
   getAllPosts: function(req, res) {
     var username = req.user.username;
     // save userid to req object
-    User.forge({username: username, require: true})
+    User.forge({username: username})
       .fetch().then(function(found) {
         if (found) {
           req.user.user_id = found.get('id');
         } else {
           User.forge({username: username})
+            .save()
             .then(function(user) {
-              user.save().then(function(user) {
-                req.user.user_id = user.get('id');
-              });
+              req.user.user_id = user.get('id');
             });
         }
       }).then(function() {
-          Post.forge({require: true}).fetchAll()
+          Post.forge().fetchAll()
             .then(function(found) {
               if (found) {
                 res.json(found);
@@ -50,7 +49,7 @@ module.exports = {
           });
         }
         // search for category id
-        Category.forge({category: categoryName, require: true})
+        Category.forge({category: categoryName})
           .fetch().then(function(found) {
             if (found) {
               var post = new Post({
@@ -74,7 +73,7 @@ module.exports = {
   },
   getPost: function(req, res) {
     var postId = req.params[0];
-    Post.forge({id: postId, require: true}).fetch()
+    Post.forge({id: postId}).fetch()
       .then(function(found) {
         if (found) {
           res.json(found);
@@ -87,7 +86,7 @@ module.exports = {
   },
   upVote: function(req, res) {
     var postId = req.params[0];
-    Post.forge({id: postId, require: true}).fetch()
+    Post.forge({id: postId}).fetch()
       .then(function(found) {
         if (found) {
           found.save({
