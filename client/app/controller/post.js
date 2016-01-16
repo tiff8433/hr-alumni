@@ -22,8 +22,4 @@ angular.module('myApp.post', [])
     //     console.error(err);
     //   });
   }
-
-  $scope.hideReplies = function() {
-    //$scope.replies.visible = true;
-  }
 }]);
