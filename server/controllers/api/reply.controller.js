@@ -18,6 +18,14 @@ module.exports = {
     var postId = req.params.id;
     var userId = req.user.user_id;
 
+    Post.forge({ id: postId })
+      .fetch()
+      .then(function(post) {
+        post.save({
+          replies: post.get('replies') += 1
+        }, { patch: true });
+      });
+
     Reply.forge({
       content: req.body.content,
       post_id: postId,

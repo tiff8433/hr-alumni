@@ -31,6 +31,7 @@ knex.schema.hasTable('posts').then(function(exists) {
       post.increments('id').primary();
       post.string('title', 255);
       post.string('content', 255);
+      post.integer('replies');
       post.integer('hearts');
       post.integer('category_id');
       post.integer('user_id');
