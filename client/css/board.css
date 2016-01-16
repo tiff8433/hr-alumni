@@ -243,7 +243,8 @@ picture {
       background-color: #f1f1f1;
       padding: 1.5rem 2.25rem 5.75rem;
       margin-top: 2.5rem;
-      margin-bottom: 2.8125rem; }
+      margin-bottom: 2.8125rem;
+      min-width: 100%; }
       .board-wrapper .post .post-content p {
         font-size: 1.125rem;
         line-height: 1.75; }
