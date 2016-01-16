@@ -81,7 +81,7 @@ app.get('/auth/github/callback',
   passport.authenticate('github', {
     failureRedirect: '/login'
   }), function(req, res) {
-    // console.log('req',req.user);
+    //console.log('req',req.user);
     var data= {
       body: req.user,
       fromGitHub: true
