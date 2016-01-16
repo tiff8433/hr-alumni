@@ -66,11 +66,28 @@ module.exports = {
       });
   },
   getPost: function(req, res) {
-    var postTitle = req.params[0];
-    Post.forge({title: postTitle, require: true}).fetch()
+    var postId = req.params[0];
+    Post.forge({id: postId, require: true}).fetch()
       .then(function(found) {
         if (found) {
           res.json(found);
+        }
+      })
+      .catch(function(err) {
+        console.error(err);
+        res.sendStatus(400);
+      });
+  },
+  upVote: function(req, res) {
+    var postId = req.params[0];
+    Post.forge({id: postId, require: true}).fetch()
+      .then(function(found) {
+        if (found) {
+          found.save({
+            hearts: found.get('hearts')++
+          }, {patch: true}).then(function(found) {
+            res.sendStatus(200);
+          });
         }
       })
       .catch(function(err) {
