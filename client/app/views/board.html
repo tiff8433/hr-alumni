@@ -2,28 +2,27 @@
   <section class="controls">
     <input type="text" placeholder="Search..." ng-model="searchText">
     <select class="topic-selector">
-      <option class="events" disabled selected>Topics</option>
+      <option disabled selected>Topics</option>
       <option class="events" value="events">Events</option>
       <option class="jobs" value="jobs">Jobs</option>
       <option class="miscellaneous" value="miscellaneous">Miscellaneous</option>
     </select>
     <button class="add-post" ng-click="viewNewPostForm()"><i class="fa fa-plus"></i></button>
   </section>
-  <section class="new-post-content" ng-show="showNewPostForm">
-    <div id="new-post-form">
+  <section class="new-post-form" ng-show="showNewPostForm">
       <form name="create-post-form" ng-submit='addPost()'>
-        <input type="text" placeholder="Title" ng-model="newPost.title">
-        <select class="topic-selector" ng-model="newPost.category">
-          <option class="events" disabled selected>Topic</option>
-          <option class="events" value="events">Events</option>
-          <option class="jobs" value="jobs">Jobs</option>
-          <option class="miscellaneous" value="desktop">Miscellaneous</option>
-        </select><br>
-        <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content">
-        </textarea><br>
+        <section class="new-form-controls">
+          <input type="text" placeholder="Title" ng-model="newPost.title">
+          <select class="topic-selector" ng-model="newPost.category">
+            <option disabled selected>Topic</option>
+            <option class="events" value="events">Events</option>
+            <option class="jobs" value="jobs">Jobs</option>
+            <option class="miscellaneous" value="desktop">Miscellaneous</option>
+          </select><br>
+         </section>
+         <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content"></textarea><br>
         <button type="submit" class="post-submit">Submit</button>
       </form>
-    </div>
   </section>
   <section class="posts">
     <article class="post" ng-repeat="post in posts | filter:searchText | orderBy:'-posted'">
