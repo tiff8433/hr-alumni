@@ -10,6 +10,13 @@ module.exports = {
       .fetch().then(function(found) {
         if (found) {
           req.user.user_id = found.get('id');
+        } else {
+          User.forge({username: username})
+            .then(function(user) {
+              user.save().then(function(user) {
+                req.user.user_id = user.get('id');
+              });
+            });
         }
       }).then(function() {
           Post.forge({require: true}).fetchAll()
@@ -43,7 +50,7 @@ module.exports = {
           });
         }
         // search for category id
-        Catgory.forge({category: categoryName, require: true})
+        Category.forge({category: categoryName, require: true})
           .fetch().then(function(found) {
             if (found) {
               var post = new Post({
