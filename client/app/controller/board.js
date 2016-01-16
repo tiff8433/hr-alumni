@@ -15,7 +15,7 @@ angular.module('myApp.board', [])
       .catch(function(err) {
         console.error(err);
       }); 
-  }();
+  };
 
   $scope.viewPost = function(post) {
     $scope.activePost.content = '';
@@ -48,5 +48,7 @@ angular.module('myApp.board', [])
       .then(function(res) {
         $scope.getAllPosts();
       })
-  }
+  };
+
+  $scope.getAllPosts();
 }]);
