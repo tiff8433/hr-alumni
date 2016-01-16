@@ -22,13 +22,23 @@ angular.module('board.services', [])
     },
     {
       id: 'abcdefg12346',
-      title: 'Karaoke Night - Feb 20, Downtown SF',
+      title: 'Meetup: Algorithms Practice - Jan 12, Los Angeles',
       user: 'Robert Lin',
       posted: '2 days ago',
       category: 'events',
       replyCount: 2,
       categoryIcon: categoryIcons['events'],
       hearts: '37'
+    },
+    {
+      id: 'abcdefg12347',
+      title: 'Job Opening at Google',
+      user: 'Robert Lin',
+      posted: '1 days ago',
+      category: 'jobs',
+      replyCount: 2,
+      categoryIcon: 'desktop',
+      hearts: '8'
     }
   ];
 
