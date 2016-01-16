@@ -16,7 +16,7 @@ module.exports = {
 
   postReply: function(req, res) {
     var postId = req.params.id;
-    var userId = req.user.user_id ||;
+    var userId = req.user.user_id;
 
     Post.forge({ id: postId })
       .fetch()
