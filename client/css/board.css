@@ -182,7 +182,8 @@ picture {
   padding: 2rem 0; }
   .board-wrapper .controls {
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    margin-bottom: 1.75rem; }
     .board-wrapper .controls::after {
       clear: both;
       content: "";
@@ -200,12 +201,15 @@ picture {
       height: 3rem; }
       .board-wrapper .controls .add-post .fa {
         font-size: 1.5rem; }
+  .board-wrapper .posts {
+    padding: 3.25rem 3.875rem;
+    border: 1px solid #DFDFDF; }
   .board-wrapper .post {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    margin-bottom: 1.75rem; }
+    margin-bottom: 3rem; }
     .board-wrapper .post::after {
       clear: both;
       content: "";
@@ -228,24 +232,40 @@ picture {
       font-size: 2rem;
       font-weight: 300;
       font-color: #606060;
-      margin: 0; }
+      margin: 0;
+      cursor: pointer; }
     .board-wrapper .post .post-title .span {
       font-color: #9B9B9B; }
+    .board-wrapper .post .post-title .fa-heart {
+      color: #E56666; }
     .board-wrapper .post .post-content {
-      display: flex;
+      position: relative;
       background-color: #f1f1f1;
-      padding: 2.5% 0% 0.25% 0%;
-      margin-top: 1rem; }
-      .board-wrapper .post .post-content .ng-binding {
-        line-height: 1.5rem;
-        background-color: #f1f1f1;
-        padding-left: 2.5%;
-        padding-right: 2.5%; }
+      padding: 1.5rem 2.25rem 5.75rem;
+      margin-top: 2.5rem;
+      margin-bottom: 2.8125rem; }
+      .board-wrapper .post .post-content p {
+        font-size: 1.125rem;
+        line-height: 1.75; }
       .board-wrapper .post .post-content .view-replies {
-        float: right;
+        position: absolute;
+        right: 0;
+        bottom: 0;
         width: 160px;
-        margin-right: 0; }
+        margin-right: 0;
+        background-color: #6DBC93; }
+      .board-wrapper .post .post-content::after {
+        content: '';
+        height: 0;
+        position: absolute;
+        width: 0;
+        border: 24px solid transparent;
+        top: -3rem;
+        left: 0.625rem;
+        z-index: 1;
+        border-bottom-color: #f1f1f1; }
   .board-wrapper .reply-content {
+    position: relative;
     width: 90%;
     margin-left: 10%;
     background: #f1f1f1;
@@ -271,6 +291,9 @@ picture {
           clear: both;
           content: "";
           display: table; }
+        .board-wrapper .reply-content .reply .reply-info .reply-body p {
+          line-height: 1.5;
+          margin: 0; }
         .board-wrapper .reply-content .reply .reply-info .reply-time {
           float: left;
           color: #9B9B9B; }
@@ -291,6 +314,9 @@ picture {
       margin: 0;
       border-radius: 0;
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); }
+      .board-wrapper .reply-content .reply-wrapper input[type=text].reply-text:focus {
+        outline: 0;
+        border: none; }
     .board-wrapper .reply-content .reply-wrapper .reply-send {
       width: 10%;
       float: left;
@@ -299,5 +325,15 @@ picture {
       color: #fff;
       margin: 0;
       border-radius: 0; }
+    .board-wrapper .reply-content::after {
+      content: '';
+      height: 0;
+      position: absolute;
+      width: 0;
+      border: 24px solid transparent;
+      top: -3rem;
+      right: 3rem;
+      z-index: 1;
+      border-bottom-color: #f1f1f1; }
 
 /*# sourceMappingURL=board.css.map */
