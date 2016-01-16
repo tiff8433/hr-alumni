@@ -5,7 +5,10 @@ module.exports = {
 
   getPostsByCategory: function(req, res) {
 
-    Post.forge({ category_id: CATEGORYINPUT })
+    var category = req.params.category;
+
+    Post.forge({ category_id: category })
+
         .fetchAll()
         .then(function(posts){
           res.json(posts);
