@@ -7,6 +7,7 @@ var handler = require('./config/request-handler.js');
 var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
+var morgan = require('morgan')('dev');
 
 var app = express();
 
