@@ -22,7 +22,7 @@ module.exports = {
       .fetch()
       .then(function(post) {
         post.save({
-          hearts: post.get('replies') += 1
+          replies: post.get('replies') += 1
         }, { patch: true });
       });
 
