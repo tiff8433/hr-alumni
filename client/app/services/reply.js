@@ -11,10 +11,10 @@ angular.module('reply.services', [])
     });
   };
 
-  var postReply = function(reply) {
+  var postReply = function(reply, id) {
     return $http({
       method: 'POST',
-      url: '/api/board/post/replies/' + reply.postId,
+      url: '/api/board/post/replies/' + id,
       data: reply
     }).then(function(resp) {
       return resp.data;
