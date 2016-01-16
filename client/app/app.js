@@ -40,7 +40,7 @@ angular.module('myApp', [
       url: '/board',
       templateUrl: 'app/views/board.html',
       controller: 'BoardCtrl'
-    });
+    })
 }])
 
 .controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
