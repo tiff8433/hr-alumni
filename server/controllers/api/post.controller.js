@@ -58,19 +58,11 @@ module.exports = {
         user_name = req.body.username,
         userId = req.user.user_id;
 
-    Post.forge({title: title}).fetch()
-      .then(function(found) {
-        if (found) {
-          res.json({
-            success: 'false',
-            reason: 'name of post already exists'
-          });
-        }
         // search for category id
         Category.forge({category: categoryName})
           .fetch().then(function(category) {
             var post;
-
+            console.log('existing');
             if (category) {
               post = new Post({
                 title: title,
@@ -83,7 +75,7 @@ module.exports = {
                 res.json(post);
               });
             } else {
-
+              console.log('nonexisting');
               new Category({ category: categoryName })
                 .save().then(function(category){
                   post = new Post({
@@ -91,7 +83,8 @@ module.exports = {
                     content: content,
                     hearts: 0,
                     category_id: category.get('id'),
-                    user_id: userId
+                    user_id: userId,
+                    username: username
                   }).save().then(function(newPost) {
                     res.json(newPost);
                   });
@@ -102,7 +95,6 @@ module.exports = {
             console.error(err);
             res.sendStatus(400);
           });
-      });
   },
   getPost: function(req, res) {
     var postId = req.params.id;
