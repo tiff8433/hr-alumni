@@ -49,11 +49,7 @@ module.exports = {
           });
         }
         // search for category id
-<<<<<<< HEAD
-        Category.forge({category: categoryName, require: true})
-=======
         Category.forge({category: categoryName})
->>>>>>> imbrian-sqlite
           .fetch().then(function(found) {
             if (found) {
               var post = new Post({
