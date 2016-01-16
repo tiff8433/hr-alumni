@@ -22,9 +22,9 @@ module.exports = {
       .fetch()
       .then(function(post) {
         post.save({
-          hearts: post.get('hearts') += 1
-        }, { patch: true })
-      })
+          hearts: post.get('replies') += 1
+        }, { patch: true });
+      });
 
     Reply.forge({
       content: req.body.content,
