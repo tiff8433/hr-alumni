@@ -17,6 +17,12 @@ angular.module('myApp.board', [])
       }); 
   };
 
+  $scope.heartUp = function(post) {
+    Board.upvotePost(post.id).then(function(resp) {
+      post.hearts += 1;
+    });
+  };
+
   $scope.viewPost = function(post) {
     $scope.activePost.content = '';
     $scope.activePost.replies = [];

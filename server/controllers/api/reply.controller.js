@@ -24,6 +24,7 @@ module.exports = {
         console.log(post);
         var count = post.get('replies');
         post.set('replies', count+1);
+        post.save();
       });
 
     Reply.forge({

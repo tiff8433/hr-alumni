@@ -33,7 +33,7 @@ angular.module('board.services', [])
   var upvotePost = function(postId) {
     return $http({
       method: 'PUT',
-      url: '/api/board/post/read/' + postId + '/upvote'
+      url: '/api/board/post/read/upvote/' + postId
     }).then(function(resp) {
       return resp.data;
     });
