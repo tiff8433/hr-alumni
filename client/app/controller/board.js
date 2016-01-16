@@ -46,7 +46,6 @@ angular.module('myApp.board', [])
   $scope.addPost = function() {
     Board.createPost($scope.newPost)
       .then(function(res) {
-        $state.go('board');
         $scope.getAllPosts();
       })
   }

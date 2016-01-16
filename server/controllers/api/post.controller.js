@@ -35,12 +35,14 @@ module.exports = {
         });
   },
   createPost: function(req, res) {
+
+    console.log(req.body);
     var title = req.body.title,
         content = req.body.content,
         categoryName = req.body.categoryName,
         userId = req.user.user_id;
 
-    Post.forge({title: name}).fetch()
+    Post.forge({title: title}).fetch()
       .then(function(found) {
         if (found) {
           res.json({
@@ -50,19 +52,33 @@ module.exports = {
         }
         // search for category id
         Category.forge({category: categoryName})
-          .fetch().then(function(found) {
-            if (found) {
-              var post = new Post({
-                title: name,
+          .fetch().then(function(category) {
+            var post;
+
+            if (category) {
+              post = new Post({
+                title: title,
                 content: content,
                 hearts: 0,
-                category_id: found.get('id'),
+                category_id: category.get('id'),
                 user_id: userId
+              }).save().then(function(post) {
+                res.json(post);
               });
+            } else {
 
-              post.save().then(function(newPost) {
-                res.json(newPost);
-              });
+              new Category({ category: categoryName })
+                .save().then(function(category){
+                  post = new Post({
+                    title: title,
+                    content: content,
+                    hearts: 0,
+                    category_id: category.get('id'),
+                    user_id: userId
+                  }).save().then(function(newPost) {
+                    res.json(newPost);
+                  });
+                });
             }
           })
           .catch(function(err) {
