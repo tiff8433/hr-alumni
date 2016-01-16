@@ -49,7 +49,7 @@ module.exports = {
           });
         }
         // search for category id
-        Category.forge({category: categoryName, require: true})
+        Category.forge({category: categoryName})
           .fetch().then(function(found) {
             if (found) {
               var post = new Post({
