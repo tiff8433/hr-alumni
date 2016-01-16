@@ -7,21 +7,21 @@ var handler = require('./config/request-handler.js');
 var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
-var morgan = require('morgan')('dev');
+var morgan = require('morgan');
 var secrets = require('./config/secrets.js')
 
 var app = express();
 
 
   // Express 4 allows us to use multiple routers with their own configurations
-  var questionsRouter = express.Router();
+  //var questionsRouter = express.Router();
 
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../client'));
+  app.use(morgan('dev'));
 
-
-  app.use('/api/profiles', questionsRouter); // use questions router for all questions request
+  //app.use('/api/profiles', questionsRouter); // use questions router for all questions request
 
 
   // inject our routers into their respective route files
@@ -72,8 +72,7 @@ app.get('/auth/github',
     scope: ['user', 'user:email', 'read:org']
   }),
   function(req, res) {
-    console.log('req', req);
-    console.log('res', res);
+
   });
 
 app.get('/auth/github/callback',
@@ -85,7 +84,6 @@ app.get('/auth/github/callback',
       body: req.user,
       fromGitHub: true
     };
-    console.log('data here: ', data);
     handler.createProfile(data, res);
     // res.redirect('/');
   });

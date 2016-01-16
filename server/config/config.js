@@ -29,7 +29,7 @@ knex.schema.hasTable('posts').then(function(exists) {
   if (!exists) {
     knex.schema.createTable('posts', function (post) {
       post.increments('id').primary();
-      post.string('title', 255);
+      post.string('title', 140);
       post.string('content', 500);
       post.integer('replies');
       post.integer('hearts');
