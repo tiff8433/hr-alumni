@@ -4,7 +4,7 @@ angular.module('post.services', [])
   var getReplies = function(postId) {
     return $http({
       method: 'GET',
-      url: '/api/board/replies/' + postId
+      url: '/api/board/post/replies/' + postId
     }).then(function(resp) {
       return resp.data;
     })

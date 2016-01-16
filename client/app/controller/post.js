@@ -5,9 +5,10 @@ angular.module('myApp.post', [])
   $scope.activeReplies = {};
 
   $scope.viewReplies = function(postId) {
-    $scope.activePost.replies = [];
+    $scope.activePost.replies = []
     if (!$scope.activePost.showReplies) {
-      angular.extend($scope.activePost.replies, Post.getReplies(postId));
+      $scope.activePost.replies.concat(Post.getReplies(postId));
+      console.log($scope.activePost.replies);
       $scope.activePost.showReplies = true;
     } else {
       $scope.activePost.replies = [];
