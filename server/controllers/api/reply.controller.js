@@ -16,7 +16,15 @@ module.exports = {
 
   postReply: function(req, res) {
     var postId = req.params.id;
-    var userId = req.user.user_id;
+    var userId = /* req.user.user_id || */ 'abcd';
+
+    Post.forge({ id: postId })
+      .fetch()
+      .then(function(post) {
+        post.save({
+          hearts: post.get('hearts') += 1
+        }, { patch: true })
+      })
 
     Reply.forge({
       content: req.body.content,
