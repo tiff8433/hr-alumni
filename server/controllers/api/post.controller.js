@@ -119,14 +119,17 @@ module.exports = {
   },
   upVote: function(req, res) {
     var postId = req.params.id;
+
     Post.forge({id: postId}).fetch()
-      .then(function(found) {
-        if (found) {
-          found.save({
-            hearts: found.get('hearts')++
-          }, {patch: true}).then(function(found) {
-            res.sendStatus(200);
-          });
+      .then(function(post) {
+        if (post) {
+          var count = post.get('hearts');
+          post.set('hearts', count+1);
+          console.log(post.get('hearts'));
+          post.save();
+          res.sendStatus(200);
+        } else {
+          res.sendStatus(404);
         }
       })
       .catch(function(err) {
