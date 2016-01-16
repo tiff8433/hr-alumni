@@ -1,4 +1,4 @@
-var db = require('../config.js'),
+var db = require('../config/config.js'),
     User = require('./user.js'),
     Post = require('./post.js');
 
