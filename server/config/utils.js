@@ -1,5 +1,5 @@
 
 exports.checkUser = function(req, res, next) {
-  if  (req.isAuthenticated()) { console.log('working'); return next(); }
+  if  (req.isAuthenticated()) { return next(); }
   res.redirect('/login');
 };
