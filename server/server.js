@@ -7,7 +7,7 @@ var handler = require('./config/request-handler.js');
 var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
-var morgan = require('morgan')('dev');
+var morgan = require('morgan');
 var secrets = require('./config/secrets.js')
 
 var app = express();
@@ -19,7 +19,7 @@ var app = express();
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
   app.use(express.static(__dirname + '/../client'));
-
+  app.use(morgan('dev'));
 
   //app.use('/api/profiles', questionsRouter); // use questions router for all questions request
 
@@ -72,8 +72,7 @@ app.get('/auth/github',
     scope: ['user', 'user:email', 'read:org']
   }),
   function(req, res) {
-    console.log('req', req);
-    console.log('res', res);
+
   });
 
 app.get('/auth/github/callback',
@@ -85,7 +84,6 @@ app.get('/auth/github/callback',
       body: req.user,
       fromGitHub: true
     };
-    console.log('data here: ', data);
     handler.createProfile(data, res);
     // res.redirect('/');
   });

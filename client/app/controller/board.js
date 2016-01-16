@@ -7,38 +7,35 @@ angular.module('myApp.board', [])
   $scope.activePost = {};
 
   $scope.getAllPosts = function() {
-    $scope.posts = Board.getPosts();
-    /* Board.getPosts()
+    Board.getPosts()
       .then(function(res) {
         $scope.posts = res;
       })
       .catch(function(err) {
         console.error(err);
-      }); */
+      }); 
   }();
 
   $scope.viewPost = function(post) {
     $scope.activePost.content = '';
     $scope.activePost.replies = [];
 
-    if (post.id !== $scope.activePost.id) {
-      angular.extend(post, Board.getPostContent(post.id));
-      $scope.activePost = post;
-    } else {
-      $scope.activePost = {};
-    }
-    $scope.activePost.showReplies = false;
-    /* $scope.activePost.content = '';
     Board.getPostContent(post.id)
       .then(function(res) {
-        angular.extend(post, res);
-        $scope.activePost = post;
+        if (post.id !== $scope.activePost.id) {
+          angular.extend(post, Board.getPostContent(post.id));
+          $scope.activePost = post;
+        } else {
+          $scope.activePost = {};
+        }
+
         $scope.activePost.showReplies = false;
+        $scope.activePost.content = '';
       })
       .catch(function(err) {
         console.error(err);
       });
-    */
+    
   };
 
   $scope.addPost = function() {
