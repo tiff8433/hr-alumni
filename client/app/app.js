@@ -5,7 +5,8 @@ angular.module('myApp', [
   'myApp.reply',
   'board.services',
   'post.services',
-  'reply.services'
+  'reply.services',
+  'angularMoment'
   ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -21,7 +22,7 @@ angular.module('myApp', [
 
     })
     // .state('createProfile', {
-    //   url: '/createProfile', 
+    //   url: '/createProfile',
     //   templateUrl: 'app/views/createProfile.html'
     // })
     .state('login', {
@@ -45,14 +46,14 @@ angular.module('myApp', [
 
 .controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
 
-  $state.transitionTo('profiles.profile'); 
+  $state.transitionTo('profiles.profile');
 
 }])
 
 .controller('profileCtrl', ['$scope', 'Profile', function ($scope, Profile) {
-  console.log('controller gets called'); 
-  // $scope.currentProfile= Profile.getProfile(); 
-  console.log('currentProfile where it counts', $scope.currentProfile); 
+  console.log('controller gets called');
+  // $scope.currentProfile= Profile.getProfile();
+  console.log('currentProfile where it counts', $scope.currentProfile);
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', 'Profile', function ($scope, $http, HttpRequest, Profile) {
@@ -61,9 +62,9 @@ angular.module('myApp', [
     .then(function (res) {
       $scope.profiles= res.data;
       $scope.setProfile= function (profile) {
-        console.log('set profile called'); 
-        $scope.currentProfile= Profile.setProfile(profile); 
-        console.log('currentProfile', $scope.currentProfile); 
+        console.log('set profile called');
+        $scope.currentProfile= Profile.setProfile(profile);
+        console.log('currentProfile', $scope.currentProfile);
       }
     });
 
@@ -85,7 +86,7 @@ angular.module('myApp', [
 // }])
 
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
-  console.log('$stateParams are: ', $stateParams); 
+  console.log('$stateParams are: ', $stateParams);
   // redirects to /updateProfile/:githubName
   // $scope.submitProfile = function (isValid, formData) {
   //       console.log('formData', formData);
@@ -104,15 +105,15 @@ angular.module('myApp', [
   HttpRequest.getProfile($stateParams.githubName)
     .then(function (res) {
       $scope.data= res.data;
-      console.log('profile data: ', res.data[0]);  
-      console.log('contact data: ', res.data[0].contact); 
+      console.log('profile data: ', res.data[0]);
+      console.log('contact data: ', res.data[0].contact);
       // $scope.setProfile= function (profile) {
-      //   console.log('set profile called'); 
-      //   $scope.currentProfile= Profile.setProfile(profile); 
-      //   console.log('currentProfile', $scope.currentProfile); 
+      //   console.log('set profile called');
+      //   $scope.currentProfile= Profile.setProfile(profile);
+      //   console.log('currentProfile', $scope.currentProfile);
       // }
-      
-      
+
+
     })
 
 }])
@@ -122,10 +123,10 @@ angular.module('myApp', [
     HttpRequest.login()
       .then(
         function (res) {
-          console.log('res to login', res); 
+          console.log('res to login', res);
         },
         function (err) {
-          console.log('there was an error'); 
+          console.log('there was an error');
         }
       )
   }
@@ -152,7 +153,7 @@ angular.module('myApp', [
       method: 'GET',
       url: '/api/profiles'
     }).success(function(result){
-      deferred.resolve(result); 
+      deferred.resolve(result);
     }).error(function (result){
       deferred.reject(result);
     })
@@ -177,15 +178,15 @@ angular.module('myApp', [
 }])
 
 .factory('Profile', function (){
-  var storedProfile; 
+  var storedProfile;
   var setProfile= function (profile) {
-    console.log('profile set'); 
+    console.log('profile set');
     storedProfile= profile;
-    return storedProfile;  
+    return storedProfile;
   }
   var getProfile= function (){
-    console.log('get profile'); 
-    return storedProfile; 
+    console.log('get profile');
+    return storedProfile;
   }
   return {
     setProfile: setProfile,
