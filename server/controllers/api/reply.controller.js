@@ -1,6 +1,6 @@
-var User = require('../../models/user'),
-    Post = require('../../models/post'),
-    Reply = require('../../models/Reply');
+var User = require('../../models').User,
+    Post = require('../../models').Post,
+    Reply = require('../../models').Reply;
 
 module.exports = {
 
@@ -51,5 +51,5 @@ module.exports = {
         res.sendStatus(201);
       });
     });
-  }  
+  }
 };
