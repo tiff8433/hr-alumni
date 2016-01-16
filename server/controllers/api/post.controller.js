@@ -10,6 +10,13 @@ module.exports = {
       .fetch().then(function(found) {
         if (found) {
           req.user.user_id = found.get('id');
+        } else {
+          User.forge({username: username})
+            .then(function(user) {
+              user.save().then(function(user) {
+                req.user.user_id = user.get('id');
+              });
+            });
         }
       }).then(function() {
           Post.forge({require: true}).fetchAll()
