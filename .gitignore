@@ -14,5 +14,4 @@ client/base
 npm-debug.log
 *.sqlite
 *.css.map
-
 server/config/secrets.js
