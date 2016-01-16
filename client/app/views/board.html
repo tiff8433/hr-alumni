@@ -1,4 +1,4 @@
-<div class="board-wrapper">  
+<div class="board-wrapper">
   <section class="controls">
     <input type="text" placeholder="Search..." ng-model="searchText">
     <select class="topic-selector">
@@ -31,7 +31,7 @@
       </div>
       <div class="post-title">
         <h1 ng-click="viewPost(post)">{{post.title}}</h1>
-        <span>{{post.user}} | Posted {{post.posted}} | {{post.replyCount}} replies | <i class="fa fa-heart"></i> {{post.hearts}}</span>
+        <span>{{post.user}} | Posted <span am-time-ago='post.posted'></span> | {{post.replyCount}} replies | <i class="fa fa-heart"></i> {{post.hearts}}</span>
       </div>
       <div class="post-content" ng-controller="PostCtrl" ng-show="post.content">
         <div class="inner-post-content">
