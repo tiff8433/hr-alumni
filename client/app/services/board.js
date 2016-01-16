@@ -1,42 +1,6 @@
 angular.module('board.services', [])
 
 .factory('Board', ['$http', '$state', 'Post', function($http, $state, Post) {
-  // var categoryIcons = {
-  //   events: 'calendar'
-  // };
-
-  // var posts = [
-  //   {
-  //     id: 'abcdefg12345',
-  //     title: 'Karaoke Night - Feb 20, Downtown SF',
-  //     user: 'Robert Lin',
-  //     posted: '2 days ago',
-  //     category: 'events',
-  //     replyCount: 2,
-  //     categoryIcon: categoryIcons['events'],
-  //     hearts: '37'
-  //   },
-  //   {
-  //     id: 'abcdefg12346',
-  //     title: 'Meetup: Algorithms Practice - Jan 12, Los Angeles',
-  //     user: 'Robert Lin',
-  //     posted: '2 days ago',
-  //     category: 'events',
-  //     replyCount: 2,
-  //     categoryIcon: categoryIcons['events'],
-  //     hearts: '37'
-  //   },
-  //   {
-  //     id: 'abcdefg12347',
-  //     title: 'Job Opening at Google',
-  //     user: 'Robert Lin',
-  //     posted: '1 days ago',
-  //     category: 'jobs',
-  //     replyCount: 2,
-  //     categoryIcon: 'desktop',
-  //     hearts: '8'
-  //   }
-  // ];
 
   var getPosts = function() {
     return $http({
