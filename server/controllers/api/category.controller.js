@@ -8,13 +8,20 @@ module.exports = {
     Post.forge({ category_id: CATEGORYINPUT })
         .fetchAll()
         .then(function(posts){
-          res.send(posts.toJSON);
+          res.json(posts);
         })
         .catch(function(error){
           console.log(error);
           res.send('Error at Category.fetchAll');
         })
 
+  },
+
+
+  getAllCategories: function(req, res){
+
+
   }
+
 
 }
