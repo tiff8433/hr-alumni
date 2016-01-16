@@ -12,3 +12,4 @@ client/bourbon
 client/neat
 client/base
 npm-debug.log
+*.sqlite

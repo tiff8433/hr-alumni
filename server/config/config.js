@@ -1,7 +1,19 @@
-var Bookshelf = require('bookshelf');
+//var Bookshelf = require('bookshelf');
 var path = require('path');
 
-var db = Bookshelf.initialize({
+// var db = Bookshelf.initialize({
+  // client: 'sqlite3',
+  // connection: {
+  //   host: '127.0.0.1',
+  //   user: 'your_database_user',
+  //   password: 'password',
+  //   database: 'bulletinBoard',
+  //   charset: 'utf8',
+  //   filename: path.join(__dirname, '../sqlite/hr-alumni.sqlite')
+//   }
+// });
+
+var knex = require('knex')({
   client: 'sqlite3',
   connection: {
     host: '127.0.0.1',
@@ -9,13 +21,15 @@ var db = Bookshelf.initialize({
     password: 'password',
     database: 'bulletinBoard',
     charset: 'utf8',
-    filename: path.join(__dirname, '../sqlite/hr-alumni.sqlite')
+    filename: path.join(__dirname, '/../../sqlite/hr-alumni.sqlite')
   }
 });
 
-db.knex.schema.hasTable('users').then(function(exists) {
+var bookshelf = require('bookshelf')(knex);
+
+knex.schema.hasTable('users').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('users', function (user) {
+    knex.schema.createTable('users', function (user) {
       user.increments('id').primary();
       user.string('username', 20);
     }).then(function (table) {
@@ -24,9 +38,9 @@ db.knex.schema.hasTable('users').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('posts').then(function(exists) {
+knex.schema.hasTable('posts').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('posts', function (post) {
+    knex.schema.createTable('posts', function (post) {
       post.increments('id').primary();
       post.string('title', 255);
       post.string('content', 255);
@@ -40,9 +54,9 @@ db.knex.schema.hasTable('posts').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('replies').then(function(exists) {
+knex.schema.hasTable('replies').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('replies', function (reply) {
+    knex.schema.createTable('replies', function (reply) {
       reply.increments('id').primary();
       reply.string('content', 255);
       reply.integer('post_id');
@@ -55,9 +69,9 @@ db.knex.schema.hasTable('replies').then(function(exists) {
   }
 });
 
-db.knex.schema.hasTable('categories').then(function(exists) {
+knex.schema.hasTable('categories').then(function(exists) {
   if (!exists) {
-    db.knex.schema.createTable('categories', function (category) {
+    knex.schema.createTable('categories', function (category) {
       category.increments('id').primary();
       category.string('category', 255);
     }).then(function (table) {
@@ -66,4 +80,4 @@ db.knex.schema.hasTable('categories').then(function(exists) {
   }
 });
 
-module.exports = db;
+module.exports = bookshelf;
