@@ -15,9 +15,11 @@ angular.module('myApp.reply', [])
   }
 
   $scope.addReply = function() {
-    Reply.postReply($scope.newReply)
+    var id = $scope.activePost.id;
+    Reply.postReply($scope.newReply, id)
       .then(function(res) {
         Post.getReplies();
+        $scope.newReply = '';
       });
   }
 }]);

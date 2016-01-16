@@ -21,9 +21,9 @@ module.exports = {
     Post.forge({ id: postId })
       .fetch()
       .then(function(post) {
-        post.save({
-          replies: post.get('replies') += 1
-        }, { patch: true });
+        console.log(post);
+        var count = post.get('replies');
+        post.set('replies', count+1);
       });
 
     Reply.forge({
