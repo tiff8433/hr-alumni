@@ -21,7 +21,6 @@ module.exports = {
     Post.forge({ id: postId })
       .fetch()
       .then(function(post) {
-        console.log(post);
         var count = post.get('replies');
         post.set('replies', count+1);
         post.save();

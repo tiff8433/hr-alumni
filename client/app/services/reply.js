@@ -15,7 +15,7 @@ angular.module('reply.services', [])
     return $http({
       method: 'POST',
       url: '/api/board/post/replies/' + id,
-      data: reply
+      data: { content: reply }
     }).then(function(resp) {
       return resp.data;
     });
