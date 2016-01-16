@@ -8,6 +8,7 @@ var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
 var morgan = require('morgan')('dev');
+var secrets = require('./config/secrets.js')
 
 var app = express();
 
@@ -31,9 +32,6 @@ var app = express();
 var passport = require('passport');
 var GithubStrategy = require('passport-github2').Strategy;
 
-var GITHUB_CLIENT_ID = '399d03e217b75d4f4625';
-var GITHUB_CLIENT_SECRET = '8e4dcd1a7c66f1db0c438aa50aa3c4af8aa4d2d5';
-
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
@@ -43,8 +41,8 @@ passport.deserializeUser(function(obj, done) {
 });
 
 passport.use(new GithubStrategy({
-    clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
+    clientID: secrets.GITHUB_CLIENT_ID,
+    clientSecret: secrets.GITHUB_CLIENT_SECRET,
     callbackURL: "http://localhost:3000/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
