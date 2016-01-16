@@ -88,7 +88,7 @@ module.exports = {
       });
   },
   getPost: function(req, res) {
-    var postId = req.params[0];
+    var postId = req.params.id;
     Post.forge({id: postId}).fetch()
       .then(function(found) {
         if (found) {
@@ -101,7 +101,7 @@ module.exports = {
       });
   },
   upVote: function(req, res) {
-    var postId = req.params[0];
+    var postId = req.params.id;
     Post.forge({id: postId}).fetch()
       .then(function(found) {
         if (found) {
