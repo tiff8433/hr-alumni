@@ -12,7 +12,6 @@ angular.module('board.services', [])
   };
 
   var createPost = function(post) {
-    console.log(post);
     return $http({
       method: 'POST',
       url: '/api/board/post/create',
@@ -27,7 +26,6 @@ angular.module('board.services', [])
         method: 'GET',
         url: '/api/board/post/read/' + postId
       }).then(function(resp) {
-        console.log(resp.data);
         return resp.data;
     }); 
   };
