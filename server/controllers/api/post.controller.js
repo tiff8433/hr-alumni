@@ -1,24 +1,40 @@
-var Post = require('../../models').Post;
+var Post = require('../../models').Post,
+    User = require('../../models').User,
+    Category = require('../../models').Category;
 
 module.exports = {
   getAllPosts: function(req, res) {
-    new Post.fetchAll({require: true}).then(function(found) {
-      if (found) {
-        res.json(found);
-      }
-    })
-    .catch(function(err) {
-      console.error(err);
-      res.sendStatus(400);
-    });
+    var username = req.user.username;
+    // save userid to req object
+    User.forge({username: username, require: true})
+      .fetch().then(function(found) {
+        if (found) {
+          req.user.user_id = found.get('id');
+        }
+      }).then(function() {
+          Post.forge({require: true}).fetchAll()
+            .then(function(found) {
+              if (found) {
+                res.json(found);
+              }
+            })
+            .catch(function(err) {
+              console.error(err);
+              res.sendStatus(400);
+            });
+          })
+        .catch(function(err) {
+          console.error(err);
+          res.sendStatus(401);
+        });
   },
   createPost: function(req, res) {
     var title = req.body.title,
         content = req.body.content,
-        categoryId = req.body.categoryId,
-        userId = req.body.userId;
+        categoryName = req.body.categoryName,
+        userId = req.user.user_id;
 
-    new Post.fetch({title: name}).fetch()
+    Post.forge({title: name}).fetch()
       .then(function(found) {
         if (found) {
           res.json({
@@ -26,23 +42,32 @@ module.exports = {
             reason: 'name of post already exists'
           });
         }
+        // search for category id
+        Catgory.forge({category: categoryName, require: true})
+          .fetch().then(function(found) {
+            if (found) {
+              var post = new Post({
+                title: name,
+                content: content,
+                hearts: 0,
+                category_id: found.get('id'),
+                user_id: userId
+              });
 
-        var post = new Post({
-          title: name,
-          content: content,
-          hearts: 0,
-          category_id: categoryId,
-          user_id: userId
-        });
-
-        post.save().then(function(newPost) {
-          res.json(newPost);
-        });
+              post.save().then(function(newPost) {
+                res.json(newPost);
+              });
+            }
+          })
+          .catch(function(err) {
+            console.error(err);
+            res.sendStatus(400);
+          });
       });
   },
   getPost: function(req, res) {
-    var postId = req.params[0];
-    new Post({id: postId, require: true}).fetch()
+    var postTitle = req.params[0];
+    Post.forge({title: postTitle, require: true}).fetch()
       .then(function(found) {
         if (found) {
           res.json(found);
@@ -50,7 +75,7 @@ module.exports = {
       })
       .catch(function(err) {
         console.error(err);
-        res.send(400);
+        res.sendStatus(400);
       });
   }
 };
