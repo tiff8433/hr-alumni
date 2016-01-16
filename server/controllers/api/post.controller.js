@@ -5,13 +5,14 @@ var Post = require('../../models').Post,
 module.exports = {
   getAllPosts: function(req, res) {
     var username = req.user.username;
+    var user_name = req.user.displayName;
     // save userid to req object
     User.forge({username: username})
       .fetch().then(function(found) {
         if (found) {
           req.user.user_id = found.get('id');
         } else {
-          User.forge({username: username})
+          User.forge({username: username, user_name: user_name})
             .save()
             .then(function(user) {
               req.user.user_id = user.get('id');
@@ -21,6 +22,17 @@ module.exports = {
           Post.forge().fetchAll()
             .then(function(found) {
               if (found) {
+                found.map(function(post) {
+                  return {
+                    title: post.get('title'),
+                    replies: post.get('replies'),
+                    hearts: post.get('hearts'),
+                    categoryId: post.get('category_id'),
+                    userId: post.get('user_id'),
+                    user: 'Robert Lin',
+                    posted: post.get('created_at')
+                  };
+                });
                 res.json(found);
               }
             })
@@ -40,6 +52,7 @@ module.exports = {
     var title = req.body.title,
         content = req.body.content,
         categoryName = req.body.categoryName,
+        user_name = req.body.username,
         userId = req.user.user_id;
 
     Post.forge({title: title}).fetch()
@@ -61,7 +74,8 @@ module.exports = {
                 content: content,
                 hearts: 0,
                 category_id: category.get('id'),
-                user_id: userId
+                user_id: userId,
+                username: username
               }).save().then(function(post) {
                 res.json(post);
               });
@@ -92,7 +106,7 @@ module.exports = {
     Post.forge({id: postId}).fetch()
       .then(function(found) {
         if (found) {
-          res.json(found);
+          res.json({content: found.get('content')});
         }
       })
       .catch(function(err) {
