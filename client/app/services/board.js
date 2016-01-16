@@ -12,7 +12,6 @@ angular.module('board.services', [])
   };
 
   var createPost = function(post) {
-    console.log(post);
     return $http({
       method: 'POST',
       url: '/api/board/post/create',
@@ -24,10 +23,10 @@ angular.module('board.services', [])
 
   var getPostContent = function(postId) {
      return $http({
-      method: 'GET',
-      url: '/api/board/post/read/' + postId
-    }).then(function(resp) {
-      return resp.data;
+        method: 'GET',
+        url: '/api/board/post/read/' + postId
+      }).then(function(resp) {
+        return resp.data;
     }); 
   };
 

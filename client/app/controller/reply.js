@@ -18,7 +18,6 @@ angular.module('myApp.reply', [])
     Reply.postReply($scope.newReply)
       .then(function(res) {
         Post.getReplies();
-        $state.go('reply');
       });
   }
 }]);

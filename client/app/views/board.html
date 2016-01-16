@@ -42,7 +42,7 @@
             Replies</button>
         </div>
       </div>
-      <div class="reply-content" ng-controller="ReplyCtrl" ng-show="post.replies && activePost.showReplies && activePost.id == post.id">
+      <div class="reply-content" ng-controller="ReplyCtrl" ng-show="activePost.showReplies && activePost.id == post.id">
         <div class="reply" ng-repeat="reply in post.replies">
           <div class="reply-user">
             <img class="reply-user-image" src="http://placehold.it/160x160">

@@ -12,28 +12,31 @@ module.exports = {
         if (found) {
           req.user.user_id = found.get('id');
         } else {
-          User.forge({username: username, user_name: user_name})
+          User.forge({username: username, full_name: user_name})
             .save()
             .then(function(user) {
               req.user.user_id = user.get('id');
             });
         }
       }).then(function() {
-          Post.forge().fetchAll()
+          Post.forge().fetchAll({
+            withRelated: ['user']
+          })
             .then(function(found) {
               if (found) {
-                found.map(function(post) {
+                var response = found.map(function(post) {
                   return {
+                    id: post.get('id'),
                     title: post.get('title'),
                     replies: post.get('replies'),
                     hearts: post.get('hearts'),
                     categoryId: post.get('category_id'),
                     userId: post.get('user_id'),
-                    user: 'Robert Lin',
+                    user: post.related('user').get('full_name'),
                     posted: post.get('created_at')
                   };
                 });
-                res.json(found);
+                res.json(response);
               }
             })
             .catch(function(err) {
