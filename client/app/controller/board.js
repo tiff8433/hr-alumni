@@ -11,6 +11,7 @@ angular.module('myApp.board', [])
     Board.getPosts()
       .then(function(res) {
         $scope.posts = res;
+        console.log($scope.posts);
       })
       .catch(function(err) {
         console.error(err);
