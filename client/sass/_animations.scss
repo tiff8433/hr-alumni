@@ -9,11 +9,7 @@
   }
 }
 
-.post-content:not(.ng-hide) {
-  @include animation(postContentIn 300ms $ease-in-out-sine);
-}
-
-.reply-content:not(.ng-hide) {
+.post-content:not(.ng-hide), .reply-content:not(.ng-hide), .new-post-form:not(.ng-hide) {
   @include animation(postContentIn 300ms $ease-in-out-sine);
 }
 
