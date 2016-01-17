@@ -236,6 +236,10 @@ picture {
         background-color: #1565c0; }
       .board-wrapper .post .post-icon.miscellaneous {
         background-color: #935AD6; }
+      .board-wrapper .post .post-icon.help {
+        background-color: #6DBC93; }
+      .board-wrapper .post .post-icon.announcements {
+        background-color: #E82222; }
     .board-wrapper .post .post-title h1 {
       font-size: 2rem;
       font-weight: 300;

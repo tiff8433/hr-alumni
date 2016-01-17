@@ -13,6 +13,8 @@ angular.module('myApp.board', [])
   $scope.catIcons = {
     events: 'calendar',
     jobs: 'briefcase',
+    help: 'question',
+    announcements: 'bullhorn',
     miscellaneous: 'info'
   };
 
