@@ -1,8 +1,11 @@
 <div class="board-wrapper">
   <section class="controls">
     <input type="text" placeholder="Search..." ng-model="searchText">
-    <select class="topic-selector" ng-model="categoryFilter">
-      <option class="all" value="">All</option>
+    <div class="heart-wrapper">
+      <i class="fa fa-heart"></i>
+    </div>
+    <select class="topic-selector">
+      <option disabled selected>Topics</option>
       <option class="events" value="events">Events</option>
       <option class="jobs" value="jobs">Jobs</option>
       <option class="help" value="help">Help</option>

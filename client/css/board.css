@@ -192,16 +192,34 @@ picture {
       width: 60%;
       background: 0;
       border: 1px solid #DFDFDF;
-      padding: 0.75rem 2.5%; }
+      padding: 0.75rem 2.5%;
+      margin-right: 0.5rem;
+      border-radius: 0; }
       .board-wrapper .controls input[type=text]:focus {
         outline: 0;
         box-shadow: none; }
+    .board-wrapper .controls .heart-wrapper {
+      margin: 0 0.5rem; }
+      .board-wrapper .controls .heart-wrapper .fa-heart {
+        font-size: 2.25rem;
+        color: #E82222; }
     .board-wrapper .controls .topic-selector {
-      width: 20%;
-      margin-bottom: 0; }
+      width: 12rem;
+      margin: 0 0.5rem;
+      background-color: #935AD6;
+      color: #fff;
+      border: none;
+      outline: 0;
+      border-radius: 0;
+      -webkit-appearance: none;
+      text-indent: 35%;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2); }
     .board-wrapper .controls .add-post {
-      width: 14%;
-      height: 3rem; }
+      width: 8rem;
+      height: 3rem;
+      margin: 0 0 0 0.5rem;
+      border-radius: 0;
+      box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2); }
       .board-wrapper .controls .add-post .fa {
         font-size: 1.5rem; }
   .board-wrapper .posts {

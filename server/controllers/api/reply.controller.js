@@ -7,10 +7,11 @@ module.exports = {
   getReplies: function(req, res) {
     var postId = req.params.id;
 
-    Reply.forge({ post_id: postId }).fetchAll({
+    Reply.where({ post_id: postId }).fetchAll({
         withRelated: ['user']
       })
       .then(function(replies) {
+        console.log(replies);
         var replyResponse = replies.map(function(reply) {
           return {
             id: reply.get('id'),
@@ -51,7 +52,7 @@ module.exports = {
 
   thumbUpReply: function(req, res) {
     var replyId = req.params.id;
-    Reply.forge({
+    Reply.where({
       id: replyId
     }).fetch().then(function(reply) {
       if (reply) {
