@@ -7,7 +7,7 @@ module.exports = {
     var username = req.user.username;
     var user_name = req.user.displayName;
     // save userid to req object
-    User.forge({username: username})
+    User.where({username: username})
       .fetch().then(function(found) {
         if (found) {
           req.user.user_id = found.get('id');
@@ -19,7 +19,7 @@ module.exports = {
             });
         }
       }).then(function() {
-          Post.forge().fetchAll({
+          Post.fetchAll({
             withRelated: ['user', 'category']
           })
             .then(function(found) {
@@ -57,7 +57,7 @@ module.exports = {
         userId = req.user.user_id;
 
         // search for category id
-        Category.forge({category: categoryName})
+        Category.where({category: categoryName})
           .fetch().then(function(category) {
             if (category) {
               post = new Post({
@@ -91,7 +91,7 @@ module.exports = {
   },
   getPost: function(req, res) {
     var postId = req.params.id;
-    Post.forge({id: postId}).fetch()
+    Post.where({id: postId}).fetch()
       .then(function(found) {
         if (found) {
           res.json({content: found.get('content')});
@@ -105,7 +105,7 @@ module.exports = {
   upVote: function(req, res) {
     var postId = req.params.id;
 
-    Post.forge({id: postId}).fetch()
+    Post.where({id: postId}).fetch()
       .then(function(post) {
         if (post) {
           var count = post.get('hearts');
