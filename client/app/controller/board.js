@@ -6,6 +6,7 @@ angular.module('myApp.board', [])
     title: '',
     content: ''
   };
+  $scope.plusButton = 'plus-start';
   $scope.searchText = '';
   $scope.activePost = {};
   $scope.showNewPostForm = false;
@@ -34,22 +35,27 @@ angular.module('myApp.board', [])
   $scope.viewPost = function(post) {
     $scope.activePost.content = '';
     $scope.activePost.replies = [];
+    $scope.activePost.showReplies = false;
 
     if (post.id !== $scope.activePost.id) {
       Board.getPostContent(post.id).then(function(resp) {
         angular.extend(post, resp);
-        $scope.activePost = post;  
+        $scope.activePost = post;
+        //$scope.activePost.showReplies = false;
       });
     } else {
       $scope.activePost = {};
+      //$scope.activePost.showReplies = false;
     }
-    
-    $scope.activePost.showReplies = false;
-    $scope.activePost.content = '';
   };
 
   $scope.viewNewPostForm = function(){
     $scope.showNewPostForm = !$scope.showNewPostForm;
+    if ($scope.plusButton === 'plus-start') {
+      $scope.plusButton = 'plus-rotate';
+    } else {
+      $scope.plusButton = 'plus-start';
+    }
   }
 
   $scope.addPost = function() {
