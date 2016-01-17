@@ -179,7 +179,7 @@ picture {
 
 .board-wrapper {
   box-sizing: border-box;
-  padding: 2rem 0; }
+  padding: 2.5rem 0; }
   .board-wrapper .controls {
     display: flex;
     justify-content: space-between;
@@ -193,6 +193,9 @@ picture {
       background: 0;
       border: 1px solid #DFDFDF;
       padding: 0.75rem 2.5%; }
+      .board-wrapper .controls input[type=text]:focus {
+        outline: 0;
+        box-shadow: none; }
     .board-wrapper .controls .topic-selector {
       width: 20%;
       margin-bottom: 0; }
@@ -287,7 +290,8 @@ picture {
         padding: 0.75rem 2.5%;
         margin-right: 2rem; }
         .board-wrapper .new-post-form .new-form-controls input[type=text]:focus {
-          outline: 0; }
+          outline: 0;
+          box-shadow: none; }
       .board-wrapper .new-post-form .new-form-controls .topic-selector {
         width: 22%;
         margin-bottom: 0; }
@@ -363,7 +367,8 @@ picture {
       box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3); }
       .board-wrapper .reply-content .reply-wrapper input[type=text].reply-text:focus {
         outline: 0;
-        border: none; }
+        border: none;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35); }
     .board-wrapper .reply-content .reply-wrapper .reply-send {
       width: 10%;
       float: left;
@@ -384,5 +389,65 @@ picture {
       right: 3rem;
       z-index: 1;
       border-bottom-color: #f1f1f1; }
+@-webkit-keyframes postContentIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -1rem, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0); } }
+@-moz-keyframes postContentIn {
+  0% {
+    opacity: 0;
+    -moz-transform: translate3d(0, -1rem, 0); }
+  100% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0); } }
+@keyframes postContentIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -1rem, 0);
+    -moz-transform: translate3d(0, -1rem, 0);
+    -ms-transform: translate3d(0, -1rem, 0);
+    -o-transform: translate3d(0, -1rem, 0);
+    transform: translate3d(0, -1rem, 0); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); } }
+  .board-wrapper .post-content:not(.ng-hide) {
+    -webkit-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    -moz-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95); }
+  .board-wrapper .reply-content:not(.ng-hide) {
+    -webkit-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    -moz-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95); }
+  .board-wrapper .plus-start i {
+    -webkit-transform-origin: center center;
+    -moz-transform-origin: center center;
+    -ms-transform-origin: center center;
+    -o-transform-origin: center center;
+    transform-origin: center center;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
+  .board-wrapper .plus-rotate i {
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    -moz-transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1); }
 
 /*# sourceMappingURL=board.css.map */

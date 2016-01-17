@@ -7,7 +7,7 @@
       <option class="jobs" value="jobs">Jobs</option>
       <option class="miscellaneous" value="miscellaneous">Miscellaneous</option>
     </select>
-    <button class="add-post" ng-click="viewNewPostForm()"><i class="fa fa-plus"></i></button>
+    <button class="add-post" ng-class="plusButton" ng-click="viewNewPostForm()"><i class="fa fa-plus"></i></button>
   </section>
   <section class="new-post-form" ng-show="showNewPostForm">
       <form name="create-post-form" ng-submit='addPost()'>
@@ -64,7 +64,7 @@
             <input class="reply-text" type="text" ng-model="newReply">
             <button type="submit" class="reply-send">Send</button>
           </form>
-          <small class="reply-char-count">{{255 - newReply.length}} remaining</small>
+          <small class="reply-char-count" ng->{{255 - newReply.length}} remaining</small>
         </div>
       </div>
     </article>
