@@ -11,7 +11,6 @@ module.exports = {
         withRelated: ['user']
       })
       .then(function(replies) {
-        console.log(replies);
         var replyResponse = replies.map(function(reply) {
           return {
             id: reply.get('id'),
