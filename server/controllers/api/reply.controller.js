@@ -34,7 +34,7 @@ module.exports = {
     })
     .save()
     .then(function(reply) {
-      res.sendStatus(201);
+      console.log(reply);
       res.json(reply);
     });
   },
