@@ -34,7 +34,7 @@
       </div>
       <div class="post-title">
         <h1 ng-click="viewPost(post)">{{post.title}}</h1>
-        <span>{{post.user}} | Posted {{post.posted}} | {{post.replyCount}} replies | <span ng-click="heartUp(post)"><i class="fa fa-heart"></i> {{post.hearts}}</span></span>
+        <span>{{post.user}} | Posted <span am-time-ago='post.posted'></span> | {{post.replyCount}} replies | <span ng-click="heartUp(post)"><i class="fa fa-heart"></i> {{post.hearts}}</span></span>
       </div>
       <div class="post-content" ng-controller="PostCtrl" ng-show="post.content">
         <div class="inner-post-content">
@@ -55,7 +55,7 @@
             <div class="reply-body">
               <p>{{reply.content}}</p>
             </div>
-            <div class="reply-time">Posted {{reply.posted}}</div>
+            <div class="reply-time">Posted <span am-time-ago='reply.created_at'></span></div>
             <div class="thumbs-up">{{reply.thumbs}}<span ng-click='upvote(reply)'><i class="fa fa-thumbs-up"></i></span></div>
           </div>
         </div>
