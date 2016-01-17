@@ -6,6 +6,7 @@ angular.module('post.services', [])
       method: 'GET',
       url: '/api/board/post/replies/' + postId
     }).then(function(resp) {
+      console.log(resp.data);
       return resp.data;
     })
   };

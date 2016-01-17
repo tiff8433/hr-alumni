@@ -7,11 +7,10 @@ module.exports = {
   getReplies: function(req, res) {
     var postId = req.params.id;
 
-    Reply.forge().fetchAll({
+    Reply.forge({ post_id: postId }).fetchAll({
         withRelated: ['user']
       })
       .then(function(replies) {
-        console.log(replies);
         var replyResponse = replies.map(function(reply) {
           return {
             id: reply.get('id'),
