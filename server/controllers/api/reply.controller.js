@@ -34,8 +34,8 @@ module.exports = {
     })
     .save()
     .then(function(reply) {
-      console.log(reply, 'postReply model');
       res.sendStatus(201);
+      res.json(reply);
     });
   },
 

@@ -1,6 +1,6 @@
 angular.module('myApp.reply', [])
 
-.controller('ReplyCtrl', ['$scope', '$state', 'Reply', 'Post', function($scope, $state, Reply) {
+.controller('ReplyCtrl', ['$scope', '$state', 'Reply', 'Post', function($scope, $state, Reply, Post) {
   $scope.reply = {};
   $scope.newReply = "";
 
@@ -18,7 +18,7 @@ angular.module('myApp.reply', [])
     var id = $scope.activePost.id;
     Reply.postReply($scope.newReply, id)
       .then(function(res) {
-        Post.getReplies();
+        $scope.activePost.replies.concat(res);
         $scope.newReply = '';
       });
   }
