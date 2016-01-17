@@ -50,24 +50,26 @@ module.exports = {
   },
 
   thumbUpReply: function(req, res) {
+    console.log('running inside thumbup');
     var replyId = req.params.id;
-
-    Reply.forge({
-      id: replyId
-    }).fetch().then(function(reply) {
-      if (reply) {
-        var count = reply.get('thumbs');
-        reply.set('thumbs', count+1);
-        console.log(thumbs.get('thumbs'));
-        reply.save();
-        res.sendStatus(200);
-      } else {
-        res.sendStatus(404);
-      }
-    })
-    .catch(function(err) {
-      console.error(err);
-      res.sendStatus(400);
-    });
+    console.log('replyid', replyId);
+    // Reply.forge({
+    //   id: replyId
+    // }).fetch().then(function(reply) {
+    //   console.log('REPLY', reply);
+    //   if (reply) {
+    //     var count = reply.get('thumbs');
+    //     reply.set('thumbs', count+1);
+    //     console.log(thumbs.get('thumbs'));
+    //     reply.save();
+    //     res.sendStatus(200);
+    //   } else {
+    //     res.sendStatus(404);
+    //   }
+    // })
+    // .catch(function(err) {
+    //   console.error(err);
+    //   res.sendStatus(400);
+    // });
   }
 };
