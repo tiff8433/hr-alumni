@@ -11,7 +11,7 @@ angular.module('myApp.board', ['infinite-scroll'])
   $scope.activePost = {};
   $scope.heartsOnly = false;
   $scope.showNewPostForm = false;
-  $scope.data = $scope.posts.slice(0,5);
+  $scope.somePosts = [];
   $scope.catIcons = {
     events: 'calendar',
     jobs: 'briefcase',
@@ -24,6 +24,7 @@ angular.module('myApp.board', ['infinite-scroll'])
     Board.getPosts()
       .then(function(res) {
         $scope.posts = res;
+        console.log("getAllPosts", $scope.posts);
       })
       .catch(function(err) {
         console.error(err);
@@ -90,7 +91,14 @@ angular.module('myApp.board', ['infinite-scroll'])
   };
 
   $scope.loadMorePosts = function(){
-    $scope.data = $scope.posts.slice(0, $scope.data.length + 5);
+    Board.getPosts()
+      .then(function(res) {
+        $scope.posts = res;
+        console.log("getAllPosts", $scope.posts);
+        console.log('scope.posts', $scope.posts);
+        $scope.somePosts = $scope.posts.slice(0, $scope.somePosts.length + 5);
+        console.log('loadMorePosts', $scope.somePosts);
+      })
   }
 
   $scope.getAllPosts();
