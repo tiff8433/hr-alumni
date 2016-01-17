@@ -9,6 +9,7 @@ angular.module('myApp.board', [])
   $scope.plusButton = 'plus-start';
   $scope.searchText = '';
   $scope.activePost = {};
+  $scope.heartsOnly = false;
   $scope.showNewPostForm = false;
   $scope.catIcons = {
     events: 'calendar',
@@ -35,12 +36,17 @@ angular.module('myApp.board', [])
   };
 
   $scope.getHearts = function() {
-    Board.getHearts().then(function(resp) {
-      $scope.posts = resp;
-      console.log(resp);
-    }).catch(function(err) {
-      console.log(err);
-    });
+    if (!$scope.heartsOnly) {
+      Board.getHearts().then(function(resp) {
+        $scope.posts = resp;
+        $scope.heartsOnly = true;
+      }).catch(function(err) {
+        console.log(err);
+      });
+    } else {
+      $scope.heartsOnly = false;
+      $scope.getAllPosts();
+    }
   };
 
   $scope.viewPost = function(post) {
