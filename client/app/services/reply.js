@@ -5,7 +5,7 @@ angular.module('reply.services', [])
   var upvoteReply = function(replyId) {
     return $http({
       method: 'PUT',
-      url: '/api/board/replies/thumb/' + replyId
+      url: '/api/board/post/replies/thumb/' + replyId
     }).then(function(resp) {
       return resp.data;
     });

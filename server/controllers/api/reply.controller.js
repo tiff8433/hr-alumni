@@ -51,15 +51,21 @@ module.exports = {
 
   thumbUpReply: function(req, res) {
     var replyId = req.params.id;
-
     Reply.forge({
       id: replyId
     }).fetch().then(function(reply) {
-      reply.save({
-        thumbs: reply.get('thumbs') += 1
-      }, { patch: true }).then(function(reply) {
-        res.sendStatus(201);
-      });
+      if (reply) {
+        var count = reply.get('thumbs');
+        reply.set('thumbs', count+1);
+        reply.save();
+        res.sendStatus(200);
+      } else {
+        res.sendStatus(404);
+      }
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.sendStatus(400);
     });
   }
 };

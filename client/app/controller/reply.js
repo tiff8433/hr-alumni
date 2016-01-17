@@ -4,15 +4,15 @@ angular.module('myApp.reply', [])
   $scope.reply = {};
   $scope.newReply = "";
 
-  $scope.upvote = function() {
-    Reply.upvoteReply()
+  $scope.upvote = function(reply) {
+    Reply.upvoteReply(reply.id)
       .then(function(res) {
-        $scope.reply.thumbs++;
+        reply.thumbs++;
       })
       .catch(function(err){
         console.error(err);
       });
-  }
+  };
 
   $scope.addReply = function() {
     var id = $scope.activePost.id;
@@ -21,5 +21,5 @@ angular.module('myApp.reply', [])
         $scope.activePost.replies.push(res);
         $scope.newReply = '';
       });
-  }
+  };
 }]);
