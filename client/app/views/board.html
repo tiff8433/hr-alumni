@@ -1,8 +1,8 @@
 <div class="board-wrapper">
   <section class="controls">
     <input type="text" placeholder="Search..." ng-model="searchText">
-    <select class="topic-selector">
-      <option disabled selected>Topics</option>
+    <select class="topic-selector" ng-model="categoryFilter">
+      <option class="all" value="">All</option>
       <option class="events" value="events">Events</option>
       <option class="jobs" value="jobs">Jobs</option>
       <option class="help" value="help">Help</option>
@@ -32,7 +32,7 @@
       </form>
   </section>
   <section class="posts">
-    <article class="post" ng-repeat="post in posts | filter:searchText | orderBy:'-posted'">
+    <article class="post" ng-repeat="post in posts | filter:searchText | filter:{category: categoryFilter}| orderBy:'-posted'">
       <div class="post-icon {{post.category}}">
         <i class="fa fa-{{catIcons[post.category]}}"></i>
       </div>
