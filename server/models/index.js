@@ -1,7 +1,43 @@
-var Category = require('./category.js'),
-    Post = require('./post.js'),
-    Reply = require('./reply.js'),
-    User = require('./user.js');
+var db = require('../config/config.js');
+
+var Post = db.Model.extend({
+  tableName: 'posts',
+  hasTimestamps: true,
+  category: function() {
+    return this.belongsTo(Category, 'category_id');
+  },
+  user: function() {
+    return this.belongsTo(User, 'user_id');
+  }
+});
+
+var Category = db.Model.extend({
+  tableName: 'categories',
+  post: function() {
+    return this.hasMany(Post);
+  }
+});
+
+var User = db.Model.extend({
+  tableName: 'users',
+  post: function() {
+    return this.hasMany(Post);
+  },
+  reply: function() {
+    return this.hasMany(Reply);
+  }
+});
+
+var Reply = db.Model.extend({
+  tableName: 'replies',
+  hasTimestamps: true,
+  post: function() {
+    return this.belongsTo(Post, 'post_id');
+  },
+  user: function() {
+    return this.belongsTo(User, 'user_id');
+  }
+});
 
 module.exports = {
   Category: Category,

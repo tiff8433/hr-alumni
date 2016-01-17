@@ -1,4 +1,4 @@
-var db = require('../config/config.js'),
+var db = require('../config/config.js');
     Category = require('./index').Category,
     User = require('./index').User;
 

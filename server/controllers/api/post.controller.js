@@ -65,12 +65,8 @@ module.exports = {
                 content: content,
                 hearts: 0,
                 category_id: category.get('id'),
-<<<<<<< HEAD
                 user_id: userId,
                 user_name: user_name
-=======
-                user_id: userId
->>>>>>> getting replies to appear
               }).save().then(function(post) {
                 res.json(post);
               });
@@ -82,12 +78,8 @@ module.exports = {
                     content: content,
                     hearts: 0,
                     category_id: category.get('id'),
-<<<<<<< HEAD
                     user_id: userId,
                     user_name: user_name
-=======
-                    user_id: userId
->>>>>>> getting replies to appear
                   }).save().then(function(newPost) {
                     res.json(newPost);
                   });
