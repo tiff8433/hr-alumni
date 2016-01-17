@@ -50,19 +50,15 @@ module.exports = {
         });
   },
   createPost: function(req, res) {
-
-    console.log(req.body);
     var title = req.body.title,
         content = req.body.content,
-        categoryName = req.body.categoryName,
-        user_name = req.body.username,
+        categoryName = req.body.category,
+        user_name = req.user.displayName,
         userId = req.user.user_id;
 
         // search for category id
         Category.forge({category: categoryName})
           .fetch().then(function(category) {
-            var post;
-            console.log('existing');
             if (category) {
               post = new Post({
                 title: title,
@@ -70,12 +66,11 @@ module.exports = {
                 hearts: 0,
                 category_id: category.get('id'),
                 user_id: userId,
-                username: username
+                user_name: user_name
               }).save().then(function(post) {
                 res.json(post);
               });
             } else {
-              console.log('nonexisting');
               new Category({ category: categoryName })
                 .save().then(function(category){
                   post = new Post({
@@ -84,7 +79,7 @@ module.exports = {
                     hearts: 0,
                     category_id: category.get('id'),
                     user_id: userId,
-                    username: username
+                    user_name: user_name
                   }).save().then(function(newPost) {
                     res.json(newPost);
                   });
