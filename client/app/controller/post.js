@@ -5,22 +5,15 @@ angular.module('myApp.post', [])
   $scope.activeReplies = {};
 
   $scope.viewReplies = function(postId) {
-    $scope.activePost.replies = []
+    $scope.activePost.replies = [];
     if (!$scope.activePost.showReplies) {
-      $scope.activePost.replies.concat(Post.getReplies(postId));
-      console.log($scope.activePost.replies);
+      Post.getReplies(postId).then(function(resp){
+        $scope.activePost.replies = $scope.activePost.replies.concat(resp);
+      });
       $scope.activePost.showReplies = true;
     } else {
       $scope.activePost.replies = [];
       $scope.activePost.showReplies = false;
     }
-
-    //   .then(function(res) {
-    //     $scope.replies = res;
-    //     $state.go('post', res);
-    //   })
-    //   .catch(function(err) {
-    //     console.error(err);
-    //   });
   }
 }]);
