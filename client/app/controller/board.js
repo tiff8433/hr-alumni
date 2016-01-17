@@ -6,6 +6,11 @@ angular.module('myApp.board', [])
   $scope.searchText = '';
   $scope.activePost = {};
   $scope.showNewPostForm = false;
+  $scope.catIcons = {
+    events: 'calendar',
+    jobs: 'briefcase',
+    miscellaneous: 'info'
+  };
 
   $scope.getAllPosts = function() {
     Board.getPosts()
@@ -48,6 +53,8 @@ angular.module('myApp.board', [])
     Board.createPost($scope.newPost)
       .then(function(res) {
         $scope.getAllPosts();
+        $scope.newPost = {};
+        $scope.showNewPostForm = false;
       })
   };
 

@@ -26,8 +26,8 @@
   </section>
   <section class="posts">
     <article class="post" ng-repeat="post in posts | filter:searchText | orderBy:'-posted'">
-      <div class="post-icon">
-        <i class="fa fa-{{post.categoryIcon}}"></i>
+      <div class="post-icon {{post.category}}">
+        <i class="fa fa-{{catIcons[post.category]}}"></i>
       </div>
       <div class="post-title">
         <h1 ng-click="viewPost(post)">{{post.title}}</h1>

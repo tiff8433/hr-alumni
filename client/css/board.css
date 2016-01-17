@@ -215,7 +215,9 @@ picture {
       content: "";
       display: table; }
     .board-wrapper .post .post-icon {
-      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: #F86451;
       border-radius: 100%;
       width: 4.5rem;
@@ -223,11 +225,14 @@ picture {
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       margin-right: 1.5rem; }
       .board-wrapper .post .post-icon i {
-        position: absolute;
         top: 1.275rem;
         left: 1.2875rem;
         font-size: 2rem;
         color: #fff; }
+      .board-wrapper .post .post-icon.jobs {
+        background-color: #1565c0; }
+      .board-wrapper .post .post-icon.miscellaneous {
+        background-color: #935AD6; }
     .board-wrapper .post .post-title h1 {
       font-size: 2rem;
       font-weight: 300;
@@ -237,7 +242,8 @@ picture {
     .board-wrapper .post .post-title .span {
       font-color: #9B9B9B; }
     .board-wrapper .post .post-title .fa-heart {
-      color: #E56666; }
+      color: #E56666;
+      cursor: pointer; }
     .board-wrapper .post .post-content {
       position: relative;
       background-color: #f1f1f1;
