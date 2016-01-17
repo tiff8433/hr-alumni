@@ -2,7 +2,10 @@ angular.module('myApp.board', [])
 
 .controller('BoardCtrl', ['$scope', '$state', 'Board', function($scope, $state, Board) {
   $scope.posts = [];
-  $scope.newPost = {};
+  $scope.newPost = {
+    title: '',
+    content: ''
+  };
   $scope.searchText = '';
   $scope.activePost = {};
   $scope.showNewPostForm = false;
@@ -53,7 +56,10 @@ angular.module('myApp.board', [])
     Board.createPost($scope.newPost)
       .then(function(res) {
         $scope.getAllPosts();
-        $scope.newPost = {};
+        $scope.newPost = {
+          title: '',
+          content: ''
+        };
         $scope.showNewPostForm = false;
       })
   };

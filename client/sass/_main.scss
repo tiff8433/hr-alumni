@@ -165,8 +165,18 @@
       }
     }
 
+    .textarea-wrapper {
+      position: relative;
+    }
+
     textarea {
       resize: none;
       height: 8rem;
+    }
+
+    .char-count {
+      position: absolute;
+      right: 12px;
+      bottom: -8px;
     }
 }

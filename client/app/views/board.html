@@ -18,9 +18,12 @@
             <option class="events" value="events">Events</option>
             <option class="jobs" value="jobs">Jobs</option>
             <option class="miscellaneous" value="desktop">Miscellaneous</option>
-          </select><br>
+          </select>
          </section>
-         <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content"></textarea><br>
+         <div class="textarea-wrapper">
+           <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content" ng-trim="false"></textarea>
+           <small class="char-count">{{500 - newPost.content.length}} remaining</small>
+         </div>
         <button type="submit" class="post-submit">Submit</button>
       </form>
   </section>

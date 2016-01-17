@@ -301,9 +301,15 @@ picture {
         right: 3rem;
         z-index: 1;
         border-bottom-color: #f1f1f1; }
+    .board-wrapper .new-post-form .textarea-wrapper {
+      position: relative; }
     .board-wrapper .new-post-form textarea {
       resize: none;
       height: 8rem; }
+    .board-wrapper .new-post-form .char-count {
+      position: absolute;
+      right: 12px;
+      bottom: -8px; }
   .board-wrapper .reply-content {
     position: relative;
     width: 90%;
@@ -334,7 +340,7 @@ picture {
           display: table; }
         .board-wrapper .reply-content .reply .reply-info .reply-body p {
           line-height: 1.5;
-          margin: 0; }
+          margin: 0 0 1.5rem; }
         .board-wrapper .reply-content .reply .reply-info .reply-time {
           float: left;
           color: #9B9B9B; }
