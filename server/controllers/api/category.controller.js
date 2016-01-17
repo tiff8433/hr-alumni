@@ -1,5 +1,5 @@
-var Category = require('../../models/category');
-var Post = require('../../models/post');
+var Category = require('../../models/').Category;
+var Post = require('../../models/').Post;
 
 module.exports = {
 
