@@ -19,6 +19,7 @@ angular.module('myApp.reply', [])
     Reply.postReply($scope.newReply, id)
       .then(function(res) {
         $scope.activePost.replies.push(res);
+        $scope.post.replyCount++;
         $scope.newReply = '';
       });
   };

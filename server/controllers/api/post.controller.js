@@ -29,7 +29,7 @@ module.exports = {
                   return {
                     id: post.get('id'),
                     title: post.get('title'),
-                    replies: post.get('replies'),
+                    replyCount: post.get('replies'),
                     hearts: post.get('hearts'),
                     category: post.related('category').get('category'),
                     userId: post.get('user_id'),
@@ -65,6 +65,7 @@ module.exports = {
                 title: title,
                 content: content,
                 hearts: 0,
+                replies: 0,
                 category_id: category.get('id'),
                 user_id: userId
               }).save().then(function(post) {
@@ -77,6 +78,7 @@ module.exports = {
                     title: title,
                     content: content,
                     hearts: 0,
+                    replies: 0,
                     category_id: category.get('id'),
                     user_id: userId
                   }).save().then(function(newPost) {
@@ -114,14 +116,14 @@ module.exports = {
         if (post) {
           var heartsArray = post.related('heart').models;
           var catId = post.get('category_id');
-          
+
           for (var i=0; i<heartsArray.length; i++) {
             if (heartsArray[i].get('user_id') === userId) {
               res.sendStatus(304);
               return;
             }
           }
-          
+
           new Heart({
             post_id: postId,
             user_id: userId,
