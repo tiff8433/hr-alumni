@@ -58,9 +58,8 @@ module.exports = {
 
         // search for category id
         Category.forge({category: categoryName})
-          .fetch().then(function(category) {  
+          .fetch().then(function(category) {
             if (category) {
-              console.log('post', post.posted);
               post = new Post({
                 title: title,
                 content: content,
@@ -72,7 +71,6 @@ module.exports = {
                 res.json(post);
               });
             } else {
-              console.log('NONEXISTING CATEGORY', category);
               new Category({ category: categoryName })
                 .save().then(function(category){
                   post = new Post({
