@@ -308,7 +308,7 @@ picture {
       margin-bottom: 1.5rem; }
       .board-wrapper .reply-content .reply .reply-user {
         width: 10rem;
-        margin-right: 1.75rem;
+        margin-right: 1.5rem;
         text-align: center; }
         .board-wrapper .reply-content .reply .reply-user img {
           border-radius: 100%;
@@ -317,7 +317,8 @@ picture {
           font-size: 0.75rem; }
       .board-wrapper .reply-content .reply .reply-info {
         background: #fbfbfb;
-        padding: 1rem 1.25rem; }
+        padding: 1rem 1.25rem;
+        min-width: 85%; }
         .board-wrapper .reply-content .reply .reply-info::after {
           clear: both;
           content: "";

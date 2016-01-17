@@ -1,7 +1,6 @@
 angular.module('myApp.post', [])
 
 .controller('PostCtrl', ['$scope', '$state','Post', function($scope, $state, Post) {
-  //$scope.replies.visible = false;
   $scope.activeReplies = {};
 
   $scope.viewReplies = function(postId) {
