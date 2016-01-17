@@ -44,10 +44,7 @@ module.exports = {
     })
     .save()
     .then(function(reply) {
-<<<<<<< 7bf91abb9c4ad740ef33c54769b7b8f8a7cdc3c1
       console.log(reply);
-=======
->>>>>>> applies fix to newReply
       res.json(reply);
     });
   },
