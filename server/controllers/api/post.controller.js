@@ -20,7 +20,7 @@ module.exports = {
         }
       }).then(function() {
           Post.forge().fetchAll({
-            withRelated: ['user']
+            withRelated: ['user', 'category']
           })
             .then(function(found) {
               if (found) {
@@ -30,7 +30,7 @@ module.exports = {
                     title: post.get('title'),
                     replies: post.get('replies'),
                     hearts: post.get('hearts'),
-                    categoryId: post.get('category_id'),
+                    category: post.related('category').get('category'),
                     userId: post.get('user_id'),
                     user: post.related('user').get('full_name'),
                     posted: post.get('created_at')

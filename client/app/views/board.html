@@ -18,16 +18,19 @@
             <option class="events" value="events">Events</option>
             <option class="jobs" value="jobs">Jobs</option>
             <option class="miscellaneous" value="desktop">Miscellaneous</option>
-          </select><br>
+          </select>
          </section>
-         <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content"></textarea><br>
+         <div class="textarea-wrapper">
+           <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content" ng-trim="false"></textarea>
+           <small class="char-count">{{500 - newPost.content.length}} remaining</small>
+         </div>
         <button type="submit" class="post-submit">Submit</button>
       </form>
   </section>
   <section class="posts">
     <article class="post" ng-repeat="post in posts | filter:searchText | orderBy:'-posted'">
-      <div class="post-icon">
-        <i class="fa fa-{{post.categoryIcon}}"></i>
+      <div class="post-icon {{post.category}}">
+        <i class="fa fa-{{catIcons[post.category]}}"></i>
       </div>
       <div class="post-title">
         <h1 ng-click="viewPost(post)">{{post.title}}</h1>
@@ -61,6 +64,7 @@
             <input class="reply-text" type="text" ng-model="newReply">
             <button type="submit" class="reply-send">Send</button>
           </form>
+          <small class="reply-char-count">{{255 - newReply.length}} remaining</small>
         </div>
       </div>
     </article>
