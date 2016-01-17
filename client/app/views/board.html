@@ -1,4 +1,4 @@
-<div class="board-wrapper">
+<div class="board-wrapper" infinite-scroll="loadMorePosts()">
   <section class="controls">
     <input type="text" placeholder="Search..." ng-model="searchText">
     <div class="heart-wrapper">
@@ -34,7 +34,7 @@
         <button type="submit" class="post-submit">Submit</button>
       </form>
   </section>
-  <div class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance="3">
+  <section class="posts" >
   <article class="post" class="postContainer" ng-repeat="post in somePosts">
     <!-- <article class="post" ng-repeat="post in posts | filter:searchText | filter:{category: <!-- categoryFilter}| orderBy:'-posted'"> -->
       <div class="post-icon {{post.category}}">
@@ -76,5 +76,5 @@
         </div>
       </div>
     </article>
-  </div>
+  </section>
 </div>

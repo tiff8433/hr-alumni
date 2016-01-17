@@ -94,8 +94,6 @@ angular.module('myApp.board', ['infinite-scroll'])
     Board.getPosts()
       .then(function(res) {
         $scope.posts = res;
-        console.log("getAllPosts", $scope.posts);
-        console.log('scope.posts', $scope.posts);
         $scope.somePosts = $scope.posts.slice(0, $scope.somePosts.length + 5);
         console.log('loadMorePosts', $scope.somePosts);
       })
