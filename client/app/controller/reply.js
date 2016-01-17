@@ -5,10 +5,9 @@ angular.module('myApp.reply', [])
   $scope.newReply = "";
 
   $scope.upvote = function(reply) {
-    console.log('reply', reply.id);
     Reply.upvoteReply(reply.id)
       .then(function(res) {
-        $scope.reply.thumbs++;
+        reply.thumbs++;
       })
       .catch(function(err){
         console.error(err);
