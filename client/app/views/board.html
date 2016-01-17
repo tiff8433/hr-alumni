@@ -64,6 +64,7 @@
             <input class="reply-text" type="text" ng-model="newReply">
             <button type="submit" class="reply-send">Send</button>
           </form>
+          <small class="reply-char-count">{{255 - newReply.length}} remaining</small>
         </div>
       </div>
     </article>
