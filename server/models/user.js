@@ -1,6 +1,6 @@
 var db = require('../config/config.js'),
-    Post = require('./post.js'),
-    Reply = require('./reply.js');
+    Post = require('./index').Post,
+    Reply = require('./index').Reply;
 
 
 var User = db.Model.extend({

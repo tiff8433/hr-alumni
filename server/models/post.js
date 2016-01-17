@@ -1,6 +1,6 @@
-var db = require('../config/config.js'),
-    Category = require('./category.js'),
-    User = require('./user.js');
+var db = require('../config/config.js');
+    Category = require('./index').Category,
+    User = require('./index').User;
 
 var Post = db.Model.extend({
   tableName: 'posts',

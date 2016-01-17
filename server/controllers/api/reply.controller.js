@@ -7,10 +7,21 @@ module.exports = {
   getReplies: function(req, res) {
     var postId = req.params.id;
 
-    Reply.forge({ post: postId })
-      .fetchAll()
+    Reply.forge().fetchAll({
+        withRelated: ['user']
+      })
       .then(function(replies) {
-        res.json(replies);
+        console.log(replies);
+        var replyResponse = replies.map(function(reply) {
+          return {
+            id: reply.get('id'),
+            content: reply.get('content'),
+            user: reply.related('user').get('full_name'),
+            thumbs: reply.get('thumbs'),
+            created_at: reply.get('created_at')
+          };
+        });
+        res.json(replyResponse);
       });
   },
 
@@ -34,7 +45,7 @@ module.exports = {
     })
     .save()
     .then(function(reply) {
-      res.sendStatus(201);
+      console.log(reply);
       res.json(reply);
     });
   },
