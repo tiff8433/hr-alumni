@@ -39,10 +39,20 @@ angular.module('board.services', [])
     });
   };
 
+  var getHearts = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/board/posts/hearts'
+    }).then(function(resp) {
+      return resp.data;
+    });
+  };
+
   return {
     getPosts: getPosts,
     createPost: createPost,
     getPostContent: getPostContent,
-    upvotePost: upvotePost
+    upvotePost: upvotePost,
+    getHearts: getHearts
   };
 }]);
