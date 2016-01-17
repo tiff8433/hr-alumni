@@ -1,4 +1,4 @@
-angular.module('myApp.board', [])
+angular.module('myApp.board', ['infinite-scroll'])
 
 .controller('BoardCtrl', ['$scope', '$state', 'Board', function($scope, $state, Board) {
   $scope.posts = [];
@@ -11,6 +11,7 @@ angular.module('myApp.board', [])
   $scope.activePost = {};
   $scope.heartsOnly = false;
   $scope.showNewPostForm = false;
+  $scope.data = $scope.posts.slice(0,5);
   $scope.catIcons = {
     events: 'calendar',
     jobs: 'briefcase',
@@ -87,6 +88,10 @@ angular.module('myApp.board', [])
         $scope.showNewPostForm = false;
       })
   };
+
+  $scope.loadMorePosts = function(){
+    $scope.data = $scope.posts.slice(0, $scope.data.length + 5);
+  }
 
   $scope.getAllPosts();
 }]);

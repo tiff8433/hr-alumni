@@ -34,8 +34,9 @@
         <button type="submit" class="post-submit">Submit</button>
       </form>
   </section>
-  <section class="posts">
-    <article class="post" ng-repeat="post in posts | filter:searchText | filter:{category: categoryFilter}| orderBy:'-posted'">
+  <section class="posts" infinite-scroll="loadMorePosts()" infinite-scroll-distance="3">
+  <article class="postContainer" ng-repeat="post in data">
+    <article class="post" ng-repeat="post in posts | filter:searchText | filter:{category: <!-- categoryFilter}| orderBy:'-posted'">
       <div class="post-icon {{post.category}}">
         <i class="fa fa-{{catIcons[post.category]}}"></i>
       </div>
