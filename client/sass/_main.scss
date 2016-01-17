@@ -72,6 +72,14 @@
     &.miscellaneous {
       background-color: $purple;
     }
+
+    &.help {
+      background-color: $green;
+    }
+
+    &.announcements {
+      background-color: $heart-red;
+    }
   }
 
   .post-title {
