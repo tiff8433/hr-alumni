@@ -59,9 +59,11 @@
   .reply-wrapper {
     @include clearfix;
 
+    form {
+      display: flex;
+    }
+
     input[type=text].reply-text {
-      width: 90%;
-      float: left;
       height: 3rem;
       margin: 0;
       border-radius: 0;
@@ -75,8 +77,7 @@
     }
 
     .reply-send {
-      width: 10%;
-      float: left;
+      width: 8rem;
       height: 3rem;
       background-color: $green;
       color: #fff;
