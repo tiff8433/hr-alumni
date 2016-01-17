@@ -1,6 +1,7 @@
 var Post = require('../../models').Post,
     User = require('../../models').User,
-    Category = require('../../models').Category;
+    Category = require('../../models').Category,
+    Heart = require('../../models').Heart;
 
 module.exports = {
   getAllPosts: function(req, res) {
@@ -104,13 +105,31 @@ module.exports = {
   },
   upVote: function(req, res) {
     var postId = req.params.id;
+    var userId = req.user.user_id;
 
-    Post.where({id: postId}).fetch()
+    Post.where({id: postId}).fetch({
+      withRelated: ['heart', 'user']
+    })
       .then(function(post) {
         if (post) {
+          var heartsArray = post.related('heart').models;
+          var catId = post.get('category_id');
+          
+          for (var i=0; i<heartsArray.length; i++) {
+            if (heartsArray[i].get('user_id') === userId) {
+              res.sendStatus(304);
+              return;
+            }
+          }
+          
+          new Heart({
+            post_id: postId,
+            user_id: userId,
+            cat_id: catId
+          }).save();
+
           var count = post.get('hearts');
           post.set('hearts', count+1);
-          console.log(post.get('hearts'));
           post.save();
           res.sendStatus(200);
         } else {

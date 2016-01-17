@@ -2,7 +2,8 @@ var express = require('express'),
     util = require('../../config/utils.js'),
     post = require('./post.controller.js'),
     category = require('./category.controller'),
-    reply = require('./reply.controller');
+    reply = require('./reply.controller'),
+    heart = require('./heart.controller');
 
 var apiRouter = express.Router();
 
@@ -17,6 +18,8 @@ apiRouter.post('/post/replies/:id', util.checkUser, reply.postReply);
 apiRouter.put('/post/replies/thumb/:id', util.checkUser, reply.thumbUpReply);
 
 apiRouter.get('/category/:category', util.checkUser);
+
+apiRouter.get('/posts/hearts', util.checkUser, heart.getHearts);
 
 
 module.exports = apiRouter;

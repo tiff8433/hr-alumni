@@ -69,4 +69,17 @@ knex.schema.hasTable('categories').then(function(exists) {
   }
 });
 
+knex.schema.hasTable('hearts').then(function(exists) {
+  if (!exists) {
+    knex.schema.createTable('hearts', function(heart) {
+      heart.increments('id').primary();
+      heart.integer('post_id');
+      heart.integer('user_id');
+      heart.integer('cat_id');
+    }).then(function(table) {
+      console.log('Created Table', table);
+    });
+  }
+})
+
 module.exports = bookshelf;

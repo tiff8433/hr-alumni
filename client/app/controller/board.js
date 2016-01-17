@@ -34,6 +34,15 @@ angular.module('myApp.board', [])
     });
   };
 
+  $scope.getHearts = function() {
+    Board.getHearts().then(function(resp) {
+      $scope.posts = resp;
+      console.log(resp);
+    }).catch(function(err) {
+      console.log(err);
+    });
+  };
+
   $scope.viewPost = function(post) {
     $scope.activePost.content = '';
     $scope.activePost.replies = [];
@@ -68,6 +77,7 @@ angular.module('myApp.board', [])
           title: '',
           content: ''
         };
+        $scope.plusButton = 'plus-start';
         $scope.showNewPostForm = false;
       })
   };
