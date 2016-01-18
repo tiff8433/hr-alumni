@@ -78,9 +78,14 @@ angular.module('myApp.board', [])
     } else {
       $scope.plusButton = 'plus-start';
     }
-  }
+  };
 
   $scope.addPost = function() {
+    if (!$scope.newPost.title || !$scope.newPost.category || !$scope.newPost.content) {
+      $scope.formError = true;
+      return;
+    }
+    $scope.formError = false;
     Board.createPost($scope.newPost)
       .then(function(res) {
         $scope.getAllPosts();
@@ -90,7 +95,7 @@ angular.module('myApp.board', [])
         };
         $scope.plusButton = 'plus-start';
         $scope.showNewPostForm = false;
-      })
+      });
   };
 
   $scope.getAllPosts();
