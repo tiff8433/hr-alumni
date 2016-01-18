@@ -57,7 +57,7 @@ passport.use(new GithubStrategy({
 if (process.env.NODE_ENV === undefined) {
   mongoose.connect("mongodb://localhost/hralumnimark2");
 } else {
-  mongoose.connect(process.env.MONGOLAB_URI));
+  mongoose.connect(process.env.MONGOLAB_URI);
 }
 
 app.use(express.static(__dirname + '/../client'));
