@@ -438,10 +438,43 @@ picture {
     -ms-transform: translate3d(0, 0, 0);
     -o-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0); } }
-  .board-wrapper .post-content:not(.ng-hide), .board-wrapper .reply-content:not(.ng-hide), .board-wrapper .new-post-form:not(.ng-hide) {
+@-webkit-keyframes postContentOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -1rem, 0); } }
+@-moz-keyframes postContentOut {
+  0% {
+    opacity: 1;
+    -moz-transform: translate3d(0, 0, 0); }
+  100% {
+    opacity: 0;
+    -moz-transform: translate3d(0, -1rem, 0); } }
+@keyframes postContentOut {
+  0% {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    -o-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0); }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -1rem, 0);
+    -moz-transform: translate3d(0, -1rem, 0);
+    -ms-transform: translate3d(0, -1rem, 0);
+    -o-transform: translate3d(0, -1rem, 0);
+    transform: translate3d(0, -1rem, 0); } }
+  .board-wrapper .ng-hide-remove {
     -webkit-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     -moz-animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
     animation: postContentIn 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95); }
+  .board-wrapper .new-post-form.ng-hide-add {
+    -webkit-animation: postContentOut 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    -moz-animation: postContentOut 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation: postContentOut 300ms cubic-bezier(0.445, 0.05, 0.55, 0.95); }
   .board-wrapper .plus-start i {
     -webkit-transform-origin: center center;
     -moz-transform-origin: center center;
