@@ -11,7 +11,7 @@ var morgan = require('morgan');
 
 if (process.env.NODE_ENV === undefined) {
   var secrets = require('./config/secrets.js');
-} 
+}
 var app = express();
 
 
@@ -54,9 +54,11 @@ passport.use(new GithubStrategy({
   }
 ));
 
-
-// mongoose.connect(process.env.MONGOLAB_URI);
-mongoose.connect("mongodb://localhost/hralumnimark2");
+if (process.env.NODE_ENV === undefined) {
+  mongoose.connect("mongodb://localhost/hralumnimark2");
+} else {
+  mongoose.connect(process.env.MONGOLAB_URI));
+}
 
 app.use(express.static(__dirname + '/../client'));
 
