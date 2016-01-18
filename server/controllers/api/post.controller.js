@@ -4,8 +4,10 @@ var Post = require('../../models').Post,
     Heart = require('../../models').Heart;
 
 function getAllPosts(req, res) {
+  console.log(req);
   var username = req.user.username;
   var user_name = req.user.displayName;
+  var profileUrl = req.user['_json'].avatar_url;
 
   User.where({username: username})
     .fetch().then(function(found) {
@@ -14,7 +16,7 @@ function getAllPosts(req, res) {
         req.user.user_id = found.get('id');
       } else {
         // create new user and add to database
-        User.forge({username: username, full_name: user_name})
+        User.forge({username: username, full_name: user_name, profileUrl: profileUrl})
           .save()
           .then(function(user) {
             req.user.user_id = user.get('id');
