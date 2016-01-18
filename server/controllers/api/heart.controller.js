@@ -19,7 +19,7 @@ function getHearts(req, res) {
           title: heart.related('post').get('title'),
           replies: heart.related('post').get('replies'),
           hearts: heart.related('post').get('hearts'),
-          replies: heart.related('post').get('replyCount'),
+          replyCount: heart.related('post').get('replies'),
           category: heart.related('category').get('category'),
           userId: heart.get('user_id'),
           user: heart.related('user').get('full_name'),
