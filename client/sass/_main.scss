@@ -131,6 +131,7 @@
     p {
       font-size: rem(18);
       line-height: 1.75;
+      margin: 0;
     }
 
     .view-replies {
@@ -152,6 +153,13 @@
       left: rem(10);
       z-index: 1;
       border-bottom-color: #f1f1f1;
+    }
+
+    .inner-post-content {
+      background: #fbfbfb;
+      padding: 1rem 1.5rem;
+      @include clearfix;
+      min-width: 85%;
     }
   }
 }

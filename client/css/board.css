@@ -277,7 +277,8 @@ picture {
       min-width: 100%; }
       .board-wrapper .post .post-content p {
         font-size: 1.125rem;
-        line-height: 1.75; }
+        line-height: 1.75;
+        margin: 0; }
       .board-wrapper .post .post-content .view-replies {
         position: absolute;
         right: 0;
@@ -295,6 +296,14 @@ picture {
         left: 0.625rem;
         z-index: 1;
         border-bottom-color: #f1f1f1; }
+      .board-wrapper .post .post-content .inner-post-content {
+        background: #fbfbfb;
+        padding: 1rem 1.5rem;
+        min-width: 85%; }
+        .board-wrapper .post .post-content .inner-post-content::after {
+          clear: both;
+          content: "";
+          display: table; }
   .board-wrapper .new-post-form {
     position: relative;
     background-color: #f1f1f1;
