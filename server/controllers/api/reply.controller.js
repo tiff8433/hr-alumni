@@ -44,7 +44,7 @@ function postReply(req, res) {
   })
   .save()
   .then(function(reply) {
-    Reply.where({ id: userId })
+    Reply.where({ user_id: userId })
       .fetch({ withRelated: ['user'] })
       .then(function(reply){
         var response = {
