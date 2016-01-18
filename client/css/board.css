@@ -212,7 +212,6 @@ picture {
       outline: 0;
       border-radius: 0;
       -webkit-appearance: none;
-      text-indent: 35%;
       box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2); }
     .board-wrapper .controls .add-post {
       width: 8rem;
