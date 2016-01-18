@@ -6,12 +6,14 @@ var Post = require('../../models').Post,
 function getAllPosts(req, res) {
   var username = req.user.username;
   var user_name = req.user.displayName;
-  // save userid to req object
+
   User.where({username: username})
     .fetch().then(function(found) {
       if (found) {
+        // attach user's id to the req.user object so it can be used later
         req.user.user_id = found.get('id');
       } else {
+        // create new user and add to database
         User.forge({username: username, full_name: user_name})
           .save()
           .then(function(user) {
@@ -24,6 +26,7 @@ function getAllPosts(req, res) {
         })
           .then(function(found) {
             if (found) {
+              // redefine each post to include related user's name
               var response = found.map(function(post) {
                 return {
                   id: post.get('id'),
@@ -57,7 +60,7 @@ function createPost(req, res) {
       user_name = req.user.displayName,
       userId = req.user.user_id;
 
-      // search for category id
+      // look for category where post belongs to
       Category.where({category: categoryName})
         .fetch().then(function(category) {
           if (category) {
@@ -72,7 +75,8 @@ function createPost(req, res) {
               res.json(post);
             });
           } else {
-            new Category({ category: categoryName })
+            // if category is nonexistent, create it
+            Category.forge({ category: categoryName })
               .save().then(function(category){
                 post = new Post({
                   title: title,
@@ -119,6 +123,7 @@ function upVote(req, res) {
         var heartsArray = post.related('heart').models;
         var catId = post.get('category_id');
 
+        // this prevents a user from hearting a post more than once
         for (var i=0; i<heartsArray.length; i++) {
           if (heartsArray[i].get('user_id') === userId) {
             res.sendStatus(304);

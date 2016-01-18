@@ -8,7 +8,7 @@ var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
 var morgan = require('morgan');
-var secrets = require('./config/secrets.js')
+var secrets = require('./config/secrets.js');
 
 var app = express();
 

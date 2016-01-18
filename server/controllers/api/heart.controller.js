@@ -11,6 +11,8 @@ function getHearts(req, res) {
     if (!hearts) {
       res.sendStatus(404);
     } else {
+      // redefine each heart to include related replies,
+      // name of category, user's name, and post it belongs to
       var responsePosts = hearts.map(function(heart) {
         return {
           id: heart.get('id'),
@@ -25,7 +27,7 @@ function getHearts(req, res) {
       });
       res.json(responsePosts);
     }
-  })
+  });
 }
 
 module.exports = {
