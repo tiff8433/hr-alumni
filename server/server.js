@@ -51,7 +51,7 @@ passport.deserializeUser(function(obj, done) {
 passport.use(new GithubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID || secrets.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET || secrets.GITHUB_CLIENT_SECRET,
-    callbackURL: "https://hr-alumni-app.herokuapp.com/auth/github/callback"
+    callbackURL: "http://hr-alumni-app.herokuapp.com/auth/github/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
