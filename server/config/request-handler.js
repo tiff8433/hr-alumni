@@ -40,7 +40,7 @@ exports.createProfile = function(req, res) {
   //   var project3  = req.body.project3;
   // }
 
-  console.log('github name', githubName);
+  //console.log('github name: ', githubName);
   var query= User.findOne({
       'contact.githubName':  githubName
 
@@ -106,7 +106,7 @@ exports.createProfile = function(req, res) {
 
 exports.findAll = function(req, res) {
   User.find({}).exec(function(err, profiles) {
-    console.log('profiles in find all', profiles);
+    //console.log('profiles in find all', profiles);
     res.json(profiles);
   });
 };
