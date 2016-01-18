@@ -16,7 +16,8 @@ function getReplies(req, res) {
           content: reply.get('content'),
           user: reply.related('user').get('full_name'),
           thumbs: reply.get('thumbs'),
-          created_at: reply.get('created_at')
+          created_at: reply.get('created_at'),
+          image: req.user._json.avatar_url
         };
       });
       res.json(replyResponse);
@@ -49,7 +50,7 @@ function postReply(req, res) {
 
 function thumbUpReply(req, res) {
   var replyId = req.params.id;
-  
+
   Reply.where({
     id: replyId
   }).fetch().then(function(reply) {
