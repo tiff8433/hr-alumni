@@ -17,7 +17,7 @@
   <section class="new-post-form" ng-show="showNewPostForm">
       <form name="create-post-form" ng-submit='addPost()'>
         <section class="new-form-controls">
-          <input type="text" placeholder="Title" ng-model="newPost.title" class='alert alert-warning' role='alert'>
+          <input type="text" placeholder="Title" ng-model="newPost.title">
           <select class="topic-selector" ng-model="newPost.category">
             <option disabled selected>Topic</option>
             <option class="events" value="events">Events</option>
