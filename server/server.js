@@ -45,7 +45,7 @@ passport.deserializeUser(function(obj, done) {
 if (process.env.NODE_ENV === undefined) {
   var callbackURL = 'http://localhost:3000/auth/github/callback';
 } else {
-  var callbackURL = 'http://hr-alumni-app.herokuapp.com/auth/github/callback';
+  var callbackURL = 'https://hr-alumni-app.herokuapp.com/auth/github/callback';
 }
 
 passport.use(new GithubStrategy({
@@ -95,6 +95,7 @@ app.get('/auth/github/callback',
       fromGitHub: true
     };
     //console.log(req.user);
+    console.log("handler.createProfile run")
     handler.createProfile(data, res);
     // res.redirect('/');
   });
