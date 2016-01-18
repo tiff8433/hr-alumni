@@ -9,8 +9,23 @@
   }
 }
 
-.post-content:not(.ng-hide), .reply-content:not(.ng-hide), .new-post-form:not(.ng-hide) {
+@include keyframes(postContentOut) {
+  0% {
+    opacity: 1;
+    @include transform(translate3d(0,0,0));
+  }
+  100% {
+    opacity: 0;
+    @include transform(translate3d(0,-1rem,0));
+  }
+}
+
+.ng-hide-remove {
   @include animation(postContentIn 300ms $ease-in-out-sine);
+}
+
+.new-post-form.ng-hide-add {
+  @include animation(postContentOut 300ms $ease-in-out-sine);
 }
 
 .plus-start i {

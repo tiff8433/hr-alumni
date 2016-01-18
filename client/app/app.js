@@ -1,5 +1,6 @@
 angular.module('myApp', [
   'ui.router',
+  'ngAnimate',
   'myApp.board',
   'myApp.post',
   'myApp.reply',
@@ -20,7 +21,6 @@ angular.module('myApp', [
     .state('profiles', {
       url: '/profiles',
       templateUrl: 'app/views/profiles.html'
-
     })
     // .state('createProfile', {
     //   url: '/createProfile',
@@ -52,9 +52,7 @@ angular.module('myApp', [
 }])
 
 .controller('profileCtrl', ['$scope', 'Profile', function ($scope, Profile) {
-  console.log('controller gets called');
   // $scope.currentProfile= Profile.getProfile();
-  console.log('currentProfile where it counts', $scope.currentProfile);
 }])
 
 .controller('profilesCtrl', ['$scope', '$http', 'HttpRequest', 'Profile', function ($scope, $http, HttpRequest, Profile) {
@@ -63,17 +61,14 @@ angular.module('myApp', [
     .then(function (res) {
       $scope.profiles= res.data;
       $scope.setProfile= function (profile) {
-        console.log('set profile called');
         $scope.currentProfile= Profile.setProfile(profile);
-        console.log('currentProfile', $scope.currentProfile);
       };
     });
 
     // used for showing the modal in profiles.html
     $scope.modalDetails = function(profile){
-        console.log(profile);
-        $scope.profile = profile;
-        $('#modalDetails').openModal();
+      $scope.profile = profile;
+      $('#modalDetails').openModal();
     };
 
 }])
@@ -87,7 +82,6 @@ angular.module('myApp', [
 // }])
 
 .controller('updateProfileCtrl', ['$scope', '$stateParams','HttpRequest', function ($scope, $stateParams, HttpRequest){
-  console.log('$stateParams are: ', $stateParams);
   // redirects to /updateProfile/:githubName
   // $scope.submitProfile = function (isValid, formData) {
   //       console.log('formData', formData);
@@ -96,8 +90,6 @@ angular.module('myApp', [
   // }
 
   $scope.submitProfile = function (isValid, formData) {
-
-        console.log('formData', $scope.data);
         // console.log('First isValid: ', isValid);
         HttpRequest.submitProfile(isValid, formData);
   };
@@ -106,8 +98,6 @@ angular.module('myApp', [
   HttpRequest.getProfile($stateParams.githubName)
     .then(function (res) {
       $scope.data= res.data;
-      console.log('profile data: ', res.data[0]);
-      console.log('contact data: ', res.data[0].contact);
       // $scope.setProfile= function (profile) {
       //   console.log('set profile called');
       //   $scope.currentProfile= Profile.setProfile(profile);
@@ -136,9 +126,7 @@ angular.module('myApp', [
 .factory('HttpRequest', ['$http', '$q', function ($http, $q){
   var deferred= $q.defer();
   var submitProfile = function (isValid, data) {
-      console.log('Second isValid: ', isValid);
     if (isValid) {
-        console.log('data does it get here>=? ', data);
         return $http({
             method: 'POST',
             url: '/api/updateProfile',
@@ -181,12 +169,10 @@ angular.module('myApp', [
 .factory('Profile', function (){
   var storedProfile;
   var setProfile= function (profile) {
-    console.log('profile set');
     storedProfile= profile;
     return storedProfile;
   };
   var getProfile= function (){
-    console.log('get profile');
     return storedProfile;
   };
   return {
