@@ -8,8 +8,10 @@ var bodyParser  = require('body-parser');
 var mongoose = require('mongoose');
 var apiRoutes = require('./controllers');
 var morgan = require('morgan');
-var secrets = require('./config/secrets.js');
 
+if (process.env.NODE_ENV === undefined) {
+  var secrets = require('./config/secrets.js');
+}
 var app = express();
 
 
@@ -40,10 +42,16 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
+if (process.env.NODE_ENV === undefined) {
+  var callbackURL = 'http://localhost:3000/auth/github/callback';
+} else {
+  var callbackURL = 'http://hr-alumni-app.herokuapp.com/auth/github/callback';
+}
+
 passport.use(new GithubStrategy({
-    clientID: secrets.GITHUB_CLIENT_ID,
-    clientSecret: secrets.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/github/callback"
+    clientID: process.env.GITHUB_CLIENT_ID || secrets.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET || secrets.GITHUB_CLIENT_SECRET,
+    callbackURL: callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
@@ -52,9 +60,11 @@ passport.use(new GithubStrategy({
   }
 ));
 
-
-// mongoose.connect(process.env.MONGOLAB_URI);
-mongoose.connect("mongodb://localhost/hralumnimark2");
+if (process.env.NODE_ENV === undefined) {
+  mongoose.connect("mongodb://localhost/hralumnimark2");
+} else {
+  mongoose.connect(process.env.MONGOLAB_URI);
+}
 
 app.use(express.static(__dirname + '/../client'));
 
@@ -84,7 +94,7 @@ app.get('/auth/github/callback',
       body: req.user,
       fromGitHub: true
     };
-    console.log(req.user);
+    //console.log(req.user);
     handler.createProfile(data, res);
     // res.redirect('/');
   });
