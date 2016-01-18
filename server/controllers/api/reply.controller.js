@@ -9,6 +9,7 @@ function getReplies(req, res) {
       withRelated: ['user']
     })
     .then(function(replies) {
+      // redefine each reply to include related user's name
       var replyResponse = replies.map(function(reply) {
         return {
           id: reply.get('id'),
@@ -26,7 +27,7 @@ function postReply(req, res) {
   var postId = req.params.id;
   var userId = req.user.user_id;
 
-  Post.forge({ id: postId })
+  Post.where({ id: postId })
     .fetch()
     .then(function(post) {
       var count = post.get('replies');
@@ -42,13 +43,13 @@ function postReply(req, res) {
   })
   .save()
   .then(function(reply) {
-    console.log(reply);
     res.json(reply);
   });
 }
 
 function thumbUpReply(req, res) {
   var replyId = req.params.id;
+  
   Reply.where({
     id: replyId
   }).fetch().then(function(reply) {
