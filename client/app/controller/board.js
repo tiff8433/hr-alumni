@@ -41,12 +41,16 @@ angular.module('myApp.board', [])
       Board.getHearts().then(function(resp) {
         $scope.posts = resp;
         $scope.heartsOnly = true;
+        $scope.activePost = {};
+        $scope.activePost.showReplies = false;
       }).catch(function(err) {
         console.log(err);
       });
     } else {
       $scope.heartsOnly = false;
       $scope.getAllPosts();
+      $scope.activePost = {};
+      $scope.activePost.showReplies = false;
     }
   };
 
