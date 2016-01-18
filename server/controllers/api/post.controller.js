@@ -4,9 +4,10 @@ var Post = require('../../models').Post,
     Heart = require('../../models').Heart;
 
 function getAllPosts(req, res) {
+  console.log(req);
   var username = req.user.username;
   var user_name = req.user.displayName;
-  var profileUrl = req.user['_json'].html_url;
+  var profileUrl = req.user['_json'].avatar_url;
 
   User.where({username: username})
     .fetch().then(function(found) {

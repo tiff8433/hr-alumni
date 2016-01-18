@@ -52,8 +52,8 @@ function postReply(req, res) {
           post_id: postId,
           user_id: userId,
           thumbs: 0,
-          username: reply.related('user').get('full_name'),
-          profilePic: reply.related('user').get('profileUrl')
+          user: reply.related('user').get('full_name'),
+          image: reply.related('user').get('profileUrl')
         };
         res.json(response);
       });
