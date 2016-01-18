@@ -6,7 +6,8 @@ angular.module('myApp', [
   'board.services',
   'post.services',
   'reply.services',
-  'angularMoment'
+  'angularMoment',
+  'ui.bootstrap'
   ])
 
 .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -41,7 +42,7 @@ angular.module('myApp', [
       url: '/board',
       templateUrl: 'app/views/board.html',
       controller: 'BoardCtrl'
-    })
+    });
 }])
 
 .controller('homeCtrl', ['$scope','$state', function ($scope, $state) {
@@ -65,7 +66,7 @@ angular.module('myApp', [
         console.log('set profile called');
         $scope.currentProfile= Profile.setProfile(profile);
         console.log('currentProfile', $scope.currentProfile);
-      }
+      };
     });
 
     // used for showing the modal in profiles.html
@@ -99,7 +100,7 @@ angular.module('myApp', [
         console.log('formData', $scope.data);
         // console.log('First isValid: ', isValid);
         HttpRequest.submitProfile(isValid, formData);
-  }
+  };
 
   //prepopulation of data
   HttpRequest.getProfile($stateParams.githubName)
@@ -114,7 +115,7 @@ angular.module('myApp', [
       // }
 
 
-    })
+    });
 
 }])
 
@@ -128,8 +129,8 @@ angular.module('myApp', [
         function (err) {
           console.log('there was an error');
         }
-      )
-  }
+      );
+  };
 }])
 
 .factory('HttpRequest', ['$http', '$q', function ($http, $q){
@@ -142,7 +143,7 @@ angular.module('myApp', [
             method: 'POST',
             url: '/api/updateProfile',
             data: data
-        })
+        });
     } else {
 
     }
@@ -156,8 +157,8 @@ angular.module('myApp', [
       deferred.resolve(result);
     }).error(function (result){
       deferred.reject(result);
-    })
-  }
+    });
+  };
 
   var getProfile= function (githubName){
     return $http({
@@ -167,14 +168,14 @@ angular.module('myApp', [
       deferred.resolve(result);
     }).error(function (result){
       deferred.reject(result);
-    })
-  }
+    });
+  };
 
   return {
     submitProfile: submitProfile,
     getProfiles: getProfiles,
     getProfile: getProfile
-  }
+  };
 }])
 
 .factory('Profile', function (){
@@ -183,14 +184,14 @@ angular.module('myApp', [
     console.log('profile set');
     storedProfile= profile;
     return storedProfile;
-  }
+  };
   var getProfile= function (){
     console.log('get profile');
     return storedProfile;
-  }
+  };
   return {
     setProfile: setProfile,
     getProfile: getProfile
-  }
+  };
 
-})
+});
