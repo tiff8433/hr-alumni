@@ -26,7 +26,8 @@ angular.module('myApp.board', [])
       })
       .catch(function(err) {
         console.error(err);
-      }); 
+        $state.go('login');
+      });
   };
 
   $scope.heartUp = function(post) {
