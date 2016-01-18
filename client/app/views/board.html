@@ -31,6 +31,8 @@
            <textarea cols="50" rows="10" maxlength="500" name="post.content" placeholder="Max 500 characters..." ng-model="newPost.content" ng-trim="false"></textarea>
            <small class="char-count">{{500 - newPost.content.length}} remaining</small>
          </div>
+         <br>
+         <uib-alert ng-show='formError'>All fields must be filled in!</uib-alert>
         <button type="submit" class="post-submit">Submit</button>
       </form>
   </section>
