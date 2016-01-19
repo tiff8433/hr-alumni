@@ -95,7 +95,7 @@ app.get('/auth/github/callback',
       fromGitHub: true
     };
     //console.log(req.user);
-    console.log("handler.createProfile run")
+    // console.log("handler.createProfile run")
     handler.createProfile(data, res);
     // res.redirect('/');
   });

@@ -82,14 +82,14 @@ exports.createProfile = function(req, res) {
 
           }
         });
-        console.log('new user on line 64: ', newUser);
+      //  console.log('new user on line 64: ', newUser);
         newUser.save(function(err, newUser) {
           if (err) {
-            console.log('there was an error with saving');
+            // console.log('there was an error with saving');
             res.status(500).send(err);
           }
-          console.log('new user gets saved: ', newUser);
-          console.log('new user github name:', newUser.contact.githubName)
+          // console.log('new user gets saved: ', newUser);
+          // console.log('new user github name:', newUser.contact.githubName)
           // res.json(newUser);
           res.redirect('/#/updateProfile/'+ newUser.contact.githubName)
 
@@ -120,7 +120,7 @@ exports.findOne = function(req, res) {
 };
 
 exports.updateProfile= function (req, res) {
-   console.log('req.body', req.body);
+  //  console.log('req.body', req.body);
     var name = req.body[0].contact.name;
     var profilePic = req.body[0].contact.profilePic;
     var githubName = req.body[0].contact.githubName;

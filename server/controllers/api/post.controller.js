@@ -4,7 +4,7 @@ var Post = require('../../models').Post,
     Heart = require('../../models').Heart;
 
 function getAllPosts(req, res) {
-  console.log(req);
+  //console.log(req);
   var username = req.user.username;
   var user_name = req.user.displayName;
   var profileUrl = req.user['_json'].avatar_url;
@@ -62,7 +62,7 @@ function createPost(req, res) {
       user_name = req.user.displayName,
       userId = req.user.user_id; // we have access to the user's id here because of how we attached it
                                  // to the req.user object on line 14/20
-                
+
       // look for category where post belongs to
       Category.where({category: categoryName})
         .fetch().then(function(category) {
@@ -73,7 +73,7 @@ function createPost(req, res) {
               hearts: 0,
               replies: 0,
               category_id: category.get('id'),
-              user_id: userId 
+              user_id: userId
             }).save().then(function(post) {
               res.json(post);
             });
