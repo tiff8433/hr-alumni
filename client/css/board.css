@@ -363,6 +363,7 @@ picture {
           border-radius: 100%;
           max-width: 3rem; }
         .board-wrapper .reply-content .reply .reply-user p {
+          line-height: 1.2;
           font-size: 0.75rem; }
       .board-wrapper .reply-content .reply .reply-info {
         background: #fbfbfb;
