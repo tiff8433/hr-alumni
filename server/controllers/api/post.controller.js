@@ -32,7 +32,7 @@ function getAllPosts(req, res) {
               var response = found.map(function(post) {
                 return {
                   id: post.get('id'),
-                  title: post.get('title'),
+                  title: post.escape('title'),
                   replyCount: post.get('replies'),
                   hearts: post.get('hearts'),
                   category: post.related('category').get('category'),
@@ -105,7 +105,7 @@ function getPost(req, res) {
   Post.where({id: postId}).fetch()
     .then(function(found) {
       if (found) {
-        res.json({content: found.get('content')});
+        res.json({content: found.escape('content')});
       }
     })
     .catch(function(err) {
