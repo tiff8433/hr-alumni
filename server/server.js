@@ -66,8 +66,6 @@ if (process.env.NODE_ENV === undefined) {
   mongoose.connect(process.env.MONGOLAB_URI);
 }
 
-app.use(express.static(__dirname + '/../client'));
-
 app.use(session({
   secret: 'lambo',
   resave: false,
