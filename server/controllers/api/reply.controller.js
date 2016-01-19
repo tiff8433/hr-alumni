@@ -17,7 +17,7 @@ function getReplies(req, res) {
           user: reply.related('user').get('full_name'),
           thumbs: reply.get('thumbs'),
           created_at: reply.get('created_at'),
-          image: req.user._json.avatar_url
+          image: reply.related('user').get('profileUrl')
         };
       });
       res.json(replyResponse);
@@ -44,7 +44,7 @@ function postReply(req, res) {
   })
   .save()
   .then(function(reply) {
-    Reply.where({ id: userId })
+    Reply.where({ user_id: userId })
       .fetch({ withRelated: ['user'] })
       .then(function(reply){
         var response = {

@@ -42,16 +42,16 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-if (process.env.NODE_ENV === undefined) {
-  var callbackURL = 'http://localhost:3000/auth/github/callback';
-} else {
-  var callbackURL = 'http://hr-alumni-app.herokuapp.com/auth/github/callback';
-}
+// if (process.env.NODE_ENV === undefined) {
+//   var callbackURL = 'http://localhost:3000/auth/github/callback';
+// } else {
+//   var callbackURL = 'http://hr-alumni-app.herokuapp.com/auth/github/callback';
+// }
 
 passport.use(new GithubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID || secrets.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET || secrets.GITHUB_CLIENT_SECRET,
-    callbackURL: callbackURL
+    callbackURL: 'http://hr-alumni-app.herokuapp.com/auth/github/callback'
   },
   function(accessToken, refreshToken, profile, done) {
     process.nextTick(function() {
@@ -95,6 +95,7 @@ app.get('/auth/github/callback',
       fromGitHub: true
     };
     //console.log(req.user);
+    console.log("handler.createProfile run")
     handler.createProfile(data, res);
     // res.redirect('/');
   });
